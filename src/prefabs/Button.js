@@ -15,30 +15,59 @@ class Button extends Phaser.GameObjects.Container{
 
         this.setSize(200, 50);
 
+        // the following changes the appearance of the button given current state
         this.setInteractive()
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
-                console.log('over button');
                 this.upImage.setVisible(false);
                 this.downImage.setVisible(false);
                 this.overImage.setVisible(true);
             })
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
-                console.log('out button');
                 this.upImage.setVisible(true);
                 this.downImage.setVisible(false);
                 this.overImage.setVisible(false);
             })
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-                console.log('down button');
                 this.upImage.setVisible(false);
                 this.downImage.setVisible(true);
                 this.overImage.setVisible(false);
             })
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
-                console.log('up button');
                 this.upImage.setVisible(false);
                 this.downImage.setVisible(false);
                 this.overImage.setVisible(true);
             })
     }
+
+    /*
+
+        The following is how you would implement on-click or on-down (etc) events for the buttons.
+
+        In the scene class that you want to check if a button is down, do this:
+
+        --mouse up
+        this.<button-name>.setInteractive()
+        .on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
+                
+        })
+
+        --mouse down
+        this.<button-name>.setInteractive()
+        .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                
+        })
+
+        --mouse over
+        this.<button-name>.setInteractive()
+        .on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+                
+        })
+
+        --mouse out
+        this.<button-name>.setInteractive()
+        .on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+                
+        })
+    */
+
 }
