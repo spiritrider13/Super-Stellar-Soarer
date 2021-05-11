@@ -1,5 +1,11 @@
-// FuelComponent Parent Class for all child fuel components.
-// All fuel components shall inheret / "extend" this class.
+/*
+
+FuelComponent Parent Class for all child fuel components.
+All fuel components shall inheret / "extend" this class.
+
+All texture dimensions should be 100 x 100 pixels
+
+*/
 class FuelComponent extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, texture, frame) {
         super(scene, x, y, texture, frame);
@@ -10,3 +16,4 @@ class FuelComponent extends Phaser.GameObjects.Sprite {
         this.stability;     //smoothness of the burn / how gradual the acceleration is
     }
 }
+
