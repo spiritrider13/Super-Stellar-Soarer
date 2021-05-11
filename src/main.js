@@ -1,8 +1,16 @@
 let config = {
     type: Phaser.AUTO,
-    width: 640,
-    height: 480,
-    scene: [ Menu, Play ]
+    pixelArt: true,
+    width: 720,
+    height: 1080,
+    fps: {
+        target: 60,
+        forceSetTimeOut: true
+    },
+    scale: {
+        autoCenter: Phaser.Scale.CENTER_BOTH
+    },
+    scene: [ Menu, Play, Home, FuelCrafting, UpgradeLab, UpgradeShip ]
 }
 
 let game = new Phaser.Game(config);
