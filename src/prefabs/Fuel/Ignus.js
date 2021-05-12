@@ -1,7 +1,7 @@
 // Ignus - Firelike substance - low in duration but powerful
 class Ignus extends FuelComponent {
-    constructor(scene, x, y, texture, frame) {
-        super(scene, x, y, texture, frame);
+    constructor(scene, texture, frame) {
+        super(scene, texture, frame);
         scene.add.existing(this);
 
         super.power = 400;

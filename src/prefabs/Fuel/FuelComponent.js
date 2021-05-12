@@ -7,13 +7,31 @@ All texture dimensions should be 100 x 100 pixels
 
 */
 class FuelComponent extends Phaser.GameObjects.Sprite {
-    constructor(scene, x, y, texture, frame) {
-        super(scene, x, y, texture, frame);
-        scene.add.existing(this);
+    constructor(scene, texture, frame) {
+        super(scene, 999, 999, texture, frame);
+        //scene.add.existing(this);
 
         this.power;         //how quickly the fuel causes the rocket to accelerate
         this.duration;      //how slowly the fuel burns
         this.stability;     //smoothness of the burn / how gradual the acceleration is
+    }
+
+    paint(scene, x, y){
+        scene.add.existing(this);
+        this.x = x;
+        this.y = y;
+
+        // add highlight box
+        this.highlight = scene.add.rectangle(x, y, 100, 100, '0xFFFFFF').setOrigin(0.5);
+        this.highlight.alpha = 0;
+
+        this.setInteractive()
+        .on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+            this.highlight.alpha = 0.3;
+        })
+        .on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+            this.highlight.alpha = 0;
+        })
     }
 }
 

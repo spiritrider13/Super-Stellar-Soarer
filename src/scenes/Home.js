@@ -21,9 +21,9 @@ class Home extends Phaser.Scene {
         this.sceneText = this.add.text(game.config.width/2, 20, 'HOME', titleTextConfig).setOrigin(0.5);
 
         // PLAY BUTTON ***********************************************************************
-        const playButton = new Button(this, game.config.width/2, 1040);
+        const playButton = new Button(this, game.config.width/2, 940);
         this.add.existing(playButton);
-        this.playButtonText = this.add.text(game.config.width/2, 1000, 'PLAY', titleTextConfig).setOrigin(0.5);
+        this.playButtonText = this.add.text(game.config.width/2, 900, 'PLAY', titleTextConfig).setOrigin(0.5);
         playButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('playScene');
@@ -51,6 +51,14 @@ class Home extends Phaser.Scene {
         shipButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('upgradeShipScene');
+        })
+        // FUEL CRAFTING BUTTON ***************************************************************
+        const fuelButton = new Button(this, game.config.width/2, 1040);
+        this.add.existing(fuelButton);
+        this.fuelButtonText = this.add.text(game.config.width/2, 1000, 'FUEL CRAFTING', titleTextConfig).setOrigin(0.5);
+        fuelButton.setInteractive()
+        .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.scene.start('fuelCraftingScene');
         })
     }
 
