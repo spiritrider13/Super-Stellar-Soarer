@@ -10,7 +10,21 @@ let config = {
     scale: {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
-    scene: [ Menu, Play, Home, FuelCrafting, UpgradeLab, UpgradeShip ]
+    scene: [ Menu, Play, Home, FuelCrafting, UpgradeLab, UpgradeShip, Credits, Help ]
+}
+
+//Title Text
+let titleTextConfig = {
+    fontFamily: 'Courier',
+    fontSize: '28px',
+    backgroundColor: '#00000000', 
+    color: '#FFFFFF',   
+    align: 'right',
+    padding: {
+        top: 5,
+        bottom: 5,
+    },
+    fixedWidth: 0
 }
 
 let game = new Phaser.Game(config);

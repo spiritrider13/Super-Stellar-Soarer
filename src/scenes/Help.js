@@ -1,12 +1,12 @@
 /*
 
-The UpgradeShip scene is where the player can purchase ship upgrades to improve
-flight performance.
+The Help scene is the home directory of the tutorials page. From here, the player can find
+how to play the game, controls, hints, etc.
 
 */
-class UpgradeShip extends Phaser.Scene {
+class Help extends Phaser.Scene {
     constructor() {
-        super("upgradeShipScene");
+        super("helpScene");
     }
 
     preload() {
@@ -17,16 +17,17 @@ class UpgradeShip extends Phaser.Scene {
 
     create() {
         //add some text labels
-        this.sceneText = this.add.text(game.config.width/2, 20, 'UPGRADE SHIP', titleTextConfig).setOrigin(0.5);
+        this.sceneText = this.add.text(game.config.width/2, 20, 'HELP', titleTextConfig).setOrigin(0.5);
 
         // BACK BUTTON ***********************************************************************
         const backButton = new Button(this, game.config.width/2, 1040);
         this.add.existing(backButton);
-        this.backButtonText = this.add.text(game.config.width/2, 1000, 'BACK TO HOME', titleTextConfig).setOrigin(0.5);
+        this.backButtonText = this.add.text(game.config.width/2, 1000, 'BACK TO MENU', titleTextConfig).setOrigin(0.5);
         backButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-            this.scene.start('homeScene');
+            this.scene.start('menuScene');
         })
+
     }
 
     update() {

@@ -1,12 +1,11 @@
 /*
 
-The UpgradeShip scene is where the player can purchase ship upgrades to improve
-flight performance.
+The Credits scene is where the credits for the project is displayed to the player.
 
 */
-class UpgradeShip extends Phaser.Scene {
+class Credits extends Phaser.Scene {
     constructor() {
-        super("upgradeShipScene");
+        super("creditsScene");
     }
 
     preload() {
@@ -17,15 +16,15 @@ class UpgradeShip extends Phaser.Scene {
 
     create() {
         //add some text labels
-        this.sceneText = this.add.text(game.config.width/2, 20, 'UPGRADE SHIP', titleTextConfig).setOrigin(0.5);
+        this.sceneText = this.add.text(game.config.width/2, 20, 'CREDITS', titleTextConfig).setOrigin(0.5);
 
         // BACK BUTTON ***********************************************************************
         const backButton = new Button(this, game.config.width/2, 1040);
         this.add.existing(backButton);
-        this.backButtonText = this.add.text(game.config.width/2, 1000, 'BACK TO HOME', titleTextConfig).setOrigin(0.5);
+        this.backButtonText = this.add.text(game.config.width/2, 1000, 'BACK TO MENU', titleTextConfig).setOrigin(0.5);
         backButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-            this.scene.start('homeScene');
+            this.scene.start('menuScene');
         })
     }
 

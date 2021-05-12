@@ -15,7 +15,8 @@ class Play extends Phaser.Scene {
     }
 
     create() {
-        
+        //add some text labels
+        this.sceneText = this.add.text(game.config.width/2, 20, 'PLAY', titleTextConfig).setOrigin(0.5);
         
 
     }

@@ -16,7 +16,8 @@ class FuelCrafting extends Phaser.Scene {
     }
 
     create() {
-        
+        //add some text labels
+        this.sceneText = this.add.text(game.config.width/2, 20, 'FUEL CRAFTING', titleTextConfig).setOrigin(0.5);
 
 
     }
