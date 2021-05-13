@@ -26,9 +26,11 @@ class FuelComponent extends Phaser.GameObjects.Sprite {
         this.highlight.alpha = 0;
 
         this.setInteractive()
+        // highlight the component if hovering over
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
             this.highlight.alpha = 0.3;
         })
+        // stop highlighting when cursor moves away
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
             this.highlight.alpha = 0;
         })
