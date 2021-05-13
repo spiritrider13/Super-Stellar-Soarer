@@ -9,12 +9,13 @@ class Credits extends Phaser.Scene {
     }
 
     preload() {
-        
-
-
+        this.load.image('background', './assets/spaceSkay.png');
     }
 
     create() {
+        // background image
+        this.background = this.add.tileSprite(0,0,720,1080,'background').setOrigin(0,0);
+
         // show menu text
         this.add.text(game.config.width/2, game.config.height/6 - borderUISize - borderPadding, 'CREDITS', menuConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, game.config.height/4 - borderUISize - borderPadding, 'TEAM AJS', menuConfig).setOrigin(0.5);
@@ -36,6 +37,7 @@ class Credits extends Phaser.Scene {
 
         // Music & Sound
         this.add.text(game.config.width/2, game.config.height/1.41, 'Jason Lee', menuConfig).setOrigin(0.5);
+
         // BACK BUTTON ***********************************************************************
         const backButton = new Button(this, game.config.width/2, 1040);
         this.add.existing(backButton);
