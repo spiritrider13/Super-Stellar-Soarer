@@ -9,10 +9,13 @@ class Menu extends Phaser.Scene {
         this.load.image('buttonUp', './assets/buttonUp.png');
         this.load.image('buttonOver', './assets/buttonOver.png');
         this.load.image('buttonDown', './assets/buttonDown.png');
+        this.load.image('spaceSky', './assets/spaceSkay.png');
+        this.load.image('moon', './assets/moon.png');
     }
 
     create() {
-
+        this.spaceSky = this.add.tileSprite(0,0,720,1080,'spaceSky').setOrigin(0,0);
+        this.moon = this.add.tileSprite(0,0,720,1080,'moon').setOrigin(0,0);
         //add some text labels
         this.sceneText = this.add.text(game.config.width/2, 20, 'MENU', titleTextConfig).setOrigin(0.5);
         this.titleText = this.add.text(game.config.width/2, 300, 'SUPER STELLAR SOARER', titleTextConfig).setOrigin(0.5);
@@ -47,9 +50,6 @@ class Menu extends Phaser.Scene {
     }
 
     update() {
-        
-
-
-        
+        this.spaceSky.tilePositionX += 3;
     }
 }
