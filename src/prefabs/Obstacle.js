@@ -13,7 +13,7 @@ class Obstacle extends Phaser.GameObjects.Sprite {
         this.x -= (5 * speedModifier);
 
         // obstacle falling
-        this.y -= 3;
+        this.y -= (3 * speedModifier);
     }
 
     // spawn the obstacle and set active
