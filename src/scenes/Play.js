@@ -23,12 +23,17 @@ class Play extends Phaser.Scene {
         //add some text labels
         this.sceneText = this.add.text(game.config.width/2, 20, 'PLAY', titleTextConfig).setOrigin(0.5);
         // add spaceship
-        this.p1Ship = new spaceShip(this, 50, 430, 'spaceShip', 128, 80).setOrigin(0,1);
+        this.p1Ship = new spaceShip(this, game.config.width/2, 900, 'spaceShip', 128, 80).setOrigin(0,1);
 
         // obstacle
-        this.obstacle1 = new Obstacle(0, this, 720, 1080, 'coin').setOrigin(0,0);
-        this.obstacle2 = new Obstacle(0, this, 720, 1080, 'junk').setOrigin(0,0);
-        this.obstacle3 = new Obstacle(0, this, 720, 1080, 'block1').setOrigin(0,0);
+        this.obstacle1 = new Obstacle(0, this, 0, 1080, 'coin').setOrigin(0);
+        this.obstacle2 = new Obstacle(1, this, 50, 1080, 'junk').setOrigin(0);
+        this.obstacle3 = new Obstacle(2, this, 720, 1080, 'block1').setOrigin(0);
+
+        // define key
+        //keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        //keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+        //keyRight = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
 
         // BACK BUTTON ***********************************************************************
         const backButton = new Button(this, game.config.width/2, 1040);
@@ -39,12 +44,36 @@ class Play extends Phaser.Scene {
             this.scene.start('homeScene');
         })
 
-        this.gameover = false;
+        this.gameOver = false;
         this.gameStart = false;
     }
 
     update() {
+        this.space.tilePositionY += 3;
 
+        //if (Phaser.Input.Keyboard.JustDown(keySPACE)){
+
+            if(!this.gameStart)
+            {
+                if(this.currentObstacle != null)
+                    this.currentObstacle.end();
+                this.beginRandom();
+            }
+
+            else if (!this.gameOver){
+
+            }
+        //}
+        //console.log(this.p1Horse.immune);
+        if(this.currentObstacle != null && !this.gameOver && this.gameStart){
+            this.currentObstacle.update();
+
+            //if an obstacle falls off screen, spawn new one
+            if(this.currentObstacle.x <= 0 - this.currentObstacle.width){
+                this.currentObstacle.end();
+                this.beginRandom();
+            }
+        }
     }   
 
     beginRandom() {
@@ -76,6 +105,18 @@ class Play extends Phaser.Scene {
                 break;
             default:
                 console.error("Invalid random obstacle attempted activation.");
+        }
+    }
+
+    checkCollision(obstacle, spaceShip) {  // collision function
+        // simple AABB checking
+        if (obstacle.x < spaceShip.x + spaceShip.width &&
+            obstacle.x + obstacle.width > spaceShip.x &&
+            obstacle.y < spaceShip.y + spaceShip.height &&
+            obstacle.height + obstacle.y > spaceShip.y) {
+                return true;
+        } else {
+            return false;
         }
     }
 }
