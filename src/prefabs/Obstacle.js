@@ -21,8 +21,8 @@ class Obstacle extends Phaser.GameObjects.Sprite {
         //add a random offset to the spawn x value
         var random = Math.floor(Math.random() * 500); //creates either 0, 1, or 3
 
-        this.x = 640 + random;
-        this.y = 370;
+        this.x = 640;
+        this.y = 370 + random;
         this.active = true;
         console.log("Obstacle " + this.type + " movement begun");
     }
