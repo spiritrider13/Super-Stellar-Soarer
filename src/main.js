@@ -27,6 +27,19 @@ let titleTextConfig = {
     fixedWidth: 0
 }
 
+let normalTextConfig = {
+    fontFamily: 'Courier',
+    fontSize: '16px',
+    backgroundColor: '#00000000', 
+    color: '#FFFFFF',   
+    align: 'right',
+    padding: {
+        top: 5,
+        bottom: 5,
+    },
+    fixedWidth: 0
+}
+
 let game = new Phaser.Game(config);
 
 // set UI sizes
