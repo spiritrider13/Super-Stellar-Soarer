@@ -14,7 +14,7 @@ class Play extends Phaser.Scene {
         this.load.image('coin', './assets/coin.png');
         this.load.image('junk', './assets/junk.png');
         this.load.image('block1', './assets/block1.png');
-        this.load.image('spaceShip', './assets/spaceship.png');
+        this.load.image('spaceShip', './assets/ship.png');
 
     }
 
@@ -49,7 +49,7 @@ class Play extends Phaser.Scene {
     }
 
     update(time, delta) {
-        this.space.tilePositionY += 3;
+        this.space.tilePositionY -= 3;
 
         if(!this.gameStart)
         {
