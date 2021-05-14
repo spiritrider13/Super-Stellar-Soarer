@@ -64,6 +64,7 @@ class Home extends Phaser.Scene {
         })
 
         this.playerShip = new spaceShip(this, game.config.width/2, game.config.height/2, 'ship', 1);
+        this.add.existing.playerShip;
     }
 
     update() {
