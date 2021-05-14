@@ -50,6 +50,7 @@ class Menu extends Phaser.Scene {
     }
 
     update() {
+        //background scrolling
         this.spaceSky.tilePositionX += 3;
     }
 }

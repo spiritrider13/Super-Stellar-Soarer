@@ -14,6 +14,8 @@ class Home extends Phaser.Scene {
         this.load.image('buttonUp', './assets/buttonUp.png');
         this.load.image('buttonOver', './assets/buttonOver.png');
         this.load.image('buttonDown', './assets/buttonDown.png');
+
+        this.load.image('ship', './assets/junk.png');
     }
 
     create() {
@@ -60,6 +62,8 @@ class Home extends Phaser.Scene {
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('fuelCraftingScene');
         })
+
+        this.playerShip = new spaceShip(this, game.config.width/2, game.config.height/2, 'ship', 1);
     }
 
     update() {
