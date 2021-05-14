@@ -32,8 +32,8 @@ class Play extends Phaser.Scene {
         this.currentObstacle = null;
         // define key
         //keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-        //keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
-        //keyRight = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
 
         // BACK BUTTON ***********************************************************************
         const backButton = new Button(this, game.config.width/2, 1040);
@@ -73,6 +73,13 @@ class Play extends Phaser.Scene {
 
         if(this.gameOver && this.gameStart){
             this.gameStart = false;
+        }
+
+        if (Phaser.Input.JustDown.keyLEFT) {
+            this.p1Ship.x -= 3;
+        }
+        if (Phaser.Input.JustDown.keyRIGHT) {
+            this.p1Ship.x += 3;
         }
     }   
 
