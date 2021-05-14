@@ -9,20 +9,17 @@ class Obstacle extends Phaser.GameObjects.Sprite {
     }
 
     update() {
-        //modify the speed of obstacle by the current speed modifier determined in Play.js
-        this.x -= (5 * speedModifier);
-
         // obstacle falling
-        this.y -= (3 * speedModifier);
+        this.y += 6;
     }
 
     // spawn the obstacle and set active
     begin() {
         //add a random offset to the spawn x value
-        var random = Math.floor(Math.random() * 500); //creates either 0, 1, or 3
+        var random = Math.floor(Math.random() * 600); //creates either 0, 1, or 3
 
-        this.x = 640;
-        this.y = 370 + random;
+        this.x = 60 + random;
+        this.y = -200;
         this.active = true;
         console.log("Obstacle " + this.type + " movement begun");
     }

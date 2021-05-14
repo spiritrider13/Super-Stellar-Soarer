@@ -26,9 +26,9 @@ class Play extends Phaser.Scene {
         this.p1Ship = new spaceShip(this, game.config.width/2, 900, 'spaceShip', 128, 80).setOrigin(0,1);
 
         // obstacle
-        this.obstacle1 = new Obstacle(0, this, 640, 480, 'coin').setOrigin(0);
-        this.obstacle2 = new Obstacle(1, this, 640, 480, 'junk').setOrigin(0);
-        this.obstacle3 = new Obstacle(2, this, 640, 480, 'block1').setOrigin(0);
+        this.obstacle1 = new Obstacle(0, this, 999, 999, 'coin').setOrigin(0);
+        this.obstacle2 = new Obstacle(1, this, 999, 999, 'junk').setOrigin(0);
+        this.obstacle3 = new Obstacle(2, this, 999, 999, 'block1').setOrigin(0);
         this.currentObstacle = null;
         // define key
         //keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
@@ -51,23 +51,21 @@ class Play extends Phaser.Scene {
     update(time, delta) {
         this.space.tilePositionY += 3;
 
-        //if (Phaser.Input.Keyboard.JustDown(keySPACE)){
-
-            if(!this.gameStart)
-            {
-                this.gameStart = true;
-                this.gameOver = false;
-                if(this.currentObstacle != null)
-                    this.currentObstacle.end();
-                this.beginRandom();
-            }
-        //}
+        if(!this.gameStart)
+        {
+            this.gameStart = true;
+            this.gameOver = false;
+            if(this.currentObstacle != null)
+                this.currentObstacle.end();
+            this.beginRandom();
+        }
+        
       
         if(this.currentObstacle != null && !this.gameOver && this.gameStart){
             this.currentObstacle.update();
 
             //if an obstacle falls off screen, spawn new one
-            if(this.currentObstacle.x <= 0 - this.currentObstacle.width){
+            if(this.currentObstacle.y >= 1080 + this.currentObstacle.height){
                 this.currentObstacle.end();
                 this.beginRandom();
             }
@@ -76,28 +74,6 @@ class Play extends Phaser.Scene {
         if(this.gameOver && this.gameStart){
             this.gameStart = false;
         }
-
-        var temp = this.distance / 100;
-        if(temp > 100 && speedModifier == 1)
-            speedModifier += 0.2;
-        else if(temp > 200 && speedModifier.toFixed(1) == 1.2)
-            speedModifier += 0.2;
-        else if(temp > 300 && speedModifier.toFixed(1) == 1.4)
-            speedModifier += 0.2;
-        else if(temp > 400 && speedModifier.toFixed(1) == 1.6)
-            speedModifier += 0.2;
-        else if(temp > 500 && speedModifier.toFixed(1) == 1.8)
-            speedModifier += 0.2;
-        else if(temp > 600 && speedModifier.toFixed(1) == 2)
-            speedModifier += 0.1;
-        else if(temp > 700 && speedModifier.toFixed(1) == 2.1)
-            speedModifier += 0.1;
-        else if(temp > 800 && speedModifier.toFixed(1) == 2.2)
-            speedModifier += 0.1;
-        else if(temp > 900 && speedModifier.toFixed(1) == 2.3)
-            speedModifier += 0.1;
-        else if(temp > 1000 && speedModifier.toFixed(1) == 2.4)
-            speedModifier += 0.1;
     }   
 
     beginRandom() {
