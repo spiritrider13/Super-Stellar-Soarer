@@ -49,7 +49,7 @@ class Play extends Phaser.Scene {
     }
 
     update(time, delta) {
-        this.space.tilePositionY += 3;
+        this.space.tilePositionY -= 3;
 
         if(!this.gameStart)
         {
