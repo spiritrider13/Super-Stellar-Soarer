@@ -16,9 +16,14 @@ class Play extends Phaser.Scene {
         this.load.image('block1', './assets/block1.png');
         this.load.image('spaceShip', './assets/ship.png');
 
+        this.load.audio('backgroundMusic', './assets/test1.mp3');
     }
 
     create() {
+        this.backgroundMusic = this.sound.add('backgroundMusic',{ volume: 0.1, loop: true });
+        this.backgroundMusic.play();
+
+
         this.space = this.add.tileSprite(0,0,720,1080,'space').setOrigin(0,0);
         //add some text labels
         this.sceneText = this.add.text(game.config.width/2, 20, 'PLAY', titleTextConfig).setOrigin(0.5);
@@ -31,9 +36,9 @@ class Play extends Phaser.Scene {
         this.obstacle3 = new Obstacle(2, this, 999, 999, 'block1').setOrigin(0);
         this.currentObstacle = null;
         // define key
-        //keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-        //keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
-        //keyRight = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+       
+        keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
 
         // BACK BUTTON ***********************************************************************
         const backButton = new Button(this, game.config.width/2, 1040);
@@ -50,6 +55,13 @@ class Play extends Phaser.Scene {
 
     update(time, delta) {
         this.space.tilePositionY -= 3;
+
+        if(keyLEFT.isDown){
+            this.p1Ship.x -= 5;
+        }
+        if(keyRIGHT.isDown){
+            this.p1Ship.x += 5;
+        }
 
         if(!this.gameStart)
         {
