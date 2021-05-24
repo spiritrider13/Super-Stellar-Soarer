@@ -36,7 +36,6 @@ class Play extends Phaser.Scene {
         this.obstacle3 = new Obstacle(2, this, 999, 999, 'block1').setOrigin(0);
         this.currentObstacle = null;
         // define key
-       
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
 
@@ -85,6 +84,13 @@ class Play extends Phaser.Scene {
 
         if(this.gameOver && this.gameStart){
             this.gameStart = false;
+        }
+
+        if (Phaser.Input.JustDown.keyLEFT) {
+            this.p1Ship.x -= 3;
+        }
+        if (Phaser.Input.JustDown.keyRIGHT) {
+            this.p1Ship.x += 3;
         }
     }   
 
