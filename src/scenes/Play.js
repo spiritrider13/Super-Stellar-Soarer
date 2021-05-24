@@ -85,13 +85,6 @@ class Play extends Phaser.Scene {
         if(this.gameOver && this.gameStart){
             this.gameStart = false;
         }
-
-        if (Phaser.Input.JustDown.keyLEFT) {
-            this.p1Ship.x -= 3;
-        }
-        if (Phaser.Input.JustDown.keyRIGHT) {
-            this.p1Ship.x += 3;
-        }
     }   
 
     beginRandom() {
