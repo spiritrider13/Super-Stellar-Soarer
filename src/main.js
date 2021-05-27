@@ -48,3 +48,11 @@ let borderPadding = borderUISize / 3;
 
 // reserve keyboard variables
 let keyLEFT, keyRIGHT;
+
+//Global gameplay variables ---------------------------------------
+
+//Fuel Related
+let currentSelection = 1;
+let fuelComp1 = null
+let fuelComp2 = null;
+let fuelComp3 = null;

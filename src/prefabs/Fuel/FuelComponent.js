@@ -10,6 +10,7 @@ class FuelComponent extends Phaser.GameObjects.Sprite {
     constructor(scene, texture, frame) {
         super(scene, 999, 999, texture, frame);
         //scene.add.existing(this);
+        this.texture = texture;
 
         this.power;         //how quickly the fuel causes the rocket to accelerate
         this.duration;      //how slowly the fuel burns
@@ -34,6 +35,40 @@ class FuelComponent extends Phaser.GameObjects.Sprite {
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
             this.highlight.alpha = 0;
         })
+        //selecting fuel component
+        .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            console.log("current selection index: " + currentSelection);
+            switch(currentSelection){
+                case 1:
+                    fuelComp1 = this;
+                    currentSelection = 2;
+                    break;
+                case 2:
+                    fuelComp2 = this;
+                    currentSelection = 3;
+                    break;
+                case 3:
+                    fuelComp3 = this;
+                    currentSelection = -1;
+                    break; 
+                case -1:
+                    console.log("Maximum fuel components selected!");
+                    break;
+                default:
+                    console.error("Fuel Crafting Error: currentSelection index out of bounds");
+            }
+        })
+    }
+
+    display(scene, x, y){
+        scene.add.existing(this);
+        this.x = x;
+        this.y = y;
+    }
+
+    remove(){
+        this.x = 999;
+        this.y = 999
     }
 }
 
