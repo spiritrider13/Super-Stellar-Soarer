@@ -45,8 +45,6 @@ class Menu extends Phaser.Scene {
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('helpScene');
         })
-
-
     }
 
     update() {
