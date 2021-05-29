@@ -20,6 +20,8 @@ class Play extends Phaser.Scene {
     }
 
     create() {
+        
+
         this.backgroundMusic = this.sound.add('backgroundMusic',{ volume: 0.1, loop: true });
         this.backgroundMusic.play();
 
@@ -28,16 +30,17 @@ class Play extends Phaser.Scene {
         //add some text labels
         this.sceneText = this.add.text(game.config.width/2, 20, 'PLAY', titleTextConfig).setOrigin(0.5);
         // add spaceship
-        this.p1Ship = new spaceShip(this, game.config.width/2, 900, 'spaceShip', 128, 80).setOrigin(0,1);
+        this.rocket = new spaceShip(this, game.config.width/2, 900, 'spaceShip', 128, 80).setOrigin(0.5);
+        this.physics.add.existing(this.rocket, false);
 
         // obstacle
-        this.obstacle1 = new Obstacle(0, this, 999, 999, 'coin').setOrigin(0);
-        this.obstacle2 = new Obstacle(1, this, 999, 999, 'junk').setOrigin(0);
-        this.obstacle3 = new Obstacle(2, this, 999, 999, 'block1').setOrigin(0);
-        this.currentObstacle = null;
+        //this.obstacle1 = new Obstacle(0, this, 999, 999, 'coin').setOrigin(0);
+        //this.obstacle2 = new Obstacle(1, this, 999, 999, 'junk').setOrigin(0);
+        //this.obstacle3 = new Obstacle(2, this, 999, 999, 'block1').setOrigin(0);
+        //this.currentObstacle = null;
         // define key
-        keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
-        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        //keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+        //keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
 
         // BACK BUTTON ***********************************************************************
         const backButton = new Button(this, game.config.width/2, 1040);
@@ -54,25 +57,8 @@ class Play extends Phaser.Scene {
 
     update(time, delta) {
         this.space.tilePositionY -= 3;
-
-        if(keyLEFT.isDown){
-            this.p1Ship.x -= 5;
-        }
-        if(keyRIGHT.isDown){
-            this.p1Ship.x += 5;
-        }
-
-        if(!this.gameStart)
-        {
-            this.gameStart = true;
-            this.gameOver = false;
-            if(this.currentObstacle != null)
-                this.currentObstacle.end();
-            this.beginRandom();
-        }
         
-      
-        if(this.currentObstacle != null && !this.gameOver && this.gameStart){
+        /*if(this.currentObstacle != null && !this.gameOver && this.gameStart){
             this.currentObstacle.update();
 
             //if an obstacle falls off screen, spawn new one
@@ -84,10 +70,12 @@ class Play extends Phaser.Scene {
 
         if(this.gameOver && this.gameStart){
             this.gameStart = false;
-        }
+        }*/
+
+        this.rocket.update(time, delta);
     }   
 
-    beginRandom() {
+    /*beginRandom() {
 
         var random = Math.floor(Math.random() * 3); //creates either 0, 1, or 3
 
@@ -129,5 +117,5 @@ class Play extends Phaser.Scene {
         } else {
             return false;
         }
-    }
+    }*/
 }

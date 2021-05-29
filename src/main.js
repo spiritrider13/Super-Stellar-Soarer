@@ -3,6 +3,16 @@ let config = {
     pixelArt: true,
     width: 720,
     height: 1080,
+    physics: {
+        default: 'arcade',
+        arcade: {
+            debug: true,
+            gravity: {
+                x: 0,
+                y: 100
+            }
+        }
+    },
     fps: {
         target: 60,
         forceSetTimeOut: true
@@ -46,8 +56,7 @@ let game = new Phaser.Game(config);
 let borderUISize = game.config.height / 15;
 let borderPadding = borderUISize / 3;
 
-// reserve keyboard variables
-let keyLEFT, keyRIGHT;
+let cursors;
 
 //Global gameplay variables ---------------------------------------
 
