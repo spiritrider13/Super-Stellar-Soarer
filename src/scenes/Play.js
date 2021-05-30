@@ -51,6 +51,7 @@ class Play extends Phaser.Scene {
         this.backButtonText = this.add.text(game.config.width/2, 1000, 'BACK TO HOME', titleTextConfig).setOrigin(0.5);
         backButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.backgroundMusic.stop();
             this.scene.start('homeScene');
         })
 
