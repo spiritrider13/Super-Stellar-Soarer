@@ -22,13 +22,19 @@ class Home extends Phaser.Scene {
         //add some text labels
         this.sceneText = this.add.text(game.config.width/2, 20, 'HOME', titleTextConfig).setOrigin(0.5);
 
+        this.warningText = this.add.text(game.config.width/2, game.config.height/2, '', normalTextConfig).setOrigin(0.5);
+
         // PLAY BUTTON ***********************************************************************
         const playButton = new Button(this, game.config.width/2, 940);
         this.add.existing(playButton);
         this.playButtonText = this.add.text(game.config.width/2, 900, 'PLAY', titleTextConfig).setOrigin(0.5);
         playButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-            this.scene.start('playScene');
+            if(fuelComp3 == null){
+                this.warningText.text = 'You must select three fuel components first!';
+            }else{
+                this.scene.start('playScene');
+            }
         })
         // QUIT BUTTON ***********************************************************************
         const quitButton = new Button(this, 110, 60);

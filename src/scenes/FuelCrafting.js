@@ -47,6 +47,7 @@ class FuelCrafting extends Phaser.Scene {
             fuelComp2 = null;
             fuelComp3 = null;
             currentSelection = 1;
+            this.refreshStats();
         })
 
         // ADDING FUEL COMPONENTS TO SCENE START ===========================================================================
@@ -126,11 +127,21 @@ class FuelCrafting extends Phaser.Scene {
             this.fuelImage3.setTexture(fuelComp3.texture);
         }
 
+        this.totalDuration = 0;
+        this.totalPower = 0;
+        this.totalStability = 0;
+
+        this.powerText = this.add.text(game.config.width/3 - 100, 700, 'Power: ' + this.totalPower ,normalTextConfig).setOrigin(0.5);
+        this.durationText = this.add.text(game.config.width/2, 700, 'Duration: ' + this.totalDuration, normalTextConfig).setOrigin(0.5);
+        this.stabilityText = this.add.text(game.config.width/1.5 + 100, 700, 'Stability: ' + this.totalStability, normalTextConfig).setOrigin(0.5);
+
 
         //when left click is pressed, refresh all images
         this.input.on('pointerdown', function (pointer){
             this.refreshImages();
         }, this);
+
+        this.refreshStats();
     }
 
     update() {
@@ -139,12 +150,13 @@ class FuelCrafting extends Phaser.Scene {
     }
 
     refreshImages(){
-         //fuel 1
-         if(fuelComp1 == null){
+        //fuel 1
+        if(fuelComp1 == null){
             this.fuelImage1.setTexture('Qmark');
         }
         else{
             this.fuelImage1.setTexture(fuelComp1.texture);
+            this.refreshStats();
         }
         //fuel 2
         if(fuelComp2 == null){
@@ -152,6 +164,7 @@ class FuelCrafting extends Phaser.Scene {
         }
         else{
             this.fuelImage2.setTexture(fuelComp2.texture);
+            this.refreshStats();
         }
         //fuel 3
         if(fuelComp3 == null){
@@ -159,6 +172,35 @@ class FuelCrafting extends Phaser.Scene {
         }
         else{
             this.fuelImage3.setTexture(fuelComp3.texture);
+            this.refreshStats();
         }
+    }
+
+    refreshStats(){
+
+        this.totalDuration = 0;
+        this.totalPower = 0;
+        this.totalStability = 0;
+
+
+        if(fuelComp1 != null){
+            this.totalDuration += fuelComp1.duration;
+            this.totalPower += fuelComp1.power;
+            this.totalStability += fuelComp1.stability;
+        }
+        if(fuelComp2 != null){
+            this.totalDuration += fuelComp2.duration;
+            this.totalPower += fuelComp2.power;
+            this.totalStability += fuelComp2.stability;
+        }
+        if(fuelComp3 != null){
+            this.totalDuration += fuelComp3.duration;
+            this.totalPower += fuelComp3.power;
+            this.totalStability += fuelComp3.stability;
+        }
+        
+        this.powerText.text = 'Power: ' + this.totalPower;
+        this.durationText.text = 'Duration: ' + this.totalDuration;
+        this.stabilityText.text = 'Stability: ' + this.totalStability;
     }
 }

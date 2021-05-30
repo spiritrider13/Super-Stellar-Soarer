@@ -4,8 +4,8 @@ class HotSauce extends FuelComponent {
         super(scene, texture, frame);
         scene.add.existing(this);
 
-        super.power = 400;
-        super.duration = 100;
+        super.power = 300;
+        super.duration = 10;
         super.stability = 250;
     }
 }

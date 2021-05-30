@@ -4,8 +4,8 @@ class Cookies extends FuelComponent {
         super(scene, texture, frame);
         scene.add.existing(this);
 
-        super.power = 400;
-        super.duration = 100;
+        super.power = 10;
+        super.duration = 500;
         super.stability = 250;
     }
 }

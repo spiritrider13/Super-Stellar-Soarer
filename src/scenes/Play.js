@@ -31,7 +31,10 @@ class Play extends Phaser.Scene {
         this.sceneText = this.add.text(game.config.width/2, 20, 'PLAY', titleTextConfig).setOrigin(0.5);
         // add spaceship
         this.rocket = new spaceShip(this, game.config.width/2, 900, 'spaceShip', 128, 80).setOrigin(0.5);
+        this.rocket.initializeFuel();
         this.physics.add.existing(this.rocket, false);
+
+        this.fuelText = this.add.text(600, 20, 'FUEL: ' + this.rocket.fuel, normalTextConfig).setOrigin(0.5);
 
         // obstacle
         //this.obstacle1 = new Obstacle(0, this, 999, 999, 'coin').setOrigin(0);
@@ -53,6 +56,8 @@ class Play extends Phaser.Scene {
 
         this.gameOver = false;
         this.gameStart = false;
+
+        
     }
 
     update(time, delta) {
@@ -71,6 +76,8 @@ class Play extends Phaser.Scene {
         if(this.gameOver && this.gameStart){
             this.gameStart = false;
         }*/
+
+        this.fuelText.text = 'Fuel: ' + this.rocket.fuel;
 
         this.rocket.update(time, delta);
     }   

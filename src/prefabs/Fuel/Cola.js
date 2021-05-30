@@ -4,8 +4,8 @@ class Cola extends FuelComponent {
         super(scene, texture, frame);
         scene.add.existing(this);
 
-        super.power = 400;
-        super.duration = 100;
+        super.power = 220;
+        super.duration = 70;
         super.stability = 250;
     }
 }

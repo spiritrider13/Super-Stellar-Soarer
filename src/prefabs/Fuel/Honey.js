@@ -4,8 +4,8 @@ class Honey extends FuelComponent {
         super(scene, texture, frame);
         scene.add.existing(this);
 
-        super.power = 400;
-        super.duration = 100;
+        super.power = 60;
+        super.duration = 250;
         super.stability = 250;
     }
 }

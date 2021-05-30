@@ -13,6 +13,10 @@ class spaceShip extends Phaser.Physics.Arcade.Sprite {
         this.setDamping(true);
         this.setDrag(this.DRAG);
 
+        this.fuel = 0;
+        this.power = 0;
+        this.stability = 0;
+
         
         //set up key input
         cursors = scene.input.keyboard.createCursorKeys();
@@ -21,9 +25,15 @@ class spaceShip extends Phaser.Physics.Arcade.Sprite {
     update(time, delta){
         // Inspiration from Phaser3 'Asteroids' example
         // Inside the velocityFromRotation method, the 1st parameter is starting direction (pi/2), second is thrust power
-        if(cursors.up.isDown) {
-            this.scene.physics.velocityFromRotation(this.rotation-Math.PI/2, 200, this.body.acceleration);
-        } else {
+        if(cursors.up.isDown && this.fuel > 0) {
+            this.scene.physics.velocityFromRotation(this.rotation-Math.PI/2, this.power, this.body.acceleration);
+            this.fuel -= delta/100;
+        }
+        else if(this.fuel <= 0){
+            this.fuel = 0;
+            this.setAcceleration(0);
+        }
+        else {
             this.setAcceleration(0);
         }
 
@@ -35,5 +45,13 @@ class spaceShip extends Phaser.Physics.Arcade.Sprite {
         } else {
             this.setAngularVelocity(0);
         }
+
+        //this.physics.world.wrap(this, this.width);
+    }
+
+    initializeFuel(){
+        this.fuel = fuelComp1.duration + fuelComp2.duration + fuelComp3.duration;
+        this.power = fuelComp1.power + fuelComp2.power + fuelComp3.power;
+        this.stability = fuelComp1.stability + fuelComp2.stability + fuelComp3.stability;
     }
 }

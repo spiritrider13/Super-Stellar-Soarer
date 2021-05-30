@@ -62,6 +62,6 @@ let cursors;
 
 //Fuel Related
 let currentSelection = 1;
-let fuelComp1 = null
+let fuelComp1 = null;
 let fuelComp2 = null;
 let fuelComp3 = null;

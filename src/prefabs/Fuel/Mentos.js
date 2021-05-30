@@ -4,7 +4,7 @@ class Mentos extends FuelComponent {
         super(scene, texture, frame);
         scene.add.existing(this);
 
-        super.power = 400;
+        super.power = 160;
         super.duration = 100;
         super.stability = 250;
     }
