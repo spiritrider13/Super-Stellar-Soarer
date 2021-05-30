@@ -19,6 +19,7 @@ class FuelComponent extends Phaser.GameObjects.Sprite {
 
     paint(scene, x, y){
         scene.add.existing(this);
+        //this.setScale(2);
         this.x = x;
         this.y = y;
 
