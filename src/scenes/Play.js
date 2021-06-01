@@ -15,7 +15,8 @@ class Play extends Phaser.Scene {
         this.load.image('junk', './assets/junk.png');
         this.load.image('block1', './assets/block1.png');
         this.load.image('spaceShip', './assets/shipComponents/newShip.png');
-        this.load.image('spaceShip', './assets/shipComponents/shipWithBooster.png');
+        this.load.image('spaceShip', './assets/shipComponents/basicBooster.png');
+        this.load.image('spaceShip', './assets/shipComponents/frontBooster.png');
 
         this.load.audio('backgroundMusic', './assets/test1.mp3');
     }
