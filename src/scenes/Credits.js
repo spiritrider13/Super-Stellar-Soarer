@@ -9,7 +9,7 @@ class Credits extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('background', './assets/spaceSky.png');
+        this.load.image('background', './assets/creditsBackground.png');
     }
 
     create() {
@@ -48,7 +48,7 @@ class Credits extends Phaser.Scene {
 
     update() {
         //background scrolling
-        this.background.tilePositionX += 3;
+        //this.background.tilePositionX += 3;
 
 
         
