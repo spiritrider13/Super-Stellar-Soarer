@@ -14,8 +14,8 @@ class Menu extends Phaser.Scene {
     }
 
     create() {
-        this.spaceSky = this.add.tileSprite(0,0,720,1080,'spaceSky').setOrigin(0,0);
-        this.moon = this.add.tileSprite(0,0,720,1080,'moon').setOrigin(0,0);
+        this.spaceSky = this.add.tileSprite(0,0,game.config.width,game.config.height,'spaceSky').setOrigin(0,0);
+        this.moon = this.add.tileSprite(0,0,game.config.width,game.config.height,'moon').setOrigin(0,0);
         //add some text labels
         this.sceneText = this.add.text(game.config.width/2, 20, 'MENU', titleTextConfig).setOrigin(0.5);
         this.titleText = this.add.text(game.config.width/2, 300, 'SUPER STELLAR SOARER', titleTextConfig).setOrigin(0.5);

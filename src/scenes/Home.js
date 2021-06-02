@@ -25,9 +25,9 @@ class Home extends Phaser.Scene {
         this.warningText = this.add.text(game.config.width/2, game.config.height/2, '', normalTextConfig).setOrigin(0.5);
 
         // PLAY BUTTON ***********************************************************************
-        const playButton = new Button(this, game.config.width/2, 940);
+        const playButton = new Button(this, game.config.width/2, 810);
         this.add.existing(playButton);
-        this.playButtonText = this.add.text(game.config.width/2, 900, 'PLAY', titleTextConfig).setOrigin(0.5);
+        this.playButtonText = this.add.text(game.config.width/2, 770, 'PLAY', titleTextConfig).setOrigin(0.5);
         playButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             if(fuelComp3 == null){
@@ -45,25 +45,25 @@ class Home extends Phaser.Scene {
             this.scene.start('menuScene');
         })
         // UPGRADE LAB BUTTON ****************************************************************
-        const labButton = new Button(this, 110, 1040);
+        const labButton = new Button(this, 110, game.config.height - 40);
         this.add.existing(labButton);
-        this.labButtonText = this.add.text(110, 1000, 'UPGRADE LAB', titleTextConfig).setOrigin(0.5);
+        this.labButtonText = this.add.text(110, game.config.height - 80, 'UPGRADE LAB', titleTextConfig).setOrigin(0.5);
         labButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('upgradeLabScene');
         })
         // UPGRADE SHIP BUTTON ***************************************************************
-        const shipButton = new Button(this, 610, 1040);
+        const shipButton = new Button(this, 610, game.config.height - 40);
         this.add.existing(shipButton);
-        this.shipButtonText = this.add.text(610, 1000, 'UPGRADE SHIP', titleTextConfig).setOrigin(0.5);
+        this.shipButtonText = this.add.text(610, game.config.height - 80, 'UPGRADE SHIP', titleTextConfig).setOrigin(0.5);
         shipButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('upgradeShipScene');
         })
         // FUEL CRAFTING BUTTON ***************************************************************
-        const fuelButton = new Button(this, game.config.width/2, 1040);
+        const fuelButton = new Button(this, game.config.width/2, game.config.height - 40);
         this.add.existing(fuelButton);
-        this.fuelButtonText = this.add.text(game.config.width/2, 1000, 'FUEL CRAFTING', titleTextConfig).setOrigin(0.5);
+        this.fuelButtonText = this.add.text(game.config.width/2, game.config.height - 80, 'FUEL CRAFTING', titleTextConfig).setOrigin(0.5);
         fuelButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('fuelCraftingScene');

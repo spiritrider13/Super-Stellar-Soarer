@@ -33,18 +33,18 @@ class FuelCrafting extends Phaser.Scene {
         this.sceneText = this.add.text(game.config.width/2, 20, 'FUEL CRAFTING', titleTextConfig).setOrigin(0.5);
 
         // BACK BUTTON ***********************************************************************
-        const backButton = new Button(this, 150, 1040);
+        const backButton = new Button(this, 150, game.config.height - 40);
         this.add.existing(backButton);
-        this.backButtonText = this.add.text(150, 1000, 'BACK TO HOME', titleTextConfig).setOrigin(0.5);
+        this.backButtonText = this.add.text(150, game.config.height - 80, 'BACK TO HOME', titleTextConfig).setOrigin(0.5);
         backButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('homeScene');
         })
 
         // CLEAR BUTTON ***********************************************************************
-        const clearButton = new Button(this, game.config.width - 150, 1040);
+        const clearButton = new Button(this, game.config.width - 150, game.config.height - 40);
         this.add.existing(clearButton);
-        this.backButtonText = this.add.text(game.config.width - 150, 1000, 'CLEAR SELECTION', titleTextConfig).setOrigin(0.5);
+        this.backButtonText = this.add.text(game.config.width - 150, game.config.height - 80, 'CLEAR SELECTION', titleTextConfig).setOrigin(0.5);
         clearButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             fuelComp1 = null;

@@ -60,9 +60,9 @@ class Play extends Phaser.Scene {
         //keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
 
         // BACK BUTTON ***********************************************************************
-        const backButton = new Button(this, game.config.width/2, 1040);
+        const backButton = new Button(this, game.config.width/2, game.config.height - 40);
         this.add.existing(backButton);
-        this.backButtonText = this.add.text(game.config.width/2, 1000, 'BACK TO HOME', titleTextConfig).setOrigin(0.5);
+        this.backButtonText = this.add.text(game.config.width/2, game.config.height - 80, 'BACK TO HOME', titleTextConfig).setOrigin(0.5);
         backButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.backgroundMusic.stop();
