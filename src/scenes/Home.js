@@ -37,9 +37,9 @@ class Home extends Phaser.Scene {
             }
         })
         // QUIT BUTTON ***********************************************************************
-        const quitButton = new Button(this, 110, 60);
+        const quitButton = new Button(this, 610, 80);
         this.add.existing(quitButton);
-        this.quitButtonText = this.add.text(110, 20, 'QUIT TO MENU', titleTextConfig).setOrigin(0.5);
+        this.quitButtonText = this.add.text(610, 40, 'QUIT TO MENU', titleTextConfig).setOrigin(0.5);
         quitButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('menuScene');
