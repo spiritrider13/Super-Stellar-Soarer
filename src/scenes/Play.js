@@ -14,8 +14,11 @@ class Play extends Phaser.Scene {
         this.load.image('coin', './assets/coin.png');
         this.load.image('junk', './assets/junk.png');
         this.load.image('block1', './assets/block1.png');
-        this.load.image('spaceShip', './assets/shipComponents/newShip.png');
-        this.load.image('spaceShip', './assets/shipComponents/shipWithBooster.png');
+
+        this.load.image('spaceShip', './assets/shipComponents/rocket.png');
+        this.load.image('basicBooster', './assets/shipComponents/basicBooster.png');
+        this.load.image('booserTier3', './assets/shipComponents/boosterTier3.png');
+        this.load.image('frontBoosters', './assets/shipComponents/frontBoosters.png');
 
         this.load.audio('backgroundMusic', './assets/test1.mp3');
     }
@@ -42,13 +45,14 @@ class Play extends Phaser.Scene {
 
         this.point = new UGP(this, 200, 200, 'coin', 128, 80).setOrigin(0,0);
         this.point.destroyed = false;
+
         // obstacle
         //this.obstacle1 = new Obstacle(0, this, 999, 999, 'coin').setOrigin(0);
         //this.obstacle2 = new Obstacle(1, this, 999, 999, 'junk').setOrigin(0);
         //this.obstacle3 = new Obstacle(2, this, 999, 999, 'block1').setOrigin(0);
         //this.currentObstacle = null;
+
         // define key
-        
         //keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         //keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
 

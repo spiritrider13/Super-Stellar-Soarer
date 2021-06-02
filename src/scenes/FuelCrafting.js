@@ -10,16 +10,16 @@ class FuelCrafting extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('ignus', './assets/fuel components/Ignus.png');
-        this.load.image('cola', './assets/fuel components/coke.png');
-        this.load.image('cookies', './assets/fuel components/cookie.png');
-        this.load.image('gasoline', './assets/fuel components/gasoline.png');
-        this.load.image('honey', './assets/fuel components/honey.png');
-        this.load.image('hotsauce', './assets/fuel components/hotsouce.png');
-        this.load.image('hydrogen', './assets/fuel components/hydrogen.png');
-        this.load.image('icecream', './assets/fuel components/icecream.png');
-        this.load.image('mayonnaise', './assets/fuel components/maayonaise.png');
-        this.load.image('mentos', './assets/fuel components/mentos.png');
+        this.load.image('ignus', './assets/fuelComponents/Ignus.png');
+        this.load.image('cola', './assets/fuelComponents/coke.png');
+        this.load.image('cookies', './assets/fuelComponents/cookie.png');
+        this.load.image('gasoline', './assets/fuelComponents/gasoline.png');
+        this.load.image('honey', './assets/fuelComponents/honey.png');
+        this.load.image('hotsauce', './assets/fuelComponents/hotsouce.png');
+        this.load.image('hydrogen', './assets/fuelComponents/hydrogen.png');
+        this.load.image('icecream', './assets/fuelComponents/icecream.png');
+        this.load.image('mayonnaise', './assets/fuelComponents/maayonaise.png');
+        this.load.image('mentos', './assets/fuelComponents/mentos.png');
         this.load.image('Qmark', './assets/Qmark1.png');
 
     }

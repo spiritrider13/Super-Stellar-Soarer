@@ -9,7 +9,7 @@ class Menu extends Phaser.Scene {
         this.load.image('buttonUp', './assets/buttonUp.png');
         this.load.image('buttonOver', './assets/buttonOver.png');
         this.load.image('buttonDown', './assets/buttonDown.png');
-        this.load.image('spaceSky', './assets/spaceSkay.png');
+        this.load.image('spaceSky', './assets/spaceSky.png');
         this.load.image('moon', './assets/moon.png');
     }
 

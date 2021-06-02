@@ -9,7 +9,7 @@ class Credits extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('background', './assets/spaceSkay.png');
+        this.load.image('background', './assets/spaceSky.png');
     }
 
     create() {
