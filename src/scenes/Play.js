@@ -29,11 +29,12 @@ class Play extends Phaser.Scene {
 
         this.backgroundMusic = this.sound.add('backgroundMusic',{ volume: 0.1, loop: true });
         this.backgroundMusic.play();
-
         
         this.space = this.add.tileSprite(0,0,720,1080,'space').setOrigin(0,0);
-        //add some text labels
-       // this.sceneText = this.add.text(game.config.width/2, 20, 'PLAY', titleTextConfig).setOrigin(0.5);
+
+        // add some text labels
+        // this.sceneText = this.add.text(game.config.width/2, 20, 'PLAY', titleTextConfig).setOrigin(0.5);
+
         // add spaceship
         this.rocket = new spaceShip(this, game.config.width/2, 900, 'spaceShip', 128, 80).setOrigin(0.5);
         this.rocket.initializeFuel();
@@ -68,8 +69,6 @@ class Play extends Phaser.Scene {
 
         this.gameOver = false;
         this.gameStart = false;
-
-        
     }
 
     update(time, delta) {

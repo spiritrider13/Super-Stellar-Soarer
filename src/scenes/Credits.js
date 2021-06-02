@@ -33,7 +33,6 @@ class Credits extends Phaser.Scene {
         this.add.text(game.config.width/2, 615, 'Aria Altenburg', normalTextConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, 645, 'Sam Vik', normalTextConfig).setOrigin(0.5);        
 
-
         // Music & Sound
         this.add.text(game.config.width/2, 785, 'Jason Lee', normalTextConfig).setOrigin(0.5);
 
