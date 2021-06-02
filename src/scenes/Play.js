@@ -15,6 +15,8 @@ class Play extends Phaser.Scene {
         this.load.image('junk', './assets/junk.png');
         this.load.image('block1', './assets/block1.png');
 
+        this.load.image('meteor', './assets/obstacles/meteor.png');
+
         this.load.image('spaceShip', './assets/shipComponents/rocket.png');
         this.load.image('basicBooster', './assets/shipComponents/basicBooster.png');
         this.load.image('booserTier3', './assets/shipComponents/boosterTier3.png');
@@ -48,7 +50,7 @@ class Play extends Phaser.Scene {
         this.point.destroyed = false;
 
         // obstacle
-        //this.obstacle1 = new Obstacle(0, this, 999, 999, 'coin').setOrigin(0);
+        //this.obstacle1 = new Obstacle(0, this, 999, 999, 'meteor').setOrigin(0);
         //this.obstacle2 = new Obstacle(1, this, 999, 999, 'junk').setOrigin(0);
         //this.obstacle3 = new Obstacle(2, this, 999, 999, 'block1').setOrigin(0);
         //this.currentObstacle = null;
