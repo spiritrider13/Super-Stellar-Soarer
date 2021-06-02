@@ -15,35 +15,36 @@ class Play extends Phaser.Scene {
         this.load.image('junk', './assets/junk.png');
         this.load.image('block1', './assets/block1.png');
         this.load.image('spaceShip', './assets/shipComponents/newShip.png');
-        this.load.image('spaceShip', './assets/shipComponents/basicBooster.png');
-        this.load.image('spaceShip', './assets/shipComponents/frontBooster.png');
+        this.load.image('spaceShip', './assets/shipComponents/shipWithBooster.png');
 
         this.load.audio('backgroundMusic', './assets/test1.mp3');
     }
 
     create() {
-        
+        this.distance = 0;
 
         this.backgroundMusic = this.sound.add('backgroundMusic',{ volume: 0.1, loop: true });
         this.backgroundMusic.play();
 
-
+        
         this.space = this.add.tileSprite(0,0,720,1080,'space').setOrigin(0,0);
         //add some text labels
-        this.sceneText = this.add.text(game.config.width/2, 20, 'PLAY', titleTextConfig).setOrigin(0.5);
+       // this.sceneText = this.add.text(game.config.width/2, 20, 'PLAY', titleTextConfig).setOrigin(0.5);
         // add spaceship
         this.rocket = new spaceShip(this, game.config.width/2, 900, 'spaceShip', 128, 80).setOrigin(0.5);
         this.rocket.initializeFuel();
         this.physics.add.existing(this.rocket, false);
 
         this.fuelText = this.add.text(600, 20, 'FUEL: ' + this.rocket.fuel, normalTextConfig).setOrigin(0.5);
-
+        this.distanceDisplay = this.add.text(game.config.width/2, 20, '0 m',  normalTextConfig).setOrigin(0.5);
+        //his.upgDisplay = this.add.text()
         // obstacle
         //this.obstacle1 = new Obstacle(0, this, 999, 999, 'coin').setOrigin(0);
         //this.obstacle2 = new Obstacle(1, this, 999, 999, 'junk').setOrigin(0);
         //this.obstacle3 = new Obstacle(2, this, 999, 999, 'block1').setOrigin(0);
         //this.currentObstacle = null;
         // define key
+        
         //keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         //keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
 
@@ -81,7 +82,7 @@ class Play extends Phaser.Scene {
         }*/
 
         this.fuelText.text = 'Fuel: ' + this.rocket.fuel;
-
+        this.distanceDisplay.text = this.rocket.distance + ' m';
         this.rocket.update(time, delta);
     }   
 

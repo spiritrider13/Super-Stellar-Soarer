@@ -17,7 +17,7 @@ class spaceShip extends Phaser.Physics.Arcade.Sprite {
         this.power = 0;
         this.stability = 0;
 
-        
+        this.distance = 0;
         //set up key input
         cursors = scene.input.keyboard.createCursorKeys();
     }
@@ -28,6 +28,7 @@ class spaceShip extends Phaser.Physics.Arcade.Sprite {
         if(cursors.up.isDown && this.fuel > 0) {
             this.scene.physics.velocityFromRotation(this.rotation-Math.PI/2, this.power, this.body.acceleration);
             this.fuel -= delta/100;
+            this.distance += 100;
         }
         else if(this.fuel <= 0){
             this.fuel = 0;
