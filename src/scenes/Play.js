@@ -22,6 +22,7 @@ class Play extends Phaser.Scene {
 
     create() {
         this.distance = 0;
+        this.number = 0;
 
         this.backgroundMusic = this.sound.add('backgroundMusic',{ volume: 0.1, loop: true });
         this.backgroundMusic.play();
@@ -37,7 +38,10 @@ class Play extends Phaser.Scene {
 
         this.fuelText = this.add.text(600, 20, 'FUEL: ' + this.rocket.fuel, normalTextConfig).setOrigin(0.5);
         this.distanceDisplay = this.add.text(game.config.width/2, 20, '0 m',  normalTextConfig).setOrigin(0.5);
-        //his.upgDisplay = this.add.text()
+        this.upgDisplay = this.add.text(10, 0, "UGP: 0", normalTextConfig);
+
+        this.point = new UGP(this, 200, 200, 'coin', 128, 80).setOrigin(0,0);
+        this.point.destroyed = false;
         // obstacle
         //this.obstacle1 = new Obstacle(0, this, 999, 999, 'coin').setOrigin(0);
         //this.obstacle2 = new Obstacle(1, this, 999, 999, 'junk').setOrigin(0);
@@ -84,7 +88,20 @@ class Play extends Phaser.Scene {
         this.fuelText.text = 'Fuel: ' + this.rocket.fuel;
         this.distanceDisplay.text = this.rocket.distance + ' m';
         this.rocket.update(time, delta);
+
+        if (!this.point.destroyed){
+            this.physics.world.collide(this.point, this.rocket, this.pointCollision, null, this);
+            if(this.point.destroyed){
+                this.upgDisplay.text = "UGP: " + this.number;
+            }
+        }
     }   
+
+    pointCollision(){
+        this.point.destroyed = true; 
+        this.number += 50; 
+        this.point.destroy(); 
+    }
 
     /*beginRandom() {
 
