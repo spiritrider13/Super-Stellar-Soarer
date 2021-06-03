@@ -23,7 +23,7 @@ class Home extends Phaser.Scene {
         // background
         this.background = this.add.tileSprite(0,0,game.config.width,game.config.height,'background').setOrigin(0,0);
 
-        //add some text labels
+        // add some text labels
         this.sceneText = this.add.text(game.config.width/2, 20, 'HOME', titleTextConfig).setOrigin(0.5);
 
         this.warningText = this.add.text(game.config.width/2, game.config.height/2, '', normalTextConfig).setOrigin(0.5);
@@ -72,6 +72,9 @@ class Home extends Phaser.Scene {
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('fuelCraftingScene');
         })
+
+        // display rocket
+        this.playerShip = this.add.image(game.config.width / 2, game.config.height / 2, 'ship').setOrigin(0,0);
     }
 
     update() {

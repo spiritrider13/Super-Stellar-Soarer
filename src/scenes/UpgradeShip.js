@@ -12,9 +12,13 @@ class UpgradeShip extends Phaser.Scene {
     preload() {
         this.load.image('background', './assets/upgradeBackground.png');
 
-        
-
-
+        // Ship Upgrades
+        this.load.image('spaceShip', './assets/shipUpgrades/rocket.png');
+        this.load.image('boosterTier1', './assets/shipUpgrades/boosterTier1.png');
+        this.load.image('boosterTier2', './assets/shipUpgrades/boosterTier2.png');
+        this.load.image('booserTier3', './assets/shipUpgrades/boosterTier3.png');
+        this.load.image('noseBoosters', './assets/shipUpgrades/noseBoosters.png');
+        this.load.image('wings', './assets/shipUpgrades/wings.png');
     }
 
     create() {

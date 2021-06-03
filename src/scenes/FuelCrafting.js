@@ -22,7 +22,6 @@ class FuelCrafting extends Phaser.Scene {
         this.load.image('mentos', './assets/fuelComponents/mentos.png');
         this.load.image('Qmark', './assets/Qmark1.png');
         this.load.image('background', './assets/labBackground.png');
-
     }
 
     create() {
@@ -107,6 +106,7 @@ class FuelCrafting extends Phaser.Scene {
         this.fuelImage1 = this.add.sprite(game.config.width/3 - 100, 860 - 120, 'Qmark').setOrigin(0.5);
         this.fuelImage2 = this.add.sprite(game.config.width/2, 860 - 120, 'Qmark').setOrigin(0.5);
         this.fuelImage3 = this.add.sprite(game.config.width/1.5 + 100, 860 - 120, 'Qmark').setOrigin(0.5);
+
         //  if there is no fuel component attatched to a slot, a default question mark image is displayed in its place.
         //  otherwise, the fuel's texture is displayed.
         //fuel 1
