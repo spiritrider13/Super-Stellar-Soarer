@@ -99,14 +99,14 @@ class FuelCrafting extends Phaser.Scene {
         // ADDING FUEL COMPONENTS TO SCENE END =============================================================================
 
         //fuel slot labels
-        this.fuelComp1Text = this.add.text(game.config.width/3 - 100, 800, 'COMPONENT 1', normalTextConfig).setOrigin(0.5);
-        this.fuelComp2Text = this.add.text(game.config.width/2, 800, 'COMPONENT 2', normalTextConfig).setOrigin(0.5);
-        this.fuelComp3Text = this.add.text(game.config.width/1.5 + 100, 800, 'COMPONENT 3', normalTextConfig).setOrigin(0.5);
+        this.fuelComp1Text = this.add.text(game.config.width/3 - 100, 800 - 130, 'COMPONENT 1', normalTextConfig).setOrigin(0.5);
+        this.fuelComp2Text = this.add.text(game.config.width/2, 800 - 130, 'COMPONENT 2', normalTextConfig).setOrigin(0.5);
+        this.fuelComp3Text = this.add.text(game.config.width/1.5 + 100, 800 - 130, 'COMPONENT 3', normalTextConfig).setOrigin(0.5);
 
         //display crafting selection
-        this.fuelImage1 = this.add.sprite(game.config.width/3 - 100, 860, 'Qmark').setOrigin(0.5);
-        this.fuelImage2 = this.add.sprite(game.config.width/2, 860, 'Qmark').setOrigin(0.5);
-        this.fuelImage3 = this.add.sprite(game.config.width/1.5 + 100, 860, 'Qmark').setOrigin(0.5);
+        this.fuelImage1 = this.add.sprite(game.config.width/3 - 100, 860 - 120, 'Qmark').setOrigin(0.5);
+        this.fuelImage2 = this.add.sprite(game.config.width/2, 860 - 120, 'Qmark').setOrigin(0.5);
+        this.fuelImage3 = this.add.sprite(game.config.width/1.5 + 100, 860 - 120, 'Qmark').setOrigin(0.5);
         //  if there is no fuel component attatched to a slot, a default question mark image is displayed in its place.
         //  otherwise, the fuel's texture is displayed.
         //fuel 1
@@ -135,10 +135,9 @@ class FuelCrafting extends Phaser.Scene {
         this.totalPower = 0;
         this.totalStability = 0;
 
-        this.powerText = this.add.text(game.config.width/3 - 100, 700, 'Power: ' + this.totalPower ,normalTextConfig).setOrigin(0.5);
-        this.durationText = this.add.text(game.config.width/2, 700, 'Duration: ' + this.totalDuration, normalTextConfig).setOrigin(0.5);
-        this.stabilityText = this.add.text(game.config.width/1.5 + 100, 700, 'Stability: ' + this.totalStability, normalTextConfig).setOrigin(0.5);
-
+        this.powerText = this.add.text(game.config.width/3 - 100, 700 - 130, 'Power: ' + this.totalPower ,normalTextConfig).setOrigin(0.5);
+        this.durationText = this.add.text(game.config.width/2, 700 - 130, 'Duration: ' + this.totalDuration, normalTextConfig).setOrigin(0.5);
+        this.stabilityText = this.add.text(game.config.width/1.5 + 100, 700 - 130, 'Stability: ' + this.totalStability, normalTextConfig).setOrigin(0.5);
 
         //when left click is pressed, refresh all images
         this.input.on('pointerdown', function (pointer){
@@ -146,11 +145,6 @@ class FuelCrafting extends Phaser.Scene {
         }, this);
 
         this.refreshStats();
-    }
-
-    update() {
-        
-        
     }
 
     refreshImages(){
@@ -185,7 +179,6 @@ class FuelCrafting extends Phaser.Scene {
         this.totalDuration = 0;
         this.totalPower = 0;
         this.totalStability = 0;
-
 
         if(fuelComp1 != null){
             this.totalDuration += fuelComp1.duration;
