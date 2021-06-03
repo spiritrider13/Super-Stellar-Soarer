@@ -17,14 +17,18 @@ class Play extends Phaser.Scene {
         this.load.image('junk', './assets/junk.png');
         this.load.image('block1', './assets/block1.png');
         this.load.image('meteor', './assets/obstacles/meteor.png');
+        this.load.image('comet', './assets/obstacles/comet.png');
+        this.load.image('satellite', './assets/obstacles/satellite.png');
 
         // Ship Upgrades
         this.load.image('spaceShip', './assets/shipUpgrades/rocket.png');
-        this.load.image('basicBooster', './assets/shipUpgrades/basicBooster.png');
+        this.load.image('boosterTier1', './assets/shipUpgrades/boosterTier1.png');
+        this.load.image('boosterTier2', './assets/shipUpgrades/boosterTier2.png');
         this.load.image('booserTier3', './assets/shipUpgrades/boosterTier3.png');
-        this.load.image('frontBoosters', './assets/shipUpgrades/frontBoosters.png');
+        this.load.image('noseBoosters', './assets/shipUpgrades/noseBoosters.png');
+        this.load.image('wings', './assets/shipUpgrades/wings.png');
 
-        this.load.audio('backgroundMusic', './assets/test1.mp3');
+        this.load.audio('backgroundMusic', './assets/music.mp3');
     }
 
     create() {

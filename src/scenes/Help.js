@@ -10,12 +10,15 @@ class Help extends Phaser.Scene {
     }
 
     preload() {
-        
+        this.load.image('background', './assets/helpBackground.png');
 
 
     }
 
     create() {
+        // background
+        this.background = this.add.tileSprite(0,0,720,1080,'background').setOrigin(0,0);
+
         //add some text labels
         this.sceneText = this.add.text(game.config.width/2, 20, 'HELP', titleTextConfig).setOrigin(0.5);
 
