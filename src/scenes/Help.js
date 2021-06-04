@@ -20,7 +20,7 @@ class Help extends Phaser.Scene {
         this.background = this.add.tileSprite(0,0,720,1080,'background').setOrigin(0,0);
 
         //add some text labels
-        this.sceneText = this.add.text(game.config.width/2, 20, 'HELP', titleTextConfig).setOrigin(0.5);
+        this.sceneText = this.add.text(game.config.width/2, 20, 'HOW TO PLAY', titleTextConfig).setOrigin(0.5);
 
         // BACK BUTTON ***********************************************************************
         const backButton = new Button(this, game.config.width/2, game.config.height - 40);
@@ -30,6 +30,10 @@ class Help extends Phaser.Scene {
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('menuScene');
         })
+
+        // Help text
+        this.helpText = this.add.text(game.config.width/2, 200, 
+            'Press PLAY to be taken to the main screen,\nwhere you can navigate the different menus of the game.', normalTextConfig).setOrigin(0.5);
 
     }
 
