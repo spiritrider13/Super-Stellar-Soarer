@@ -70,5 +70,5 @@ let fuelComp3 = null;
 let boosterTier1 = false;
 let boosterTier2 = false;
 let boosterTier3 = true;
-let boosterNose = false;
-let wings = false;
+let boosterNose = true;
+let wings = true;

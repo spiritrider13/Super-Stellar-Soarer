@@ -31,25 +31,32 @@ class spaceShip extends Phaser.Physics.Arcade.Sprite {
         //Phaser.Actions.SetXY(this.layers.getChildren(), )
 
         if(boosterTier3){
-            this.bt3 = scene.add.sprite(x, y, 'boosterTier3');
+            /*this.bt3 = scene.add.sprite(x, y, 'boosterTier3');
             //this.layers.add(scene.add.image(x, y, 'boosterTier3'));
             this.layers.add(this.bt3);
             scene.add.existing(this.bt3);
-            //this.bt3.setVisible = true;
+            //this.bt3.setVisible = true;*/
+            //console.log("Test");
+            this.bt3 = scene.add.sprite(x, y, 'boosterTier3').setOrigin(0.5);
+            scene.add.existing(this.bt3);
         }
         else if(boosterTier2){
-
+            this.bt2 = scene.add.sprite(x, y, 'boosterTier2').setOrigin(0.5);
+            scene.add.existing(this.bt2);
         }
         else if(boosterTier1){
-
+            this.bt1 = scene.add.sprite(x, y, 'boosterTier1').setOrigin(0.5);
+            scene.add.existing(this.bt1);
         }
         
         if(wings){
-
+            this.w = scene.add.sprite(x, y, 'wings').setOrigin(0.5);
+            scene.add.existing(this.w);
         }
 
         if(boosterNose){
-
+            this.bN = scene.add.sprite(x, y, 'boosterNose').setOrigin(0.5);
+            scene.add.existing(this.bN);
         }
     }
 
@@ -78,6 +85,33 @@ class spaceShip extends Phaser.Physics.Arcade.Sprite {
             this.setAngularVelocity(0);
         }
 
+        if(boosterTier3){
+            this.bt3.x = this.x;
+            this.bt3.y = this.y;
+            this.bt3.angle = this.angle;
+        }
+        else if(boosterTier2){
+            this.bt2.x = this.x;
+            this.bt2.y = this.y;
+            this.bt2.angle = this.angle;
+        }
+        else if(boosterTier1){
+            this.bt1.x = this.x;
+            this.bt1.y = this.y;
+            this.bt1.angle = this.angle;
+        }
+
+        if(boosterNose){
+            this.bN.x = this.x;
+            this.bN.y = this.y;
+            this.bN.angle = this.angle;
+        }
+
+        if(wings){
+            this.w.x = this.x;
+            this.w.y = this.y;
+            this.w.angle = this.angle;
+        }
         //this.physics.world.wrap(this, this.width);
     }
 
