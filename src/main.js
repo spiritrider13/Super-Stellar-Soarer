@@ -65,3 +65,10 @@ let currentSelection = 1;
 let fuelComp1 = null;
 let fuelComp2 = null;
 let fuelComp3 = null;
+
+//Rocket Upgrades --------------------------------------------------
+let boosterTier1 = false;
+let boosterTier2 = false;
+let boosterTier3 = true;
+let boosterNose = false;
+let wings = false;

@@ -74,7 +74,8 @@ class Home extends Phaser.Scene {
         })
 
         // display rocket
-        this.playerShip = this.add.image(game.config.width / 2, game.config.height / 2, 'ship').setOrigin(0,0);
+        this.playerShip = this.add.image(game.config.width / 2, game.config.height / 2, 'ship').setOrigin(0.5);
+        this.playerShip.setScale(3);
     }
 
     update() {

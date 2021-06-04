@@ -20,6 +20,37 @@ class spaceShip extends Phaser.Physics.Arcade.Sprite {
         this.distance = 0;
         //set up key input
         cursors = scene.input.keyboard.createCursorKeys();
+
+        scene.load.image('boosterTier1', './assets/shipUpgrades/boosterTier1.png');
+        scene.load.image('boosterTier2', './assets/shipUpgrades/boosterTier2.png');
+        scene.load.image('boosterTier3', './assets/shipUpgrades/boosterTier3.png');
+        scene.load.image('boosterNose', './assets/shipUpgrades/noseBoosters.png');
+        scene.load.image('wings', './assets/shipUpgrades/wings.png');
+
+        this.layers = scene.make.group({key: 'boosterTier3'});
+        //Phaser.Actions.SetXY(this.layers.getChildren(), )
+
+        if(boosterTier3){
+            this.bt3 = scene.add.sprite(x, y, 'boosterTier3');
+            //this.layers.add(scene.add.image(x, y, 'boosterTier3'));
+            this.layers.add(this.bt3);
+            scene.add.existing(this.bt3);
+            //this.bt3.setVisible = true;
+        }
+        else if(boosterTier2){
+
+        }
+        else if(boosterTier1){
+
+        }
+        
+        if(wings){
+
+        }
+
+        if(boosterNose){
+
+        }
     }
 
     update(time, delta){
