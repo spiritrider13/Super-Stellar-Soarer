@@ -54,6 +54,9 @@ class Play extends Phaser.Scene {
 
         this.point = new UGP(this, 200, 200, 'coin', 128, 80).setOrigin(0,0);
         this.point.destroyed = false;
+        this.point.body.immovable = true;
+        this.point.body.moves = false;
+        this.currentPoint = null; 
 
         // obstacle
         //this.obstacle1 = new Obstacle(0, this, 999, 999, 'meteor').setOrigin(0);
@@ -82,6 +85,11 @@ class Play extends Phaser.Scene {
     update(time, delta) {
         this.space.tilePositionY -= 3;
         
+        //point respawn
+        if (this.currentPoint != null && !this.gameOver && this.gameStart && !this.point.destroyed){
+            this.currentPoint.update();
+            this.rngLocation();
+        }
         /*if(this.currentObstacle != null && !this.gameOver && this.gameStart){
             this.currentObstacle.update();
 
@@ -114,6 +122,30 @@ class Play extends Phaser.Scene {
         this.point.destroy(); 
     }
 
+    rngLocation(){
+        var random = Math.floor(Math.random() * 3);
+
+        switch(random){
+            case 0: 
+                this.currentPoint = this.point;
+                this.point.begin();
+                break;
+            case 1:
+                this.currentPoint = this.point;
+                this.point.begin();
+                break;
+            case 2:
+                this.currentPoint = this.point;
+                this.point.begin();
+                break;
+            case 3:
+                this.currentPoint = this.point;
+                this.point.begin();
+                break;
+            default:
+                console.error("Invalid random obstacle attempted activation.");
+        }
+    }
     /*beginRandom() {
 
         var random = Math.floor(Math.random() * 3); //creates either 0, 1, or 3
