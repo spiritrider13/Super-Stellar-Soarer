@@ -53,20 +53,16 @@ class Play extends Phaser.Scene {
         this.upgDisplay = this.add.text(10, 0, "UGP: 0", normalTextConfig);
 
         this.point = new UGP(this, 200, 200, 'coin', 128, 80).setOrigin(0,0);
-        this.point.destroyed = false;
+        this.physics.add.existing(this.point, false);
+        this.point.kill = false;
         this.point.body.immovable = true;
         this.point.body.moves = false;
-        this.currentPoint = null; 
 
         // obstacle
         //this.obstacle1 = new Obstacle(0, this, 999, 999, 'meteor').setOrigin(0);
         //this.obstacle2 = new Obstacle(1, this, 999, 999, 'junk').setOrigin(0);
         //this.obstacle3 = new Obstacle(2, this, 999, 999, 'block1').setOrigin(0);
         //this.currentObstacle = null;
-
-        // define key
-        //keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
-        //keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
 
         // BACK BUTTON ***********************************************************************
         const backButton = new Button(this, game.config.width/2, game.config.height - 40);
@@ -84,12 +80,6 @@ class Play extends Phaser.Scene {
 
     update(time, delta) {
         this.space.tilePositionY -= 3;
-        
-        //point respawn
-        if (this.currentPoint != null && !this.gameOver && this.gameStart && !this.point.destroyed){
-            this.currentPoint.update();
-            this.rngLocation();
-        }
         /*if(this.currentObstacle != null && !this.gameOver && this.gameStart){
             this.currentObstacle.update();
 
@@ -108,44 +98,33 @@ class Play extends Phaser.Scene {
         this.distanceDisplay.text = this.rocket.distance + ' m';
         this.rocket.update(time, delta);
 
-        if (!this.point.destroyed){
+        if (!this.point.kill){
             this.physics.world.collide(this.point, this.rocket, this.pointCollision, null, this);
-            if(this.point.destroyed){
+            if(this.point.kill){
                 this.upgDisplay.text = "UGP: " + this.number;
+                this.clock = this.time.delayedCall(15000, () => {
+                    var random = Math.floor(Math.random() * 600);
+                    this.point.setActive(true);
+                    this.point.setVisible(true);
+                    this.point.x = random;
+                    this.point.y = random;
+                    this.pointReset();
+                }, null, this);
             }
         }
     }   
 
     pointCollision(){
-        this.point.destroyed = true; 
+        this.point.kill = true; 
         this.number += 50; 
-        this.point.destroy(); 
+        this.point.setActive(false);
+        this.point.setVisible(false);  
     }
 
-    rngLocation(){
-        var random = Math.floor(Math.random() * 3);
-
-        switch(random){
-            case 0: 
-                this.currentPoint = this.point;
-                this.point.begin();
-                break;
-            case 1:
-                this.currentPoint = this.point;
-                this.point.begin();
-                break;
-            case 2:
-                this.currentPoint = this.point;
-                this.point.begin();
-                break;
-            case 3:
-                this.currentPoint = this.point;
-                this.point.begin();
-                break;
-            default:
-                console.error("Invalid random obstacle attempted activation.");
-        }
+    pointReset(){
+        this.point.kill = false;
     }
+
     /*beginRandom() {
 
         var random = Math.floor(Math.random() * 3); //creates either 0, 1, or 3

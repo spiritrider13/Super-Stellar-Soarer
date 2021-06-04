@@ -8,18 +8,10 @@ class UGP extends Phaser.GameObjects.Sprite {
     }
 
     update() {
-      
+    
     }
 
     begin(){
-        var random = Math.floor(Math.random() * 600);
-        this.x = 60 + random;
-        this.y = 60 + random;
-    }
-    reset() {
-
-
-
-
+        
     }
 }
