@@ -6,7 +6,7 @@ let config = {
     physics: {
         default: 'arcade',
         arcade: {
-            debug: true,
+            debug: false,
             gravity: {
                 x: 0,
                 y: 100
@@ -69,6 +69,6 @@ let fuelComp3 = null;
 //Rocket Upgrades --------------------------------------------------
 let boosterTier1 = false;
 let boosterTier2 = false;
-let boosterTier3 = true;
-let boosterNose = true;
-let wings = true;
+let boosterTier3 = false;
+let boosterNose = false;
+let wings = false;
