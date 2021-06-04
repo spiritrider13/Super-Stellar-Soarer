@@ -20,7 +20,7 @@ let config = {
     scale: {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
-    scene: [ Menu, Play, Home, FuelCrafting, UpgradeLab, UpgradeShip, Credits, Help ]
+    scene: [ Menu, Play, Home, FuelCrafting, Upgrade, Credits, Help ]
 }
 
 //Title Text

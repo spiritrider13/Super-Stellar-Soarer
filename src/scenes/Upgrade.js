@@ -1,16 +1,23 @@
 /*
 
-The UpgradeLab scene is where the player can upgrade the Lab machines
-and improve crew efficiency/performance.
+
 
 */
-class UpgradeLab extends Phaser.Scene {
+class Upgrade extends Phaser.Scene {
     constructor() {
-        super("upgradeLabScene");
+        super("upgradeScene");
     }
 
     preload() {
         this.load.image('background', './assets/upgradeBackground.png');
+
+        // Ship Upgrades
+        this.load.image('spaceShip', './assets/shipUpgrades/rocket.png');
+        this.load.image('boosterTier1', './assets/shipUpgrades/boosterTier1.png');
+        this.load.image('boosterTier2', './assets/shipUpgrades/boosterTier2.png');
+        this.load.image('booserTier3', './assets/shipUpgrades/boosterTier3.png');
+        this.load.image('noseBoosters', './assets/shipUpgrades/noseBoosters.png');
+        this.load.image('wings', './assets/shipUpgrades/wings.png');
     }
 
     create() {
@@ -18,7 +25,7 @@ class UpgradeLab extends Phaser.Scene {
         this.background = this.add.tileSprite(0,0,720,1080,'background').setOrigin(0,0);
 
         //add some text labels
-        this.sceneText = this.add.text(game.config.width/2, 20, 'UPGRADE LAB', titleTextConfig).setOrigin(0.5);
+        this.sceneText = this.add.text(game.config.width/2, 20, 'UPGRADE SHOP', titleTextConfig).setOrigin(0.5);
 
         // BACK BUTTON ***********************************************************************
         const backButton = new Button(this, game.config.width/2, game.config.height - 40);
@@ -32,6 +39,8 @@ class UpgradeLab extends Phaser.Scene {
 
     update() {
         
+
+
         
     }
 }
