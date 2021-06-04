@@ -1,4 +1,5 @@
 class spaceShip extends Phaser.Physics.Arcade.Sprite {
+
     constructor(scene, x, y, texture, frame) {
         super(scene, x, y, texture, frame);
         this.scene = scene;
@@ -21,13 +22,7 @@ class spaceShip extends Phaser.Physics.Arcade.Sprite {
         //set up key input
         cursors = scene.input.keyboard.createCursorKeys();
 
-        scene.load.image('boosterTier1', './assets/shipUpgrades/boosterTier1.png');
-        scene.load.image('boosterTier2', './assets/shipUpgrades/boosterTier2.png');
-        scene.load.image('boosterTier3', './assets/shipUpgrades/boosterTier3.png');
-        scene.load.image('boosterNose', './assets/shipUpgrades/noseBoosters.png');
-        scene.load.image('wings', './assets/shipUpgrades/wings.png');
-
-        this.layers = scene.make.group({key: 'boosterTier3'});
+        //this.layers = scene.make.group({key: 'boosterTier3'});
         //Phaser.Actions.SetXY(this.layers.getChildren(), )
 
         if(boosterTier3){
@@ -38,24 +33,34 @@ class spaceShip extends Phaser.Physics.Arcade.Sprite {
             //this.bt3.setVisible = true;*/
             //console.log("Test");
             this.bt3 = scene.add.sprite(x, y, 'boosterTier3').setOrigin(0.5);
+            if(scene.name == 'homeScene')
+                this.bt3.setScale(3);
             scene.add.existing(this.bt3);
         }
         else if(boosterTier2){
             this.bt2 = scene.add.sprite(x, y, 'boosterTier2').setOrigin(0.5);
+            if(scene.name == 'homeScene')
+                this.bt2.setScale(3);
             scene.add.existing(this.bt2);
         }
         else if(boosterTier1){
             this.bt1 = scene.add.sprite(x, y, 'boosterTier1').setOrigin(0.5);
+            if(scene.name == 'homeScene')
+                this.bt1.setScale(3);
             scene.add.existing(this.bt1);
         }
         
         if(wings){
             this.w = scene.add.sprite(x, y, 'wings').setOrigin(0.5);
+            if(scene.name == 'homeScene')
+                this.w.setScale(3);
             scene.add.existing(this.w);
         }
 
         if(boosterNose){
             this.bN = scene.add.sprite(x, y, 'boosterNose').setOrigin(0.5);
+            if(scene.name == 'homeScene')
+                this.bN.setScale(3);
             scene.add.existing(this.bN);
         }
     }

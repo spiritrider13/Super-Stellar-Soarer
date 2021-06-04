@@ -14,6 +14,11 @@ class Home extends Phaser.Scene {
         this.load.image('buttonUp', './assets/buttonUp.png');
         this.load.image('buttonOver', './assets/buttonOver.png');
         this.load.image('buttonDown', './assets/buttonDown.png');
+        this.load.image('boosterTier1', './assets/shipUpgrades/boosterTier1.png');
+        this.load.image('boosterTier2', './assets/shipUpgrades/boosterTier2.png');
+        this.load.image('boosterTier3', './assets/shipUpgrades/boosterTier3.png');
+        this.load.image('boosterNose', './assets/shipUpgrades/noseBoosters.png');
+        this.load.image('wings', './assets/shipUpgrades/wings.png');
 
         this.load.image('ship', './assets/shipUpgrades/rocket.png');
         this.load.image('background', './assets/homeBackground.png');
@@ -74,8 +79,43 @@ class Home extends Phaser.Scene {
         })
 
         // display rocket
-        this.playerShip = this.add.image(game.config.width / 2, game.config.height / 2, 'ship').setOrigin(0.5);
+        var x = game.config.width / 2;
+        var y = game.config.height / 2;
+        this.playerShip = this.add.image(x, y, 'ship').setOrigin(0.5);
         this.playerShip.setScale(3);
+        if(boosterTier3){
+            /*this.bt3 = scene.add.sprite(x, y, 'boosterTier3');
+            //this.layers.add(scene.add.image(x, y, 'boosterTier3'));
+            this.layers.add(this.bt3);
+            scene.add.existing(this.bt3);
+            //this.bt3.setVisible = true;*/
+            //console.log("Test");
+            this.bt3 = this.add.sprite(x, y, 'boosterTier3').setOrigin(0.5);
+            this.bt3.setScale(3);
+            this.add.existing(this.bt3);
+        }
+        else if(boosterTier2){
+            this.bt2 = this.add.sprite(x, y, 'boosterTier2').setOrigin(0.5);
+            this.bt2.setScale(3);
+            this.add.existing(this.bt2);
+        }
+        else if(boosterTier1){
+            this.bt1 = this.add.sprite(x, y, 'boosterTier1').setOrigin(0.5);
+            this.bt1.setScale(3);
+            this.add.existing(this.bt1);
+        }
+        
+        if(wings){
+            this.w = this.add.sprite(x, y, 'wings').setOrigin(0.5);
+            this.w.setScale(3);
+            this.add.existing(this.w);
+        }
+
+        if(boosterNose){
+            this.bN = this.add.sprite(x, y, 'boosterNose').setOrigin(0.5);
+            this.bN.setScale(3);
+            this.add.existing(this.bN);
+        }
     }
 
     update() {
