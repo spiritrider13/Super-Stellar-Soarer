@@ -35,13 +35,17 @@ class Play extends Phaser.Scene {
         this.distance = 0;
         this.number = 0;
 
-        this.backgroundMusic = this.sound.add('backgroundMusic',{ volume: 0.1, loop: true });
-        this.backgroundMusic.play();
+        //this.backgroundMusic = this.sound.add('backgroundMusic',{ volume: 0.1, loop: true });
+        //this.backgroundMusic.play();
         
         this.space = this.add.tileSprite(0,0,720,1080,'space').setOrigin(0,0);
-
+        //create invisible wall
+        this.add.rectangle(0,0,game.config.width, borderUISize-60, 0xFFFFFF).setOrigin(0, 0);
+        this.add.rectangle(0, game.config.height - borderUISize + 60, game.config.width, borderUISize-60, 0xFFFFFF).setOrigin(0, 0);
+        this.add.rectangle(0, 0, borderUISize - 60, game.config.height, 0xFFFFFF).setOrigin(0, 0);
+        this.add.rectangle(game.config.width - borderUISize + 60, 0, borderUISize -60, game.config.height, 0xFFFFFF).setOrigin(0, 0);
         // add some text labels
-        // this.sceneText = this.add.text(game.config.width/2, 20, 'PLAY', titleTextConfig).setOrigin(0.5);
+        // this.sceneText = this.add.text(game.config.width/2, 20, 'PLAY', titleTextConfig).setOrigin(0.5)
 
         // add spaceship
         this.rocket = new spaceShip(this, game.config.width/2, 900, 'spaceShip', 128, 80).setOrigin(0.5);
@@ -75,7 +79,6 @@ class Play extends Phaser.Scene {
         })
 
         this.gameOver = false;
-        this.gameStart = false;
     }
 
     update(time, delta) {
@@ -112,6 +115,11 @@ class Play extends Phaser.Scene {
                 }, null, this);
             }
         }
+
+        //if (!this.gameOver){
+            this.physics.add.overlap(this.rocket, [this.wallTop,this.wallBot,this.wallLeft,this.wallRight]
+                ,null, this); 
+        //}
     }   
 
     pointCollision(){

@@ -12,7 +12,7 @@ class spaceShip extends Phaser.Physics.Arcade.Sprite {
         this.setMaxVelocity(this.MAX_VELOCITY);
         this.setDamping(true);
         this.setDrag(this.DRAG);
-
+        
         this.fuel = 0;
         this.power = 0;
         this.stability = 0;
