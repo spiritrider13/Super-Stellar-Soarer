@@ -96,7 +96,7 @@ class Play extends Phaser.Scene {
         if (!this.point.kill){
             this.physics.world.collide(this.point, this.rocket, this.pointCollision, null, this);
             if(this.point.kill){
-                this.upgDisplay.text = "UGP: " + this.number;
+                this.upgDisplay.text = "UGP: " + this.point.number;
                 this.clock = this.time.delayedCall(15000, () => {
                     var random = Math.floor(Math.random() * 600);
                     this.point.setActive(true);
@@ -111,7 +111,6 @@ class Play extends Phaser.Scene {
         if (!this.fuelPoint.kill){
             this.physics.world.collide(this.point, this.rocket, this.fuelpointCollision, null, this);
             if(this.fuelPoint.kill){
-                this.upgDisplay.text = "UGP: " + this.number;
                 this.clock = this.time.delayedCall(30000, () => {
                     var random = Math.floor(Math.random() * 600);
                     this.fuelPoint.setActive(true);
@@ -161,7 +160,7 @@ class Play extends Phaser.Scene {
         }
 
         if (this.gameOver == true){
-            this.scene.pause();
+           
             this.scene.start('gameover');
             /*this.endBlock = this.add.rectangle(100, 200, 520, 400, 0xa9a9a9).setOrigin(0,0);
             this.endText = this.add.text(290, 250, "GAME OVER", titleTextConfig).setOrigin(0,0);
@@ -191,7 +190,7 @@ class Play extends Phaser.Scene {
     pointCollision(){
         this.coinSFX.play();
         this.point.kill = true; 
-        this.number += 100; 
+        this.point.update();
         this.point.setActive(false);
         this.point.setVisible(false);  
     }
