@@ -5,11 +5,9 @@ class UGP extends Phaser.GameObjects.Sprite {
         this.scene = scene;   
         scene.add.existing(this);
         scene.physics.add.existing(this);
-
-        this.number = 0;
+        this.number =0;
     }
 
     update() {
-        this.number += 50; 
     }
 }

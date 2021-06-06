@@ -32,7 +32,6 @@ class Play extends Phaser.Scene {
     }
 
     create() {
-        this.distance = 0;
         this.number = 0;
 
         this.alertSFX = this.sound.add('alert',{ volume: 0.1});
@@ -76,6 +75,9 @@ class Play extends Phaser.Scene {
         this.obstacle3 = new Obstacle(2, this, 999, 0, 'satellite').setOrigin(0);
         this.currentObstacle = null;
 
+        this.currentScore;
+        this.maxScore = this.currentScore;
+
         this.gameOver = false;
         this.gameStart = false;
     }
@@ -91,6 +93,7 @@ class Play extends Phaser.Scene {
 
         this.fuelText.text = 'Fuel: ' + Math.floor(this.rocket.fuel);
         this.distanceDisplay.text = Math.floor(this.rocket.distance) + ' m';
+        this.upgDisplay.text = "UGP: " + this.number;
         this.rocket.update(time, delta);
 
         if (!this.point.kill){
@@ -111,7 +114,7 @@ class Play extends Phaser.Scene {
         if (!this.fuelPoint.kill){
             this.physics.world.collide(this.point, this.rocket, this.fuelpointCollision, null, this);
             if(this.fuelPoint.kill){
-                this.clock = this.time.delayedCall(30000, () => {
+                this.clock = this.time.delayedCall(20000, () => {
                     var random = Math.floor(Math.random() * 600);
                     this.fuelPoint.setActive(true);
                     this.fuelPoint.setVisible(true);
@@ -160,12 +163,13 @@ class Play extends Phaser.Scene {
         }
 
         if (this.gameOver == true){
-           
-            this.scene.start('gameover');
-            /*this.endBlock = this.add.rectangle(100, 200, 520, 400, 0xa9a9a9).setOrigin(0,0);
+            this.coinSFX.stop();
+            this.alertSFX.stop();
+            this.rocket.body.immovable = true;
+            this.rocket.body.moves = false;
+            this.endBlock = this.add.rectangle(100, 200, 520, 400, 0xa9a9a9).setOrigin(0,0);
             this.endText = this.add.text(290, 250, "GAME OVER", titleTextConfig).setOrigin(0,0);
             this.displayUpg = this.add.text(120, 350, "EARNE UGP: " + this.number + " points", buttonTextConfig).setOrigin(0,0);
-
         // BACK BUTTON ***********************************************************************
             const backButton = new Button(this, 220, 550);
             this.add.existing(backButton);
@@ -183,14 +187,14 @@ class Play extends Phaser.Scene {
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             //this.backgroundMusic.stop();
                 this.scene.start('playScene');
-            })*/
+            })
         }
     }   
 
     pointCollision(){
         this.coinSFX.play();
         this.point.kill = true; 
-        this.point.update();
+        this.number += 50; 
         this.point.setActive(false);
         this.point.setVisible(false);  
     }
