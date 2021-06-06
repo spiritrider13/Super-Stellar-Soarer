@@ -161,7 +161,9 @@ class Play extends Phaser.Scene {
         }
 
         if (this.gameOver == true){
-            this.endBlock = this.add.rectangle(100, 200, 520, 400, 0xa9a9a9).setOrigin(0,0);
+            this.scene.pause();
+            this.scene.start('gameover');
+            /*this.endBlock = this.add.rectangle(100, 200, 520, 400, 0xa9a9a9).setOrigin(0,0);
             this.endText = this.add.text(290, 250, "GAME OVER", titleTextConfig).setOrigin(0,0);
             this.displayUpg = this.add.text(120, 350, "EARNE UGP: " + this.number + " points", buttonTextConfig).setOrigin(0,0);
 
@@ -182,7 +184,7 @@ class Play extends Phaser.Scene {
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             //this.backgroundMusic.stop();
                 this.scene.start('playScene');
-            })
+            })*/
         }
     }   
 
