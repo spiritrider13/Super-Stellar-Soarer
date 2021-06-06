@@ -28,6 +28,7 @@ class Play extends Phaser.Scene {
 
         //this.load.audio('backgroundMusic', './assets/music.mp3');
         this.load.audio('alert', './assets/music/alert.wav');
+        this.load.audio('coinSFX', './assets/music/coinSFX.wav');
     }
 
     create() {
@@ -35,6 +36,7 @@ class Play extends Phaser.Scene {
         this.number = 0;
 
         this.alertSFX = this.sound.add('alert',{ volume: 0.1});
+        this.coinSFX = this.sound.add('coinSFX', {volume: 0.1});
         //this.backgroundMusic = this.sound.add('backgroundMusic',{ volume: 0.1, loop: true });
         //this.backgroundMusic.play();
         
@@ -159,7 +161,6 @@ class Play extends Phaser.Scene {
         }
 
         if (this.gameOver == true){
-            this.alertSFX.stop();
             this.endBlock = this.add.rectangle(100, 200, 520, 400, 0xa9a9a9).setOrigin(0,0);
             this.endText = this.add.text(290, 250, "GAME OVER", titleTextConfig).setOrigin(0,0);
             this.displayUpg = this.add.text(120, 350, "EARNE UGP: " + this.number + " points", buttonTextConfig).setOrigin(0,0);
@@ -186,6 +187,7 @@ class Play extends Phaser.Scene {
     }   
 
     pointCollision(){
+        this.coinSFX.play();
         this.point.kill = true; 
         this.number += 100; 
         this.point.setActive(false);
@@ -193,6 +195,7 @@ class Play extends Phaser.Scene {
     }
 
     fuelpointCollision(){
+        this.coinSFX.play();
         this.fuelPoint.kill = true; 
         this.rocket.fuel += 20; 
         this.fuelPoint.setActive(false);
