@@ -13,7 +13,9 @@ class spaceShip extends Phaser.Physics.Arcade.Sprite {
         this.setMaxVelocity(this.MAX_VELOCITY);
         this.setDamping(true);
         this.setDrag(this.DRAG);
-        
+        this.setBounce(0.1);
+        this.setCollideWorldBounds(true);
+    
         this.fuel = 0;
         this.power = 0;
         this.stability = 0;
@@ -71,7 +73,7 @@ class spaceShip extends Phaser.Physics.Arcade.Sprite {
         if(cursors.up.isDown && this.fuel > 0) {
             this.scene.physics.velocityFromRotation(this.rotation-Math.PI/2, this.power, this.body.acceleration);
             this.fuel -= delta/100;
-            this.distance += 10;
+            this.distance += delta/100;
         }
         else if(this.fuel <= 0){
             this.fuel = 0;
