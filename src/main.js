@@ -20,7 +20,7 @@ let config = {
     scale: {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
-    scene: [ Menu, Play, Home, FuelCrafting, Upgrade, Credits, Help ]
+    scene: [ Menu, Play, Home, FuelCrafting, Upgrade, Credits, Help, Cheats ]
 }
 
 //Title Text
@@ -29,7 +29,7 @@ let titleTextConfig = {
     fontSize: '28px',
     backgroundColor: '#00000000', 
     color: '#FFFFFF',   
-    align: 'right',
+    align: 'center',
     padding: {
         top: 5,
         bottom: 5,
@@ -42,7 +42,7 @@ let normalTextConfig = {
     fontSize: '16px',
     backgroundColor: '#00000000', 
     color: '#FFFFFF',   
-    align: 'right',
+    align: 'center',
     padding: {
         top: 5,
         bottom: 5,
@@ -60,15 +60,25 @@ let cursors;
 
 //Global gameplay variables ---------------------------------------
 
+//Cheats
+let freeUpgrades = false;
+let freeUpgradesStatus = "OFF";
+let unlimitedFuel = false;
+
 //Fuel Related
 let currentSelection = 1;
 let fuelComp1 = null;
 let fuelComp2 = null;
 let fuelComp3 = null;
 
-//Rocket Upgrades --------------------------------------------------
+//Rocket Upgrades
+let currentBoosterTier = 0;
+let upgradeBoostersCost = 5;
 let boosterTier1 = false;
 let boosterTier2 = false;
 let boosterTier3 = false;
 let boosterNose = false;
 let wings = false;
+
+//Upgrade Points
+let points = 0;

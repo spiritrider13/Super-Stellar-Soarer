@@ -35,6 +35,98 @@ class Upgrade extends Phaser.Scene {
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('homeScene');
         })
+
+        // UPGRADE BOOSTERS BUTTON ***********************************************************************
+        this.warningBoostersText = this.add.text(game.config.width/2, 160, '', normalTextConfig).setOrigin(0.5);
+
+        const upgradeBoostersButton = new Button(this, game.config.width/2, 200);
+        this.add.existing(upgradeBoostersButton);
+        this.upgradeBoostersButtonText = this.add.text(game.config.width/2, 120, 
+            'CURRENT TIER: ' + currentBoosterTier + "\nUPGRADE COST: " + upgradeBoostersCost, titleTextConfig).setOrigin(0.5);
+        upgradeBoostersButton.setInteractive()
+        .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            if(boosterTier3){
+                this.warningBoostersText.text = "No more upgrades available: Boosters at maximum tier!";
+            }
+            else if(boosterTier2){
+                if(points >= upgradeBoostersCost || freeUpgrades){
+                    boosterTier3 = true;
+                    currentBoosterTier = 3 + " (MAX)";
+                    upgradeBoostersCost = "NA";
+                }else{
+                    this.warningBoostersText.text = "Not enough points for selected upgrade!";
+                }
+                
+            }
+            else if(boosterTier1){
+                if(points >= upgradeBoostersCost || freeUpgrades){
+                    boosterTier2 = true;
+                    currentBoosterTier = 2;
+                    upgradeBoostersCost = 15;
+                }else{
+                    this.warningBoostersText.text = "Not enough points for selected upgrade!";
+                }
+            }
+            else{
+                if(points >= upgradeBoostersCost || freeUpgrades){
+                    boosterTier1 = true;
+                    currentBoosterTier = 1;
+                    upgradeBoostersCost = 10;
+                }else{
+                    this.warningBoostersText.text = "Not enough points for selected upgrade!";
+                }
+            }
+
+            this.upgradeBoostersButtonText.text = 'CURRENT TIER: ' + currentBoosterTier + "\nUPGRADE COST: " + upgradeBoostersCost;
+        })
+
+        // BUY NOSE BOOSTERS BUTTON ***********************************************************************
+        this.noseBoostersCostText = "UPGRADE COST: 12";
+        this.warningNoseText = this.add.text(game.config.width/2, 360, '', normalTextConfig).setOrigin(0.5);
+
+        const noseBoostersButton = new Button(this, game.config.width/2, 400);
+        this.add.existing(noseBoostersButton);
+        this.noseBoostersButtonText = this.add.text(game.config.width/2, 320, 
+            'NOSE BOOSTERS\n' + this.noseBoostersCostText, titleTextConfig).setOrigin(0.5);
+            noseBoostersButton.setInteractive()
+        .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            if(boosterNose){
+                this.warningNoseText.text = "Nose Boosters already bought!";
+            }else{
+                if(points >= 12 || freeUpgrades){
+                    boosterNose = true;
+                    this.noseBoostersCostText = "EQUIPPED";
+                }else{
+                    this.warningNoseText.text = "Not enough points for selected upgrade!";
+                }
+            }
+
+            this.noseBoostersButtonText.text = 'NOSE BOOSTERS\n' + this.noseBoostersCostText;
+        })
+
+        // BUY WINGS BUTTON ***********************************************************************
+        this.wingsCostText = "UPGRADE COST: 8";
+        this.warningWingsText = this.add.text(game.config.width/2, 560, '', normalTextConfig).setOrigin(0.5);
+
+        const wingsButton = new Button(this, game.config.width/2, 600);
+        this.add.existing(wingsButton);
+        this.wingsButtonText = this.add.text(game.config.width/2, 520, 
+            'WINGS\n' + this.wingsCostText, titleTextConfig).setOrigin(0.5);
+            wingsButton.setInteractive()
+        .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            if(wings){
+                this.warningWingsText.text = "Nose Boosters already bought!";
+            }else{
+                if(points >= 8 || freeUpgrades){
+                    wings = true;
+                    this.wingsCostText = "EQUIPPED";
+                }else{
+                    this.warningWingsText.text = "Not enough points for selected upgrade!";
+                }
+            }
+
+            this.wingsButtonText.text = 'WINGS\n' + this.wingsCostText;
+        })
     }
 
     update() {
