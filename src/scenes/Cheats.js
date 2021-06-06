@@ -40,7 +40,7 @@ class Cheats extends Phaser.Scene {
 
         const freeUpgradesButton = new Button(this, game.config.width/2, 340);
         this.add.existing(freeUpgradesButton);
-        this.freeUpgradesButtonText = this.add.text(game.config.width/2, 300, 'FREE UPGRADES: ' + freeUpgradesStatus, titleTextConfig).setOrigin(0.5);
+        this.freeUpgradesButtonText = this.add.text(game.config.width/2, 300, 'FREE UPGRADES: ' + freeUpgradesStatus, subtitleTextConfig).setOrigin(0.5);
         freeUpgradesButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             if(freeUpgrades){
@@ -58,7 +58,7 @@ class Cheats extends Phaser.Scene {
         // BACK BUTTON ***********************************************************************
         /*const backButton = new Button(this, game.config.width/2, game.config.height - 40);
         this.add.existing(backButton);
-        this.backButtonText = this.add.text(game.config.width/2, game.config.height - 80, 'BACK TO MENU', titleTextConfig).setOrigin(0.5);
+        this.backButtonText = this.add.text(game.config.width/2, game.config.height - 80, 'BACK TO MENU', subtitleTextConfig).setOrigin(0.5);
         backButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('menuScene');

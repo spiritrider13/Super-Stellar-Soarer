@@ -28,9 +28,9 @@ class Upgrade extends Phaser.Scene {
         this.sceneText = this.add.text(game.config.width/2, 20, 'UPGRADE SHOP', titleTextConfig).setOrigin(0.5);
 
         // BACK BUTTON ***********************************************************************
-        const backButton = new Button(this, game.config.width/2, game.config.height - 40);
+        const backButton = new Button(this, game.config.width/2, game.config.height - 35);
         this.add.existing(backButton);
-        this.backButtonText = this.add.text(game.config.width/2, game.config.height - 80, 'BACK TO HOME', titleTextConfig).setOrigin(0.5);
+        this.backButtonText = this.add.text(game.config.width/2, game.config.height - 35, 'BACK TO HOME', buttonTextConfig).setOrigin(0.5);
         backButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('homeScene');
@@ -42,7 +42,8 @@ class Upgrade extends Phaser.Scene {
         const upgradeBoostersButton = new Button(this, game.config.width/2, 200);
         this.add.existing(upgradeBoostersButton);
         this.upgradeBoostersButtonText = this.add.text(game.config.width/2, 120, 
-            'CURRENT TIER: ' + currentBoosterTier + "\nUPGRADE COST: " + upgradeBoostersCost, titleTextConfig).setOrigin(0.5);
+            'CURRENT TIER: ' + currentBoosterTier + "\nUPGRADE COST: " + upgradeBoostersCost, subtitleTextConfig).setOrigin(0.5);
+        this.upgradeBoostersButtonInnerText = this.add.text(game.config.width/2, 200, 'UPGRADE', buttonTextConfig).setOrigin(0.5);
         upgradeBoostersButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             if(boosterTier3){
@@ -87,8 +88,9 @@ class Upgrade extends Phaser.Scene {
         const noseBoostersButton = new Button(this, game.config.width/2, 400);
         this.add.existing(noseBoostersButton);
         this.noseBoostersButtonText = this.add.text(game.config.width/2, 320, 
-            'NOSE BOOSTERS\n' + this.noseBoostersCostText, titleTextConfig).setOrigin(0.5);
-            noseBoostersButton.setInteractive()
+            'NOSE BOOSTERS\n' + this.noseBoostersCostText, subtitleTextConfig).setOrigin(0.5);
+        this.noseBoostersButtonInnerText = this.add.text(game.config.width/2, 400, 'UPGRADE', buttonTextConfig).setOrigin(0.5);
+        noseBoostersButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             if(boosterNose){
                 this.warningNoseText.text = "Nose Boosters already bought!";
@@ -111,8 +113,9 @@ class Upgrade extends Phaser.Scene {
         const wingsButton = new Button(this, game.config.width/2, 600);
         this.add.existing(wingsButton);
         this.wingsButtonText = this.add.text(game.config.width/2, 520, 
-            'WINGS\n' + this.wingsCostText, titleTextConfig).setOrigin(0.5);
-            wingsButton.setInteractive()
+            'WINGS\n' + this.wingsCostText, subtitleTextConfig).setOrigin(0.5);
+        this.wingsButtonInnerText = this.add.text(game.config.width/2, 600, 'UPGRADE', buttonTextConfig).setOrigin(0.5);
+        wingsButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             if(wings){
                 this.warningWingsText.text = "Nose Boosters already bought!";

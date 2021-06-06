@@ -150,11 +150,11 @@ class Play extends Phaser.Scene {
 
         if (this.gameOver == true){
             this.endBlock = this.add.rectangle(100, 200, 520, 400, 0xa9a9a9).setOrigin(0,0);
-            this.endText = this.add.text(290, 250, "GAME OVER", titleTextConfig).setOrigin(0,0);
+            this.endText = this.add.text(290, 250, "GAME OVER", subtitleTextConfig).setOrigin(0,0);
             // BACK BUTTON ***********************************************************************
             const backButton = new Button(this, 220, 550);
             this.add.existing(backButton);
-            this.backButtonText = this.add.text(220, 550, 'BACK TO HOME', titleTextConfig).setOrigin(0.5);
+            this.backButtonText = this.add.text(220, 550, 'BACK TO HOME', buttonTextConfig).setOrigin(0.5);
             backButton.setInteractive()
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
                 //this.backgroundMusic.stop();
@@ -163,7 +163,7 @@ class Play extends Phaser.Scene {
             // restart button
             const restartButton = new Button(this, 500, 550);
             this.add.existing(restartButton);
-            this.restartButtonText = this.add.text(500, 550, 'RESTART', titleTextConfig).setOrigin(0.5);
+            this.restartButtonText = this.add.text(500, 550, 'RESTART', buttonTextConfig).setOrigin(0.5);
             restartButton.setInteractive()
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
                 //this.backgroundMusic.stop();

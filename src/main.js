@@ -26,7 +26,7 @@ let config = {
 //Title Text
 let titleTextConfig = {
     fontFamily: 'Courier',
-    fontSize: '28px',
+    fontSize: '36px',
     backgroundColor: '#00000000', 
     color: '#FFFFFF',   
     align: 'center',
@@ -37,9 +37,38 @@ let titleTextConfig = {
     fixedWidth: 0
 }
 
+//subtitle Text
+let subtitleTextConfig = {
+    fontFamily: 'Courier',
+    fontSize: '24px',
+    backgroundColor: '#00000000', 
+    color: '#FFFFFF',   
+    align: 'center',
+    padding: {
+        top: 5,
+        bottom: 5,
+    },
+    fixedWidth: 0
+}
+
+//Normal Text
 let normalTextConfig = {
     fontFamily: 'Courier',
     fontSize: '16px',
+    backgroundColor: '#00000000', 
+    color: '#FFFFFF',   
+    align: 'center',
+    padding: {
+        top: 5,
+        bottom: 5,
+    },
+    fixedWidth: 0
+}
+
+//Button Text
+let buttonTextConfig = {
+    fontFamily: 'Courier',
+    fontSize: '20px',
     backgroundColor: '#00000000', 
     color: '#FFFFFF',   
     align: 'center',

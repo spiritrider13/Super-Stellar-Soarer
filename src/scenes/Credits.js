@@ -18,10 +18,10 @@ class Credits extends Phaser.Scene {
 
         // show menu text
         this.add.text(game.config.width/2, 125, 'CREDITS', titleTextConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, 200, 'TEAM AJS', titleTextConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, 305, 'Programming', titleTextConfig).setOrigin(0.5);  
-        this.add.text(game.config.width/2, 500, 'Art & Design', titleTextConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, 700, 'Music & Sound', titleTextConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, 200, 'TEAM AJS', subtitleTextConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, 305, 'Programming', subtitleTextConfig).setOrigin(0.5);  
+        this.add.text(game.config.width/2, 500, 'Art & Design', subtitleTextConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, 700, 'Music & Sound', subtitleTextConfig).setOrigin(0.5);
 
         // Programming
         this.add.text(game.config.width/2, 340, 'Sam Vik', normalTextConfig).setOrigin(0.5);  
@@ -37,9 +37,9 @@ class Credits extends Phaser.Scene {
         this.add.text(game.config.width/2, 735, 'Jason Lee', normalTextConfig).setOrigin(0.5);
 
         // BACK BUTTON ***********************************************************************
-        const backButton = new Button(this, game.config.width/2, game.config.height - 40);
+        const backButton = new Button(this, game.config.width/2, game.config.height - 35);
         this.add.existing(backButton);
-        this.backButtonText = this.add.text(game.config.width/2, game.config.height - 80, 'BACK TO MENU', titleTextConfig).setOrigin(0.5);
+        this.backButtonText = this.add.text(game.config.width/2, game.config.height - 35, 'BACK TO MENU', buttonTextConfig).setOrigin(0.5);
         backButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('menuScene');

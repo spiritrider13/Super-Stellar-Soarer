@@ -29,21 +29,21 @@ class FuelCrafting extends Phaser.Scene {
         this.background = this.add.tileSprite(0,0,720,1080,'background').setOrigin(0,0);
 
         //add some text labels
-        this.sceneText = this.add.text(game.config.width/2, 20, 'FUEL CRAFTING', titleTextConfig).setOrigin(0.5);
+        this.sceneText = this.add.text(game.config.width/2, 20, 'FUEL CRAFTING', buttonTextConfig).setOrigin(0.5);
 
         // BACK BUTTON ***********************************************************************
-        const backButton = new Button(this, 150, game.config.height - 40);
+        const backButton = new Button(this, 150, game.config.height - 35);
         this.add.existing(backButton);
-        this.backButtonText = this.add.text(150, game.config.height - 80, 'BACK TO HOME', titleTextConfig).setOrigin(0.5);
+        this.backButtonText = this.add.text(150, game.config.height - 35, 'BACK TO HOME', buttonTextConfig).setOrigin(0.5);
         backButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('homeScene');
         })
 
         // CLEAR BUTTON ***********************************************************************
-        const clearButton = new Button(this, game.config.width - 150, game.config.height - 40);
+        const clearButton = new Button(this, game.config.width - 150, game.config.height - 35);
         this.add.existing(clearButton);
-        this.backButtonText = this.add.text(game.config.width - 150, game.config.height - 80, 'CLEAR SELECTION', titleTextConfig).setOrigin(0.5);
+        this.backButtonText = this.add.text(game.config.width - 150, game.config.height - 35, 'CLEAR SELECTION', buttonTextConfig).setOrigin(0.5);
         clearButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             fuelComp1 = null;
