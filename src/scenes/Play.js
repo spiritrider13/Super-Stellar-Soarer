@@ -26,9 +26,12 @@ class Play extends Phaser.Scene {
         this.load.image('noseBoosters', './assets/shipUpgrades/noseBoosters.png');
         this.load.image('wings', './assets/shipUpgrades/wings.png');
 
-        //this.load.audio('backgroundMusic', './assets/music.mp3');
+        this.load.audio('backgroundMusic', './assets/music/background.mp3');
         this.load.audio('alert', './assets/music/alert.wav');
         this.load.audio('coinSFX', './assets/music/coinSFX.wav');
+        this.load.audio('explosionSFX', './assets/music/explosion.mp3');
+
+        this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 48, frameHeight: 48, startFrame: 0, endFrame: 8});
     }
 
     create() {
@@ -36,8 +39,9 @@ class Play extends Phaser.Scene {
 
         this.alertSFX = this.sound.add('alert',{ volume: 0.1});
         this.coinSFX = this.sound.add('coinSFX', {volume: 0.1});
-        //this.backgroundMusic = this.sound.add('backgroundMusic',{ volume: 0.1, loop: true });
-        //this.backgroundMusic.play();
+        this.explosionSFX = this.sound.add('explosionSFX', {volume: 0.1});
+        this.backgroundMusic = this.sound.add('backgroundMusic',{ volume: 0.1, loop: true });
+        this.backgroundMusic.play();
         
         this.space = this.add.tileSprite(0,0,720,1080,'space').setOrigin(0,0);
         //create invisible wall
@@ -80,6 +84,12 @@ class Play extends Phaser.Scene {
 
         this.gameOver = false;
         this.gameStart = false;
+
+        this.anims.create({
+            key: 'explode',
+            frames: this.anims.generateFrameNumbers('explosion', { start: 0, end: 8, first: 0}),
+            framerate: 30
+        });
     }
 
     update(time, delta) {
@@ -156,6 +166,8 @@ class Play extends Phaser.Scene {
          //check collisions
         if(this.currentObstacle != null && this.checkCollision(this.rocket, this.currentObstacle)) {
             this.gameOver = true;
+            this.explosionSFX.play();
+            this.rocketExplode(this.rocket);
         }
 
         if(this.rocket.fuel == 0 ){
@@ -163,6 +175,7 @@ class Play extends Phaser.Scene {
         }
 
         if (this.gameOver == true){
+            this.backgroundMusic.stop();
             this.coinSFX.stop();
             this.alertSFX.stop();
             this.rocket.body.immovable = true;
@@ -249,5 +262,16 @@ class Play extends Phaser.Scene {
         } else {
             return false;
         }
+    }
+
+    rocketExplode(rocket){
+        rocket.alpha = 0;
+
+        let boom = this.add.sprite(rocket.x, rocket.y, 'explosion').setOrigin(0, 0); 
+        boom.anims.play('explode');             
+        boom.on('animationcomplete', () => {                     
+            rocket.alpha = 1;                  
+            boom.destroy();                   
+        });
     }
 }
