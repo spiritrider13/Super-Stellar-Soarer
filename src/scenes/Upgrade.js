@@ -10,6 +10,7 @@ class Upgrade extends Phaser.Scene {
 
     preload() {
         this.load.image('background', './assets/upgradeBackground.png');
+        this.load.image('engineer', './assets/engineer.png');
 
         // Ship Upgrades
         this.load.image('spaceShip', './assets/shipUpgrades/rocket.png');
@@ -23,7 +24,9 @@ class Upgrade extends Phaser.Scene {
     create() {
         // background
         this.background = this.add.tileSprite(0,0,720,1080,'background').setOrigin(0,0);
-
+        this.engineer = this.add.sprite(100, 100, 'engineer').setOrigin(0,0);
+        this.engineer1 = this.add.sprite(100, 300, 'engineer').setOrigin(0,0);
+        this.engineer2 = this.add.sprite(100, 500, 'engineer').setOrigin(0,0);
         //add some text labels
         this.sceneText = this.add.text(game.config.width/2, 20, 'UPGRADE SHOP', titleTextConfig).setOrigin(0.5);
 
@@ -133,9 +136,15 @@ class Upgrade extends Phaser.Scene {
     }
 
     update() {
-        
-
-
-        
+        this.clock = this.time.delayedCall(1000, () => {
+            this.engineer.y += 1
+            this.engineer1.y += 1
+            this.engineer2.y += 1
+        }, null, this);
+        this.clock = this.time.delayedCall(1500, () => {
+            this.engineer.y -= 1
+            this.engineer1.y -= 1
+            this.engineer2.y -= 1
+        }, null, this);
     }
 }
