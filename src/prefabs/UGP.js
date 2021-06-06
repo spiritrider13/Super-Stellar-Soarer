@@ -10,8 +10,4 @@ class UGP extends Phaser.GameObjects.Sprite {
     update() {
     
     }
-
-    begin(){
-        
-    }
 }

@@ -12,6 +12,7 @@ class Play extends Phaser.Scene {
     preload() {
         this.load.image('space', './assets/space.png');
         this.load.image('coin', './assets/coin.png');
+        this.load.image('fuelPoint', './assets/fuelPoint.png');
         // Obstacles
         this.load.image('meteor', './assets/obstacles/meteor.png');
         this.load.image('comet', './assets/obstacles/comet.png');
@@ -48,48 +49,29 @@ class Play extends Phaser.Scene {
         this.physics.add.existing(this.rocket, false);
 
 
-        this.fuelText = this.add.text(600, 20, 'FUEL: ' + this.rocket.fuel, normalTextConfig).setOrigin(0.5);
-        this.distanceDisplay = this.add.text(game.config.width/2, 20, '0 m',  normalTextConfig).setOrigin(0.5);
-        this.upgDisplay = this.add.text(10, 0, "UGP: 0", normalTextConfig);
+        this.fuelText = this.add.text(600, 20, 'FUEL: ' + this.rocket.fuel, buttonTextConfig).setOrigin(0.5);
+        this.distanceDisplay = this.add.text(game.config.width/2, 20, '0 m',  buttonTextConfig).setOrigin(0.5);
+        this.upgDisplay = this.add.text(10, 0, "UGP: 0", buttonTextConfig);
 
         this.point = new UGP(this, 200, 200, 'coin', 128, 80).setOrigin(0,0);
+        this.fuelPoint = new UGP(this, 300,300, 'fuelPoint', 128, 80).setOrigin(0,0);
         this.physics.add.existing(this.point, false);
+        this.physics.add.existing(this.fuelPoint, false);
+
         this.point.kill = false;
         this.point.body.immovable = true;
         this.point.body.moves = false;
 
-        // obstacle
-        this.obstacle1 = new Obstacle(0, this, 100, 0, 'meteor').setOrigin(0);
-        this.obstacle2 = new Obstacle(1, this, 100, 0, 'comet').setOrigin(0);
-        this.obstacle3 = new Obstacle(2, this, 100, 0, 'satellite').setOrigin(0);
-        this.currentObstacle = null;
+        this.fuelPoint.kill = false;
+        this.fuelPoint.body.immovable = true;
+        this.fuelPoint.body.moves = false;
+        this.fuelPoint.setVisible(false);
 
-        /*this.endBlock = this.add.rectangle(100, 200, 520, 400, 0xa9a9a9).setOrigin(0,0);
-        this.endText = this.add.text(290, 250, "GAME OVER", titleTextConfig).setOrigin(0,0);
-        // BACK BUTTON ***********************************************************************
-        const backButton = new Button(this, 220, 550);
-        this.add.existing(backButton);
-        this.backButtonText = this.add.text(220, 550, 'BACK TO HOME', titleTextConfig).setOrigin(0.5);
-        backButton.setInteractive()
-        .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-            //this.backgroundMusic.stop();
-            this.scene.start('homeScene');
-        })
-        // restart button
-        const restartButton = new Button(this, 500, 550);
-        this.add.existing(restartButton);
-        this.restartButtonText = this.add.text(500, 550, 'RESTART', titleTextConfig).setOrigin(0.5);
-        restartButton.setInteractive()
-        .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-            //this.backgroundMusic.stop();
-            this.scene.start('playScene');
-        })
-        this.endBlock.setVisible(false);
-        this.endText.setVisible(false);
-        backButton.setVisible(false);
-        this.backButtonText.setVisible(false);
-        restartButton.setVisible(false);
-        this.restartButtonText.setVisible(false);*/
+        // obstacle
+        this.obstacle1 = new Obstacle(0, this, 999, 0, 'meteor').setOrigin(0);
+        this.obstacle2 = new Obstacle(1, this, 999, 0, 'comet').setOrigin(0);
+        this.obstacle3 = new Obstacle(2, this, 999, 0, 'satellite').setOrigin(0);
+        this.currentObstacle = null;
 
         this.gameOver = false;
         this.gameStart = false;
@@ -104,8 +86,8 @@ class Play extends Phaser.Scene {
             this.beginRandom();
         }
 
-        this.fuelText.text = 'Fuel: ' + this.rocket.fuel;
-        this.distanceDisplay.text = this.rocket.distance + ' m';
+        this.fuelText.text = 'Fuel: ' + Math.floor(this.rocket.fuel);
+        this.distanceDisplay.text = Math.floor(this.rocket.distance) + ' m';
         this.rocket.update(time, delta);
 
         if (!this.point.kill){
@@ -119,6 +101,21 @@ class Play extends Phaser.Scene {
                     this.point.x = random;
                     this.point.y = random;
                     this.pointReset();
+                }, null, this);
+            }
+        }
+
+        if (!this.fuelPoint.kill){
+            this.physics.world.collide(this.point, this.rocket, this.fuelpointCollision, null, this);
+            if(this.fuelPoint.kill){
+                this.upgDisplay.text = "UGP: " + this.number;
+                this.clock = this.time.delayedCall(30000, () => {
+                    var random = Math.floor(Math.random() * 600);
+                    this.fuelPoint.setActive(true);
+                    this.fuelPoint.setVisible(true);
+                    this.fuelPoint.x = random;
+                    this.fuelPoint.y = random;
+                    this.fuelpointReset();
                 }, null, this);
             }
         }
@@ -139,6 +136,18 @@ class Play extends Phaser.Scene {
             // give alert sound 
         }
 
+        if (Math.floor(this.rocket.distance) == 300){
+            this.currentObstacle.y += 8;
+        }
+
+        if (Math.floor(this.rocket.distance) == 1000){
+            this.currentObstacle.y += 9;
+        }
+
+        if (Math.floor(this.rocket.distance) > 1000){
+            this.currentObstacle.y += 10;
+        }
+
          //check collisions
         if(this.currentObstacle != null && this.checkCollision(this.rocket, this.currentObstacle)) {
             this.gameOver = true;
@@ -150,23 +159,26 @@ class Play extends Phaser.Scene {
 
         if (this.gameOver == true){
             this.endBlock = this.add.rectangle(100, 200, 520, 400, 0xa9a9a9).setOrigin(0,0);
-            this.endText = this.add.text(290, 250, "GAME OVER", subtitleTextConfig).setOrigin(0,0);
-            // BACK BUTTON ***********************************************************************
+            this.endText = this.add.text(290, 250, "GAME OVER", titleTextConfig).setOrigin(0,0);
+            this.displayUpg = this.add.text(120, 350, "EARNE UGP: " + this.number + " points", buttonTextConfig).setOrigin(0,0);
+            this.displayDis = this.add.text(120, 400, "DISTANCE TRAVELED: " + Math.floor(this.rocket.distance) + "m", buttonTextConfig).setOrigin(0,0);
+
+        // BACK BUTTON ***********************************************************************
             const backButton = new Button(this, 220, 550);
             this.add.existing(backButton);
             this.backButtonText = this.add.text(220, 550, 'BACK TO HOME', buttonTextConfig).setOrigin(0.5);
             backButton.setInteractive()
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-                //this.backgroundMusic.stop();
+            //this.backgroundMusic.stop();
                 this.scene.start('homeScene');
             })
-            // restart button
+        // restart button
             const restartButton = new Button(this, 500, 550);
             this.add.existing(restartButton);
             this.restartButtonText = this.add.text(500, 550, 'RESTART', buttonTextConfig).setOrigin(0.5);
             restartButton.setInteractive()
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-                //this.backgroundMusic.stop();
+            //this.backgroundMusic.stop();
                 this.scene.start('playScene');
             })
         }
@@ -174,13 +186,24 @@ class Play extends Phaser.Scene {
 
     pointCollision(){
         this.point.kill = true; 
-        this.number += 50; 
+        this.number += 100; 
         this.point.setActive(false);
         this.point.setVisible(false);  
     }
 
+    fuelpointCollision(){
+        this.fuelPoint.kill = true; 
+        this.rocket.fuel += 20; 
+        this.fuelPoint.setActive(false);
+        this.fuelPoint.setVisible(false);  
+    }
+
     pointReset(){
         this.point.kill = false;
+    }
+
+    fuelpointReset(){
+        this.fuelPoint.kill = false; 
     }
 
     beginRandom() {
