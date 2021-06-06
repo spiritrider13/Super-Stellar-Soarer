@@ -26,14 +26,15 @@ class Play extends Phaser.Scene {
         this.load.image('noseBoosters', './assets/shipUpgrades/noseBoosters.png');
         this.load.image('wings', './assets/shipUpgrades/wings.png');
 
-        this.load.audio('backgroundMusic', './assets/music.mp3');
+        //this.load.audio('backgroundMusic', './assets/music.mp3');
+        this.load.audio('alert', './assets/music/alert.wav');
     }
 
     create() {
         this.distance = 0;
         this.number = 0;
-        this.currentHigh = 0;
 
+        this.alertSFX = this.sound.add('alert',{ volume: 0.1});
         //this.backgroundMusic = this.sound.add('backgroundMusic',{ volume: 0.1, loop: true });
         //this.backgroundMusic.play();
         
@@ -133,7 +134,7 @@ class Play extends Phaser.Scene {
         }
 
         if (this.rocket.fuel < 50){
-            // give alert sound 
+            this.alertSFX.play();
         }
 
         if (Math.floor(this.rocket.distance) == 300){
@@ -158,10 +159,10 @@ class Play extends Phaser.Scene {
         }
 
         if (this.gameOver == true){
+            this.alertSFX.stop();
             this.endBlock = this.add.rectangle(100, 200, 520, 400, 0xa9a9a9).setOrigin(0,0);
             this.endText = this.add.text(290, 250, "GAME OVER", titleTextConfig).setOrigin(0,0);
             this.displayUpg = this.add.text(120, 350, "EARNE UGP: " + this.number + " points", buttonTextConfig).setOrigin(0,0);
-            this.displayDis = this.add.text(120, 400, "DISTANCE TRAVELED: " + Math.floor(this.rocket.distance) + "m", buttonTextConfig).setOrigin(0,0);
 
         // BACK BUTTON ***********************************************************************
             const backButton = new Button(this, 220, 550);
