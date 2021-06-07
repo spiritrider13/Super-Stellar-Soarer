@@ -185,7 +185,7 @@ class Upgrade extends Phaser.Scene {
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.buttonSFX.play();
             if(fuelLevel >= 12){
-                this.warningWingsText.text = "All fuel has been bought!";
+                this.warningFuelText.text = "All fuel has been bought!";
             }else{
                 if(points >= this.fuelCost || freeUpgrades){
                     if(!freeUpgrades){
