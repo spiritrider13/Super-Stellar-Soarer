@@ -14,30 +14,45 @@ class Button extends Phaser.GameObjects.Container{
         this.downImage.setVisible(false);
 
         this.setSize(200, 50);
+        this.visible = true;
 
         // the following changes the appearance of the button given current state
         this.setInteractive()
-            .on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+        .on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+            if(this.visible){
                 this.upImage.setVisible(false);
                 this.downImage.setVisible(false);
                 this.overImage.setVisible(true);
-            })
-            .on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+            }
+        })
+        .on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+            if(this.visible){
                 this.upImage.setVisible(true);
                 this.downImage.setVisible(false);
                 this.overImage.setVisible(false);
-            })
-            .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            }
+        })
+        .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            if(this.visible){
                 this.upImage.setVisible(false);
                 this.downImage.setVisible(true);
                 this.overImage.setVisible(false);
-            })
-            .on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
+            }
+        })
+        .on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
+            if(this.visible){
                 this.upImage.setVisible(false);
                 this.downImage.setVisible(false);
                 this.overImage.setVisible(true);
-            })
+            }
+        })
     }
+
+    /*setVisible(value){
+        this.visible = value;
+        this.upImage.setVisible(value);
+        console.log("test : " + value);
+    }*/
 
     /*
 

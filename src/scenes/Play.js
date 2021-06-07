@@ -89,6 +89,28 @@ class Play extends Phaser.Scene {
             frames: this.anims.generateFrameNumbers('explosion', { start: 0, end: 8, first: 0}),
             framerate: 30
         });
+
+        // restart button *********************************************************************
+        this.restartButton = new Button(this, 500, 550);
+        this.add.existing(this.restartButton);
+        this.restartButtonText = this.add.text(9999, 9999, 'RESTART', buttonTextConfig).setOrigin(0.5);
+        this.restartButton.setInteractive()
+        .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            //this.backgroundMusic.stop();
+            this.scene.start('playScene');
+        })
+        this.restartButton.setVisible(false);
+
+        // BACK BUTTON ***********************************************************************
+        this.backButton = new Button(this, 220, 550);
+        this.add.existing(this.backButton);
+        this.backButtonText = this.add.text(220, 550, 'BACK TO HOME', buttonTextConfig).setOrigin(0.5);
+        this.backButton.setInteractive()
+        .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            //this.backgroundMusic.stop();
+            this.scene.start('homeScene');
+        })
+        this.backButton.setVisible(false);
     }
 
     update(time, delta) {
@@ -181,32 +203,24 @@ class Play extends Phaser.Scene {
             this.rocket.body.moves = false;
             this.endBlock = this.add.rectangle(100, 200, 520, 400, 0xa9a9a9).setOrigin(0,0);
             this.endText = this.add.text(290, 250, "GAME OVER", titleTextConfig).setOrigin(0,0);
-            this.displayUpg = this.add.text(120, 350, "EARNED UGP: " + this.number + " points", buttonTextConfig).setOrigin(0,0);
-        // BACK BUTTON ***********************************************************************
-            const backButton = new Button(this, 220, 550);
-            this.add.existing(backButton);
-            this.backButtonText = this.add.text(220, 550, 'BACK TO HOME', buttonTextConfig).setOrigin(0.5);
-            backButton.setInteractive()
-            .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-            //this.backgroundMusic.stop();
-                this.scene.start('homeScene');
-            })
-        // restart button
-            const restartButton = new Button(this, 500, 550);
-            this.add.existing(restartButton);
-            this.restartButtonText = this.add.text(500, 550, 'RESTART', buttonTextConfig).setOrigin(0.5);
-            restartButton.setInteractive()
-            .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-            //this.backgroundMusic.stop();
-                this.scene.start('playScene');
-            })
+            this.displayUpg = this.add.text(120, 350, "POINTS EARNED: " + this.number + " points", subtitleTextConfig).setOrigin(0,0);
+            points += this.number;
+            
+            this.restartButtonText.x = 500;
+            this.restartButtonText.y = 550;
+            this.restartButton.setVisible(true);
+            
+
+            this.backButtonText.x = 220;
+            this.backButtonText.y = 550;
+            this.backButton.setVisible(true);
         }
     }   
 
     pointCollision(){
         this.coinSFX.play();
         this.point.kill = true; 
-        this.number += 50; 
+        this.number++; 
         this.point.setActive(false);
         this.point.setVisible(false);  
     }
