@@ -11,14 +11,14 @@ class Help extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('background', './assets/helpBackground.png');
-
+        this.load.image('controller', './assets/controller.png');
 
     }
 
     create() {
         // background
-        this.background = this.add.tileSprite(0,0,720,1080,'background').setOrigin(0,0);
+        this.add.rectangle(0,0,game.config.width,game.config.height,0xe5d3b3).setOrigin(0,0);
+        this.gameControl = this.add.sprite(130, 300, 'controller').setOrigin(0,0);
 
         //add some text labels
         this.sceneText = this.add.text(game.config.width/2, 20, 'HOW TO PLAY', titleTextConfig).setOrigin(0.5);
