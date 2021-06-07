@@ -236,7 +236,7 @@ class Play extends Phaser.Scene {
             this.endGame(); 
         }
 
-        if(this.rocket.y > 850){
+        if(this.rocket.y > 850 && !this.gameOver){
             this.rocket.fuel -= delta/400;
             this.leakWarning.text = "Low Altitude! Losing fuel!"
         }else{
