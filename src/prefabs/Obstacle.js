@@ -1,14 +1,15 @@
-class Obstacle extends Phaser.GameObjects.Sprite {
+class Obstacle extends Phaser.Physics.Arcade.Sprite {
     constructor(type, scene, x, y, texture, frame) {
         super(scene, x, y, texture, frame);
         scene.add.existing(this);
+        scene.physics.add.existing(this);
         this.type = type;
         
     }
 
     update() {
         // obstacle falling
-        this.y += 6;
+        //this.y += 6;
     }
 
     // spawn the obstacle and set active
@@ -19,12 +20,12 @@ class Obstacle extends Phaser.GameObjects.Sprite {
         this.x = random;
         this.y = 0;
         this.active = true;
-        console.log("Obstacle " + this.type + " movement begun");
+        //console.log("Obstacle " + this.type + " movement begun");
     }
 
     end(){
         this.x = 999;
         this.y = 999;
-        console.log("Obstacle " + this.type + " movement ceased");
+        //console.log("Obstacle " + this.type + " movement ceased");
     }
 }

@@ -78,8 +78,22 @@ class Play extends Phaser.Scene {
         this.obstacle3 = new Obstacle(2, this, 999, 0, 'satellite').setOrigin(0);
         this.currentObstacle = null;
 
+        this.obstacleGroup = this.add.group({
+            runChildUpdate: true
+        });
+        this.obstacleGroup.add(this.obstacle1);
+        this.obstacleGroup.add(this.obstacle2);
+        this.obstacleGroup.add(this.obstacle3);
+
         this.currentScore;
         this.maxScore = this.currentScore;
+
+        this.pointsTimer = this.time.addEvent({
+            delay: 1000,
+            callback: this.addPoint(),
+            callbackScope: this,
+            loop: true
+        });
 
         this.gameOver = false;
         this.gameStart = false;
@@ -90,10 +104,17 @@ class Play extends Phaser.Scene {
             framerate: 30
         });
 
+        this.endBlock = this.add.rectangle(100, 200, 520, 400, 0xa9a9a9).setOrigin(0,0);
+        this.endText = this.add.text(290, 250, "GAME OVER", titleTextConfig).setOrigin(0,0);
+        this.endBlock.setVisible(false);
+        this.endText.setVisible(false);
+
+
         // restart button *********************************************************************
         this.restartButton = new Button(this, 500, 550);
         this.add.existing(this.restartButton);
-        this.restartButtonText = this.add.text(9999, 9999, 'RESTART', buttonTextConfig).setOrigin(0.5);
+        this.restartButtonText = this.add.text(500, 550, 'RESTART', buttonTextConfig).setOrigin(0.5);
+        this.restartButtonText.setVisible(false);
         this.restartButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             //this.backgroundMusic.stop();
@@ -105,12 +126,17 @@ class Play extends Phaser.Scene {
         this.backButton = new Button(this, 220, 550);
         this.add.existing(this.backButton);
         this.backButtonText = this.add.text(220, 550, 'BACK TO HOME', buttonTextConfig).setOrigin(0.5);
+        this.backButtonText.setVisible(false);
         this.backButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             //this.backgroundMusic.stop();
             this.scene.start('homeScene');
         })
         this.backButton.setVisible(false);
+
+        
+
+
     }
 
     update(time, delta) {
@@ -125,7 +151,9 @@ class Play extends Phaser.Scene {
         this.fuelText.text = 'Fuel: ' + Math.floor(this.rocket.fuel);
         this.distanceDisplay.text = Math.floor(this.rocket.distance) + ' m';
         this.upgDisplay.text = "UGP: " + this.number;
-        this.rocket.update(time, delta);
+        if(this.rocket.alpha != 0){
+            this.rocket.update(time, delta);
+        }
 
         if (!this.point.kill){
             this.physics.world.collide(this.point, this.rocket, this.pointCollision, null, this);
@@ -185,35 +213,19 @@ class Play extends Phaser.Scene {
         }
 
         //check collisions
-        if(this.currentObstacle != null && this.checkCollision(this.rocket, this.currentObstacle)) {
+        /*if(this.currentObstacle != null && this.checkCollision(this.rocket, this.currentObstacle)) {
             this.gameOver = true;
             this.explosionSFX.play();
             this.rocketExplode(this.rocket);
-        }
+        }*/
+        this.physics.world.collide(this.rocket, this.obstacleGroup, this.endGame, null, this);
 
         if(this.rocket.fuel == 0 ){
             this.gameOver = true; 
         }
 
         if (this.gameOver == true){
-            this.backgroundMusic.stop();
-            this.coinSFX.stop();
-            this.alertSFX.stop();
-            this.rocket.body.immovable = true;
-            this.rocket.body.moves = false;
-            this.endBlock = this.add.rectangle(100, 200, 520, 400, 0xa9a9a9).setOrigin(0,0);
-            this.endText = this.add.text(290, 250, "GAME OVER", titleTextConfig).setOrigin(0,0);
-            this.displayUpg = this.add.text(120, 350, "POINTS EARNED: " + this.number + " points", subtitleTextConfig).setOrigin(0,0);
-            points += this.number;
             
-            this.restartButtonText.x = 500;
-            this.restartButtonText.y = 550;
-            this.restartButton.setVisible(true);
-            
-
-            this.backButtonText.x = 220;
-            this.backButtonText.y = 550;
-            this.backButton.setVisible(true);
         }
     }   
 
@@ -223,6 +235,38 @@ class Play extends Phaser.Scene {
         this.number++; 
         this.point.setActive(false);
         this.point.setVisible(false);  
+    }
+
+    endGame(){
+        this.currentObstacle.destroy();
+        this.sound.play('explosionSFX', { volume: 0.2 });
+        this.rocketExplode();
+        this.backgroundMusic.stop();
+        this.coinSFX.stop();
+        this.alertSFX.stop();
+        this.rocket.body.immovable = true;
+        this.rocket.body.moves = false;
+        
+        this.time.delayedCall(1000, () => { 
+            this.endBlock.setVisible(true);
+            this.endText.setVisible(true);
+            this.displayUpg = this.add.text(120, 350, "POINTS EARNED: " + this.number + " points", subtitleTextConfig).setOrigin(0,0);
+            points += this.number;
+            
+            this.restartButtonText.setVisible(true);
+            this.restartButton.setVisible(true);
+            
+
+            this.backButtonText.setVisible(true);
+            this.backButton.setVisible(true);
+        } );
+
+        
+    }
+
+    addPoint(){
+        this.coinSFX.play();
+        this.number++;
     }
 
     fuelpointCollision(){
@@ -277,13 +321,13 @@ class Play extends Phaser.Scene {
         }
     }
 
-    rocketExplode(rocket){
-        rocket.alpha = 0;
+    rocketExplode(){
+        this.rocket.alpha = 0;
 
-        let boom = this.add.sprite(rocket.x, rocket.y, 'explosion').setOrigin(0, 0); 
+        
+        let boom = this.add.sprite(this.rocket.x, this.rocket.y, 'explosion').setOrigin(0, 0); 
         boom.anims.play('explode');             
-        boom.on('animationcomplete', () => {                     
-            rocket.alpha = 1;                  
+        boom.on('animationcomplete', () => {                                     
             boom.destroy();                   
         });
     }
