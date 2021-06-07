@@ -66,8 +66,8 @@ class Play extends Phaser.Scene {
         this.distanceDisplay = this.add.text(game.config.width/2, 40, '0 u',  buttonTextConfig).setOrigin(0.5);
         this.upgDisplay = this.add.text(20, 0, "UGP: 0", buttonTextConfig);
 
-        this.point = new UGP(this, 50 + Math.floor(Math.random() * 600), 50 + Math.floor(Math.random() * 700), 'coin', 128, 80).setOrigin(0,0);
-        this.fuelPoint = new UGP(this, 50 + Math.floor(Math.random() * 600) , 50 + Math.floor(Math.random() * 700), 'fuelPoint', 128, 80).setOrigin(0,0);
+        this.point = new UGP(this, 50 + Math.floor(Math.random() * 600), 200 + Math.floor(Math.random() * 500), 'coin', 128, 80).setOrigin(0,0);
+        this.fuelPoint = new UGP(this, 50 + Math.floor(Math.random() * 600) , 200 + Math.floor(Math.random() * 500), 'fuelPoint', 128, 80).setOrigin(0,0);
         this.physics.add.existing(this.point, false);
         this.physics.add.existing(this.fuelPoint, false);
 

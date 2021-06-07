@@ -14,7 +14,7 @@ class Obstacle extends Phaser.Physics.Arcade.Sprite {
         var random = Math.floor(Math.random() * 600);
 
         this.x = 50 + random;
-        this.y = -30;
+        this.y = -200;
         this.active = true;
         //console.log("Obstacle " + this.type + " movement begun");
         this.setAcceleration(0);
