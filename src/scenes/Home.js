@@ -21,7 +21,7 @@ class Home extends Phaser.Scene {
         this.load.image('wings', './assets/shipUpgrades/wings.png');
 
         this.load.image('ship', './assets/shipUpgrades/rocket.png');
-        this.load.image('homeBackground', './assetsspaceSky.png');
+        this.load.image('homeBackground', './assets/spaceSky.png');
         this.load.image('astronaut', './assets/astronaut.png');
     }
 
