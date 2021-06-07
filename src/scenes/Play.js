@@ -66,8 +66,8 @@ class Play extends Phaser.Scene {
         this.distanceDisplay = this.add.text(game.config.width/2, 40, '0 u',  buttonTextConfig).setOrigin(0.5);
         this.upgDisplay = this.add.text(20, 0, "UGP: 0", buttonTextConfig);
 
-        this.point = new UGP(this, 50 + Math.floor(Math.random() * 600), 250 + Math.floor(Math.random() * 600), 'coin', 128, 80).setOrigin(0,0);
-        this.fuelPoint = new UGP(this, 50 + Math.floor(Math.random() * 600) , 250 + Math.floor(Math.random() * 600), 'fuelPoint', 128, 80).setOrigin(0,0);
+        this.point = new UGP(this, 50 + Math.floor(Math.random() * 600), 250 + Math.floor(Math.random() * 500), 'coin', 128, 80).setOrigin(0,0);
+        this.fuelPoint = new UGP(this, 50 + Math.floor(Math.random() * 600) , 250 + Math.floor(Math.random() * 500), 'fuelPoint', 128, 80).setOrigin(0,0);
         this.physics.add.existing(this.point, false);
         this.physics.add.existing(this.fuelPoint, false);
 
@@ -151,6 +151,9 @@ class Play extends Phaser.Scene {
             "What's in the boxed fuel?\nNobody knows."
         ];
 
+        this.leakWarning = this.add.text(game.config.width/2, 900, "Low Altitude! Losing fuel!", buttonTextConfig).setOrigin(0.5);
+        this.leakWarning.text = "";
+
         this.rocketSound = this.sound.add("thrustSFX", {
             volume: 0.08,
             loop: true
@@ -232,8 +235,11 @@ class Play extends Phaser.Scene {
             this.endGame(); 
         }
 
-        if (this.gameOver == true){
-            
+        if(this.rocket.y > 800){
+            this.rocket.fuel -= delta/100;
+            this.leakWarning.text = "Low Altitude! Losing fuel!"
+        }else{
+            this.leakWarning.text = "";
         }
     }   
 
