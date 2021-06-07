@@ -249,7 +249,7 @@ class Play extends Phaser.Scene {
     }
 
     endGame(){
-        this.currentObstacle.destroy();
+        this.currentObstacle.end();
         this.sound.play('explosionSFX', { volume: 0.2 });
         this.rocketSound.stop();
         this.rocketExplode();
