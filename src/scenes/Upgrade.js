@@ -130,7 +130,7 @@ class Upgrade extends Phaser.Scene {
         wingsButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             if(wings){
-                this.warningWingsText.text = "Nose Boosters already bought!";
+                this.warningWingsText.text = "Wings already bought!";
             }else{
                 if(points >= 8 || freeUpgrades){
                     wings = true;

@@ -159,6 +159,7 @@ class FuelCrafting extends Phaser.Scene {
         }, this);
 
         this.refreshStats();
+
     }
 
     refreshImages(){
