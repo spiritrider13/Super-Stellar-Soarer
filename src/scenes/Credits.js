@@ -10,12 +10,12 @@ class Credits extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('background', './assets/backgrounds/spaceSky1.png');
+        this.load.image('creditBackground', './assets/backgrounds/spaceSky1.png');
     }
 
     create() {
         // background image
-        this.background = this.add.tileSprite(0,0,720,1080,'background').setOrigin(0,0);
+        this.background = this.add.tileSprite(0,0,720,1080,'creditBackground').setOrigin(0,0);
 
         // show menu text
         this.add.text(game.config.width/2, 125, 'CREDITS', titleTextConfig).setOrigin(0.5);
