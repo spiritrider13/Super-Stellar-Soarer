@@ -22,7 +22,7 @@ class FuelCrafting extends Phaser.Scene {
         this.load.image('icecream', './assets/fuelComponents/icecream.png');
         this.load.image('mayonnaise', './assets/fuelComponents/maayonaise.png');
         this.load.image('mentos', './assets/fuelComponents/mentos.png');
-        this.load.image('icyhot', './assets/fuelComponents/hotice.png');
+        this.load.image('hotice', './assets/fuelComponents/hotice.png');
         this.load.image('boxed', './assets/fuelComponents/Boxed.png');
         this.load.image('Qmark', './assets/Qmark1.png');
         this.load.audio('buttonSFX', './assets/music/buttonSFX.wav');
@@ -103,7 +103,7 @@ class FuelCrafting extends Phaser.Scene {
             this.mentos.paint(this, 275, 425);
         }
         if(fuelLevel > 10 || unlockAllFuel){
-            this.icyhot = new Icyhot(this, 'icyhot');
+            this.icyhot = new Icyhot(this, 'hotice');
             this.icyhot.paint(this, 425, 425);
         }
         if(fuelLevel > 11 || unlockAllFuel){
