@@ -25,7 +25,7 @@ class Upgrade extends Phaser.Scene {
 
     create() {
         // background
-        this.background = this.add.tileSprite(0,0,720,1080,'background').setOrigin(0,0);
+        this.background = this.add.tileSprite(0,0,720,1080,'upgradeBackground').setOrigin(0,0);
         this.engineer = this.add.sprite(100, 100, 'engineer').setOrigin(0,0);
         this.engineer1 = this.add.sprite(100, 300, 'engineer').setOrigin(0,0);
         this.engineer2 = this.add.sprite(100, 500, 'engineer').setOrigin(0,0);
