@@ -145,7 +145,7 @@ class Play extends Phaser.Scene {
             "Nose boosters increase\nturn speed.",
             "Upgraded boosters increase thrust.",
             "Check out the cheats menu!",
-            "The hot sauce fuel component\nreally makes you ship move fast!",
+            "The hot sauce fuel component\nmakes your ship move really fast!",
             "Visit the Help section in\nthe Main Menu for more game info.",
             "The gingerbread cookie drastically\nincreases fuel capacity!",
             "What's in the boxed fuel?\nNobody knows.",
