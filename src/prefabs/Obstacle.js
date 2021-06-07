@@ -7,11 +7,6 @@ class Obstacle extends Phaser.Physics.Arcade.Sprite {
         this.setMaxVelocity(500);
     }
 
-    update() {
-        // obstacle falling
-        //this.y += 6;
-    }
-
     // spawn the obstacle and set active
     begin() {
         //add a random offset to the spawn x value
