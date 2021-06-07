@@ -13,6 +13,8 @@ class Play extends Phaser.Scene {
         this.load.image('space', './assets/space.png');
         this.load.image('coin', './assets/coin.png');
         this.load.image('fuelPoint', './assets/fuelPoint.png');
+        this.load.image('exhaust', './assets/exhaust.png');
+
         // Obstacles
         this.load.image('meteor', './assets/obstacles/meteor.png');
         this.load.image('comet', './assets/obstacles/comet.png');
@@ -25,7 +27,8 @@ class Play extends Phaser.Scene {
         this.load.image('booserTier3', './assets/shipUpgrades/boosterTier3.png');
         this.load.image('noseBoosters', './assets/shipUpgrades/noseBoosters.png');
         this.load.image('wings', './assets/shipUpgrades/wings.png');
-
+        
+        // Music and Sound
         this.load.audio('backgroundMusic', './assets/music/background.mp3');
         this.load.audio('alert', './assets/music/alert.wav');
         this.load.audio('coinSFX', './assets/music/coinSFX.wav');
@@ -154,6 +157,21 @@ class Play extends Phaser.Scene {
         this.rocketSound = this.sound.add("thrustSFX", {
             volume: 0.08,
             loop: true
+        });
+
+        // Particle effect
+        // create line on right side of screen for particles source
+        let line = new Phaser.Geom.Line(w, 0, w, h);  
+        // create particle manager  
+        this.particleManager = this.add.particles('exhaust');
+        // add emitter and setup properties
+        this.lineEmitter = this.particleManager.createEmitter({
+            gravityX: -200,
+            lifespan: 5000,
+            alpha: { start: 0.5, end: 0.1 },
+            tint: [ 0xffff00, 0xff0000, 0x00ff00, 0x00ffff, 0x0000ff ],
+            emitZone: { type: 'random', source: line, quantity: 150 },
+            blendMode: 'ADD'
         });
     }
 
