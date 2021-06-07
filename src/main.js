@@ -1,3 +1,8 @@
+// ================================== //
+//       Developed by: Team AJS       //
+// Aria Altenburg, Jason Lee, Sam Vik //
+// ================================== //
+
 let config = {
     type: Phaser.AUTO,
     pixelArt: true,
