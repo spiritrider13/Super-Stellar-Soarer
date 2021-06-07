@@ -148,7 +148,8 @@ class Play extends Phaser.Scene {
             "The hot sauce fuel component\nreally makes you ship move fast!",
             "Visit the Help section in\nthe Main Menu for more game info.",
             "The gingerbread cookie drastically\nincreases fuel capacity!",
-            "What's in the boxed fuel?\nNobody knows."
+            "What's in the boxed fuel?\nNobody knows.",
+            "Watch your altitude!\nIf you're too low, your ship\nwill begin to leak fuel!"
         ];
 
         this.leakWarning = this.add.text(game.config.width/2, 900, "Low Altitude! Losing fuel!", buttonTextConfig).setOrigin(0.5);
