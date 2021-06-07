@@ -51,7 +51,6 @@ class Credits extends Phaser.Scene {
     }
 
     update() {
-        //background scrolling
-        //this.background.tilePositionX += 3;
+        
     }
 }

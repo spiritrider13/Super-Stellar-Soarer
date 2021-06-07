@@ -19,7 +19,6 @@ class Home extends Phaser.Scene {
         this.load.image('boosterTier3', './assets/shipUpgrades/boosterTier3.png');
         this.load.image('boosterNose', './assets/shipUpgrades/noseBoosters.png');
         this.load.image('wings', './assets/shipUpgrades/wings.png');
-
         this.load.image('ship', './assets/shipUpgrades/rocket.png');
         this.load.image('homeBackground', './assets/spaceSky.png');
         this.load.image('astronaut', './assets/astronaut.png');
@@ -31,8 +30,6 @@ class Home extends Phaser.Scene {
         this.buttonSFX = this.sound.add('buttonSFX',{ volume: 0.8 });
         // background
         this.background = this.add.tileSprite(0,0,game.config.width,game.config.height,'homeBackground').setOrigin(0,0);
-        
-        //this.astronaut = this.add.sprite(game.config.width / 2 + 50, game.config.height / 2, 'astronaut')
 
         // add some text labels
         this.sceneText = this.add.text(game.config.width/2, 20, 'HOME', titleTextConfig).setOrigin(0.5);
@@ -86,12 +83,6 @@ class Home extends Phaser.Scene {
         this.playerShip = this.add.image(x, y, 'ship').setOrigin(0.5);
         this.playerShip.setScale(3);
         if(boosterTier3){
-            /*this.bt3 = scene.add.sprite(x, y, 'boosterTier3');
-            //this.layers.add(scene.add.image(x, y, 'boosterTier3'));
-            this.layers.add(this.bt3);
-            scene.add.existing(this.bt3);
-            //this.bt3.setVisible = true;*/
-            //console.log("Test");
             this.bt3 = this.add.sprite(x, y, 'boosterTier3').setOrigin(0.5);
             this.bt3.setScale(3);
             this.add.existing(this.bt3);
@@ -123,8 +114,5 @@ class Home extends Phaser.Scene {
     update() {
         //background scrolling
         this.background.tilePositionX += 3;
-
-
-        
     }
 }

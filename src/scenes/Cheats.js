@@ -15,12 +15,10 @@ class Cheats extends Phaser.Scene {
     }
 
     create() {
+        // button sound
         this.buttonSFX = this.sound.add('buttonSFX',{ volume: 0.8 });
         // background
         this.background = this.add.tileSprite(0,0,game.config.width,game.config.height,'cheatsBackground').setOrigin(0,0);
-
-        //add some text labels
-       // this.sceneText = this.add.text(game.config.width/2, 20, 'CHEAT MENU', titleTextConfig).setOrigin(0.5);
 
         // BACK BUTTON ***********************************************************************
         const backButton = new Button(this, game.config.width/2, game.config.height - 40);
@@ -36,7 +34,6 @@ class Cheats extends Phaser.Scene {
         this.helpText = this.add.text(game.config.width/2, 200, 
             'Here you can enable cheats to quickly\naccess game features', normalTextConfig).setOrigin(0.5);
 
-        
         // UNLIMITED POINTS BUTTON ***********************************************************************
         const freeUpgradesButton = new Button(this, game.config.width/2, 300);
         this.add.existing(freeUpgradesButton);
@@ -93,9 +90,6 @@ class Cheats extends Phaser.Scene {
     }
 
     update() {
-        
 
-
-        
     }
 }

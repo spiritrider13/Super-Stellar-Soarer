@@ -47,7 +47,6 @@ class Play extends Phaser.Scene {
         this.coinSFX = this.sound.add('coinSFX', {volume: 0.1});
         this.buttonSFX = this.sound.add('buttonSFX',{ volume: 0.8 });
         this.fuelSFX = this.sound.add('fuelSFX',{ volume: 0.8 });
-        //this.explosionSFX = this.sound.add('explosionSFX', {volume: 0.1});
         this.backgroundMusic = this.sound.add('backgroundMusic',{ volume: 0.1, loop: true });
         this.backgroundMusic.play();
         
@@ -66,8 +65,6 @@ class Play extends Phaser.Scene {
         this.highScoreDisplay = this.add.text(game.config.width/2, 20, 'FURTHEST DISTANCE: ' + highScore + " u",  buttonTextConfig).setOrigin(0.5);
         this.distanceDisplay = this.add.text(game.config.width/2, 40, '0 u',  buttonTextConfig).setOrigin(0.5);
         this.upgDisplay = this.add.text(20, 0, "UGP: 0", buttonTextConfig);
-
-
 
         this.point = new UGP(this, 50 + Math.floor(Math.random() * 600), 50 + Math.floor(Math.random() * 700), 'coin', 128, 80).setOrigin(0,0);
         this.fuelPoint = new UGP(this, 50 + Math.floor(Math.random() * 600) , 50 + Math.floor(Math.random() * 700), 'fuelPoint', 128, 80).setOrigin(0,0);
@@ -99,15 +96,6 @@ class Play extends Phaser.Scene {
         this.currentScore;
         this.maxScore = this.currentScore;
 
-        /*this.pointsTimer = this.time.addEvent({
-            delay: 5000,
-            callback: this.addPoint(),
-            callbackScope: this,
-            loop: true
-        });*/
-
-        //setInterval(() => this.addPoint, 1000);
-
         this.gameOver = false;
         this.gameStart = false;
 
@@ -131,7 +119,6 @@ class Play extends Phaser.Scene {
         this.restartButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.buttonSFX.play();
-            //this.backgroundMusic.stop();
             this.scene.start('playScene');
         })
         this.restartButton.setVisible(false);
@@ -144,7 +131,6 @@ class Play extends Phaser.Scene {
         this.backButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.buttonSFX.play();
-            //this.backgroundMusic.stop();
             this.scene.start('homeScene');
         })
         this.backButton.setVisible(false);
@@ -343,7 +329,6 @@ class Play extends Phaser.Scene {
 
         this.rocket.exhaustEmitter.on = false;
         this.rocket.hideUpgrades();
-
         
         let boom = this.add.sprite(this.rocket.x, this.rocket.y, 'explosion').setOrigin(0.5); 
         boom.setScale(4);
