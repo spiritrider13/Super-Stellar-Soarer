@@ -10,14 +10,15 @@ class Cheats extends Phaser.Scene {
     }
 
     preload() {
+        this.load.image('cheatsBackground', './assets/backgrounds/cheatsBackground.png');
     }
 
     create() {
         // background
-        this.wal2 = this.add.rectangle(0,0,game.config.width,game.config.height,0x9ccc9c).setOrigin(0,0);
+        this.background = this.add.tileSprite(0,0,game.config.width,game.config.height,'cheatsBackground').setOrigin(0,0);
 
         //add some text labels
-        this.sceneText = this.add.text(game.config.width/2, 20, 'CHEAT MENU', titleTextConfig).setOrigin(0.5);
+       // this.sceneText = this.add.text(game.config.width/2, 20, 'CHEAT MENU', titleTextConfig).setOrigin(0.5);
 
         // BACK BUTTON ***********************************************************************
         const backButton = new Button(this, game.config.width/2, game.config.height - 40);
