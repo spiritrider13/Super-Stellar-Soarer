@@ -152,7 +152,7 @@ class Play extends Phaser.Scene {
             "Watch your altitude!\nIf you're too low, your ship\nwill begin to leak fuel!"
         ];
 
-        this.leakWarning = this.add.text(game.config.width/2, 900, "Low Altitude! Losing fuel!", buttonTextConfig).setOrigin(0.5);
+        this.leakWarning = this.add.text(game.config.width/2, 900, "Low Altitude! Losing fuel!", titleTextConfig).setOrigin(0.5);
         this.leakWarning.text = "";
 
         this.rocketSound = this.sound.add("thrustSFX", {
@@ -236,8 +236,8 @@ class Play extends Phaser.Scene {
             this.endGame(); 
         }
 
-        if(this.rocket.y > 800){
-            this.rocket.fuel -= delta/100;
+        if(this.rocket.y > 850){
+            this.rocket.fuel -= delta/400;
             this.leakWarning.text = "Low Altitude! Losing fuel!"
         }else{
             this.leakWarning.text = "";
