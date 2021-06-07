@@ -4,8 +4,8 @@ class Ignus extends FuelComponent {
         super(scene, texture, frame);
         scene.add.existing(this);
 
-        super.power = 200;
-        super.duration = 80;
-        super.stability = 250;
+        super.power = 270;
+        super.duration = 120;
+        super.stability = 260;
     }
 }

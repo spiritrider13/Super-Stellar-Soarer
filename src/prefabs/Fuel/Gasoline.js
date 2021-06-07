@@ -4,8 +4,8 @@ class Gasoline extends FuelComponent {
         super(scene, texture, frame);
         scene.add.existing(this);
 
-        super.power = 400;
+        super.power = 285;
         super.duration = 100;
-        super.stability = 250;
+        super.stability = 275;
     }
 }

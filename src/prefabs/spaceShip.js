@@ -7,13 +7,24 @@ class spaceShip extends Phaser.Physics.Arcade.Sprite {
         scene.physics.add.existing(this);
 
         this.ANG_VELOCITY = 180;
-        this.MAX_VELOCITY = 300;
+        if(powerBuff == 50){
+            this.MAX_VELOCITY = 500;
+        }
+        else if(powerBuff == 100){
+            this.MAX_VELOCITY = 600;
+        }
+        else if(powerBuff == 200){
+            this.MAX_VELOCITY = 800;
+        }else{
+            this.MAX_VELOCITY = 400;
+        }
+        
         this.DRAG = 0.5;
 
         this.setMaxVelocity(this.MAX_VELOCITY);
         this.setDamping(true);
         this.setDrag(this.DRAG);
-        this.setBounce(0.1);
+        this.setBounce(0);
         this.setCollideWorldBounds(true);
     
         this.fuel = 0;
@@ -65,15 +76,36 @@ class spaceShip extends Phaser.Physics.Arcade.Sprite {
                 this.bN.setScale(3);
             scene.add.existing(this.bN);
         }
+
+        this.playing = false;
     }
 
     update(time, delta){
+
         // Inspiration from Phaser3 'Asteroids' example
         // Inside the velocityFromRotation method, the 1st parameter is starting direction (pi/2), second is thrust power
         if(cursors.up.isDown && this.fuel > 0) {
-            this.scene.physics.velocityFromRotation(this.rotation-Math.PI/2, this.power, this.body.acceleration);
+            this.scene.physics.velocityFromRotation(this.rotation-Math.PI/2, this.power + powerBuff, this.body.acceleration);
             this.fuel -= delta/100;
             this.distance += delta/100;
+            
+            var force = Math.floor(Math.random() * (999 - (this.stability + stabilityBuff)));
+            if(force < 0)
+                force = 0;
+            //this.scene.physics.velocityFromRotation(Math.random() * Math.PI, force);
+            this.body.velocity.x += this.rotation - Math.cos(Math.floor(Math.random() * 600)) * force/9;
+            this.body.velocity.y += this.rotation - Math.sin(Math.floor(Math.random() * 600)) * force/9;
+            //this.setAngularVelocity(Math.round((Math.random()) * 2 - 1) * force * 10);
+            this.angle += Math.round((Math.random()) * 2 - 1) * force/70;
+
+            if(!this.playing){
+                this.scene.rocketSound.play();
+                this.playing = true;
+            }
+        }
+        else if(!cursors.up.isDown && this.playing){
+            this.scene.rocketSound.stop();
+            this.playing = false;
         }
         else if(this.fuel <= 0){
             this.fuel = 0;
@@ -85,9 +117,9 @@ class spaceShip extends Phaser.Physics.Arcade.Sprite {
 
         // ship rotation by adjusting angular velocity
         if(cursors.left.isDown) {
-            this.setAngularVelocity(-this.ANG_VELOCITY);
+            this.setAngularVelocity(-this.ANG_VELOCITY - turningBuff);
         } else if (cursors.right.isDown) {
-            this.setAngularVelocity(this.ANG_VELOCITY);
+            this.setAngularVelocity(this.ANG_VELOCITY + turningBuff);
         } else {
             this.setAngularVelocity(0);
         }

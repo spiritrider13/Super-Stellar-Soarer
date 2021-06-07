@@ -30,6 +30,7 @@ class Play extends Phaser.Scene {
         this.load.audio('alert', './assets/music/alert.wav');
         this.load.audio('coinSFX', './assets/music/coinSFX.wav');
         this.load.audio('explosionSFX', './assets/music/explosion.mp3');
+        this.load.audio('thrustSFX', './assets/effects/rocketLoop.mp3');
 
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 48, frameHeight: 48, startFrame: 0, endFrame: 8});
     }
@@ -90,12 +91,14 @@ class Play extends Phaser.Scene {
         this.currentScore;
         this.maxScore = this.currentScore;
 
-        this.pointsTimer = this.time.addEvent({
-            delay: 1,
+        /*this.pointsTimer = this.time.addEvent({
+            delay: 5000,
             callback: this.addPoint(),
             callbackScope: this,
             loop: true
-        });
+        });*/
+
+        //setInterval(() => this.addPoint, 1000);
 
         this.gameOver = false;
         this.gameStart = false;
@@ -106,8 +109,8 @@ class Play extends Phaser.Scene {
             framerate: 30
         });
 
-        this.endBlock = this.add.rectangle(100, 200, 520, 400, 0xa9a9a9).setOrigin(0,0);
-        this.endText = this.add.text(290, 250, "GAME OVER", titleTextConfig).setOrigin(0,0);
+        this.endBlock = this.add.rectangle(100, 200, 520, 400, 0xa9a9a9).setOrigin(0);
+        this.endText = this.add.text(game.config.width/2, 250, "GAME OVER", titleTextConfig).setOrigin(0.5);
         this.endBlock.setVisible(false);
         this.endText.setVisible(false);
 
@@ -137,8 +140,21 @@ class Play extends Phaser.Scene {
         this.backButton.setVisible(false);
 
         
+        this.hints = [
+            "Collect the red coins\nfor +25% fuel!",
+            "Spend your points to\nupgrade your ship!",
+            "Each fuel has it's own stats.",
+            "Better luck next time.",
+            "Wings increase the\nship's stability.",
+            "Nose boosters increase\nturn speed.",
+            "Upgraded boosters increase thrust.",
+            "Check out the cheats menu!",
+        ];
 
-
+        this.rocketSound = this.sound.add("thrustSFX", {
+            volume: 0.08,
+            loop: true
+        });
     }
 
     update(time, delta) {
@@ -235,6 +251,7 @@ class Play extends Phaser.Scene {
     endGame(){
         this.currentObstacle.destroy();
         this.sound.play('explosionSFX', { volume: 0.2 });
+        this.rocketSound.stop();
         this.rocketExplode();
         this.backgroundMusic.stop();
         this.coinSFX.stop();
@@ -245,7 +262,8 @@ class Play extends Phaser.Scene {
         this.time.delayedCall(1000, () => { 
             this.endBlock.setVisible(true);
             this.endText.setVisible(true);
-            this.displayUpg = this.add.text(120, 350, "POINTS EARNED: " + this.number + " points", subtitleTextConfig).setOrigin(0,0);
+            this.displayUpg = this.add.text(game.config.width/2, 350, "POINTS EARNED: " + this.number + "\n\n\n\n\n"
+            + this.hints[Math.floor(Math.random() * this.hints.length)], subtitleTextConfig).setOrigin(0.5);
             points += this.number;
             
             this.restartButtonText.setVisible(true);
@@ -301,18 +319,6 @@ class Play extends Phaser.Scene {
                 break;
             default:
                 console.error("Invalid random obstacle attempted activation.");
-        }
-    }
-
-    checkCollision(obstacle, spaceShip) {  // collision function
-        // simple AABB checking
-        if (obstacle.x < spaceShip.x + spaceShip.width &&
-            obstacle.x + obstacle.width > spaceShip.x &&
-            obstacle.y < spaceShip.y + spaceShip.height &&
-            obstacle.height + obstacle.y > spaceShip.y) {
-                return true;
-        } else {
-            return false;
         }
     }
 

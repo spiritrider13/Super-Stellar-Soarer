@@ -108,6 +108,9 @@ let boosterTier2 = false;
 let boosterTier3 = false;
 let boosterNose = false;
 let wings = false;
+let powerBuff = 0;
+let stabilityBuff = 0;
+let turningBuff = 0;
 
 //Upgrade Points
 let points = 0;

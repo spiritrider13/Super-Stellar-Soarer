@@ -135,9 +135,12 @@ class FuelCrafting extends Phaser.Scene {
         this.totalPower = 0;
         this.totalStability = 0;
 
-        this.powerText = this.add.text(game.config.width/3 - 100, 700 - 130, 'Power: ' + this.totalPower ,normalTextConfig).setOrigin(0.5);
-        this.durationText = this.add.text(game.config.width/2, 700 - 130, 'Duration: ' + this.totalDuration, normalTextConfig).setOrigin(0.5);
-        this.stabilityText = this.add.text(game.config.width/1.5 + 100, 700 - 130, 'Stability: ' + this.totalStability, normalTextConfig).setOrigin(0.5);
+        this.totalPower += powerBuff;
+        this.totalStability += stabilityBuff;
+
+        this.powerText = this.add.text(game.config.width/3 - 100, 700 - 130, 'Power: ' + this.totalPower + " MJ" ,normalTextConfig).setOrigin(0.5);
+        this.durationText = this.add.text(game.config.width/2, 700 - 130, 'Capacity: ' + this.totalDuration + " L", normalTextConfig).setOrigin(0.5);
+        this.stabilityText = this.add.text(game.config.width/1.5 + 100, 700 - 130, 'Stability: ' + (this.totalStability)/10 + "%", normalTextConfig).setOrigin(0.5);
 
         //when left click is pressed, refresh all images
         this.input.on('pointerdown', function (pointer){
@@ -195,9 +198,12 @@ class FuelCrafting extends Phaser.Scene {
             this.totalPower += fuelComp3.power;
             this.totalStability += fuelComp3.stability;
         }
+
+        this.totalPower += powerBuff;
+        this.totalStability += stabilityBuff;
         
-        this.powerText.text = 'Power: ' + this.totalPower;
-        this.durationText.text = 'Duration: ' + this.totalDuration;
-        this.stabilityText.text = 'Stability: ' + this.totalStability;
+        this.powerText.text = 'Power: ' + this.totalPower + " MJ";
+        this.durationText.text = 'Capacity: ' + this.totalDuration + " L";
+        this.stabilityText.text = 'Stability: ' + (this.totalStability)/10 + "%";
     }
 }

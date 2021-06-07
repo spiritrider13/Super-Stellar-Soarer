@@ -4,8 +4,8 @@ class Icecream extends FuelComponent {
         super(scene, texture, frame);
         scene.add.existing(this);
 
-        super.power = 50;
-        super.duration = 200;
-        super.stability = 250;
+        super.power = 60;
+        super.duration = 300;
+        super.stability = 300;
     }
 }

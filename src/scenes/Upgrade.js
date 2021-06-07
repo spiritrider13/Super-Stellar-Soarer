@@ -58,6 +58,7 @@ class Upgrade extends Phaser.Scene {
                     boosterTier3 = true;
                     currentBoosterTier = 3 + " (MAX)";
                     upgradeBoostersCost = "NA";
+                    powerBuff = 200;
                 }else{
                     this.warningBoostersText.text = "Not enough points for selected upgrade!";
                 }
@@ -68,6 +69,7 @@ class Upgrade extends Phaser.Scene {
                     boosterTier2 = true;
                     currentBoosterTier = 2;
                     upgradeBoostersCost = 15;
+                    powerBuff = 100;
                 }else{
                     this.warningBoostersText.text = "Not enough points for selected upgrade!";
                 }
@@ -77,6 +79,7 @@ class Upgrade extends Phaser.Scene {
                     boosterTier1 = true;
                     currentBoosterTier = 1;
                     upgradeBoostersCost = 10;
+                    powerBuff = 50;
                 }else{
                     this.warningBoostersText.text = "Not enough points for selected upgrade!";
                 }
@@ -103,6 +106,7 @@ class Upgrade extends Phaser.Scene {
                 if(points >= 12 || freeUpgrades){
                     boosterNose = true;
                     this.noseBoostersCostText = "EQUIPPED";
+                    turningBuff = 100;
                 }else{
                     this.warningNoseText.text = "Not enough points for selected upgrade!";
                 }
@@ -129,6 +133,7 @@ class Upgrade extends Phaser.Scene {
                 if(points >= 8 || freeUpgrades){
                     wings = true;
                     this.wingsCostText = "EQUIPPED";
+                    stabilityBuff = 100;
                 }else{
                     this.warningWingsText.text = "Not enough points for selected upgrade!";
                 }

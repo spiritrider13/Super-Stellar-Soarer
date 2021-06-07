@@ -4,8 +4,8 @@ class Mayo extends FuelComponent {
         super(scene, texture, frame);
         scene.add.existing(this);
 
-        super.power = 175;
+        super.power = 190;
         super.duration = 100;
-        super.stability = 250;
+        super.stability = 310;
     }
 }

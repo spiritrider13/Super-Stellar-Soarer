@@ -5,7 +5,7 @@ class Cola extends FuelComponent {
         scene.add.existing(this);
 
         super.power = 220;
-        super.duration = 70;
-        super.stability = 250;
+        super.duration = 160;
+        super.stability = 240;
     }
 }

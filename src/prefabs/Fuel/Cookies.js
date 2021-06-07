@@ -6,6 +6,6 @@ class Cookies extends FuelComponent {
 
         super.power = 10;
         super.duration = 500;
-        super.stability = 250;
+        super.stability = 333;
     }
 }

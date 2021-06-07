@@ -4,8 +4,8 @@ class Hydrogen extends FuelComponent {
         super(scene, texture, frame);
         scene.add.existing(this);
 
-        super.power = 250;
-        super.duration = 50;
-        super.stability = 250;
+        super.power = 300;
+        super.duration = 80;
+        super.stability = 225;
     }
 }
