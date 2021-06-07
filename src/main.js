@@ -2,6 +2,11 @@
 //       Developed by: Team AJS       //
 // Aria Altenburg, Jason Lee, Sam Vik //
 // ================================== //
+// What we are proud of:
+// We are specifically proud of our work ethic and team cohesiveness / communication skills.
+// We are also very proud of our upgrade and fuel crafting systems that really add a creative
+// tilt to the game.
+// In addition, we also created our very own button system with fully original code.
 
 let config = {
     type: Phaser.AUTO,

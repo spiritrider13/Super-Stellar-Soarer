@@ -57,7 +57,7 @@ class Play extends Phaser.Scene {
         this.b3 = this.add.rectangle(0, 0, borderUISize - 60, game.config.height, 0xFFFFFF).setOrigin(0, 0);
         this.b4 = this.add.rectangle(game.config.width - borderUISize + 60, 0, borderUISize -60, game.config.height, 0xFFFFFF).setOrigin(0, 0);
         // add spaceship
-        this.rocket = new spaceShip(this, game.config.width/2, 600, 'spaceShip', 128, 80).setOrigin(0.5);
+        this.rocket = new spaceShip(this, game.config.width/2, 700, 'spaceShip', 128, 80).setOrigin(0.5);
         this.rocket.initializeFuel();
         this.physics.add.existing(this.rocket, false);
 
@@ -66,8 +66,8 @@ class Play extends Phaser.Scene {
         this.distanceDisplay = this.add.text(game.config.width/2, 40, '0 u',  buttonTextConfig).setOrigin(0.5);
         this.upgDisplay = this.add.text(20, 0, "UGP: 0", buttonTextConfig);
 
-        this.point = new UGP(this, 50 + Math.floor(Math.random() * 600), 250 + Math.floor(Math.random() * 500), 'coin', 128, 80).setOrigin(0,0);
-        this.fuelPoint = new UGP(this, 50 + Math.floor(Math.random() * 600) , 250 + Math.floor(Math.random() * 500), 'fuelPoint', 128, 80).setOrigin(0,0);
+        this.point = new UGP(this, 50 + Math.floor(Math.random() * 600), 250 + Math.floor(Math.random() * 400), 'coin', 128, 80).setOrigin(0,0);
+        this.fuelPoint = new UGP(this, 50 + Math.floor(Math.random() * 600) , 250 + Math.floor(Math.random() * 400), 'fuelPoint', 128, 80).setOrigin(0,0);
         this.physics.add.existing(this.point, false);
         this.physics.add.existing(this.fuelPoint, false);
 
