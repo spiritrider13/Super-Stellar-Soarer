@@ -139,12 +139,16 @@ class Play extends Phaser.Scene {
         this.hints = [
             "Collect the red coins\nfor +25% fuel!",
             "Spend your points to\nupgrade your ship!",
-            "Each fuel has it's own stats.",
+            "Each fuel has its own stats.",
             "Better luck next time.",
             "Wings increase the\nship's stability.",
             "Nose boosters increase\nturn speed.",
             "Upgraded boosters increase thrust.",
             "Check out the cheats menu!",
+            "The hot sauce fuel component\nreally makes you ship move fast!",
+            "Visit the Help section in\nthe Main Menu for more game info.",
+            "The gingerbread cookie drastically\nincreases fuel capacity!",
+            "What's in the boxed fuel?\nNobody knows."
         ];
 
         this.rocketSound = this.sound.add("thrustSFX", {
