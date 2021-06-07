@@ -54,7 +54,6 @@ class Play extends Phaser.Scene {
         this.rocket.initializeFuel();
         this.physics.add.existing(this.rocket, false);
 
-
         this.fuelText = this.add.text(600, 20, 'FUEL: ' + this.rocket.fuel, buttonTextConfig).setOrigin(0.5);
         this.distanceDisplay = this.add.text(game.config.width/2, 20, '0 m',  buttonTextConfig).setOrigin(0.5);
         this.upgDisplay = this.add.text(10, 0, "UGP: 0", buttonTextConfig);
@@ -163,7 +162,7 @@ class Play extends Phaser.Scene {
             this.currentObstacle.y += 10;
         }
 
-         //check collisions
+        //check collisions
         if(this.currentObstacle != null && this.checkCollision(this.rocket, this.currentObstacle)) {
             this.gameOver = true;
             this.explosionSFX.play();
@@ -182,7 +181,7 @@ class Play extends Phaser.Scene {
             this.rocket.body.moves = false;
             this.endBlock = this.add.rectangle(100, 200, 520, 400, 0xa9a9a9).setOrigin(0,0);
             this.endText = this.add.text(290, 250, "GAME OVER", titleTextConfig).setOrigin(0,0);
-            this.displayUpg = this.add.text(120, 350, "EARNE UGP: " + this.number + " points", buttonTextConfig).setOrigin(0,0);
+            this.displayUpg = this.add.text(120, 350, "EARNED UGP: " + this.number + " points", buttonTextConfig).setOrigin(0,0);
         // BACK BUTTON ***********************************************************************
             const backButton = new Button(this, 220, 550);
             this.add.existing(backButton);
