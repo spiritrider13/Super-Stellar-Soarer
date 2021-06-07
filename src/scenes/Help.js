@@ -35,5 +35,7 @@ class Help extends Phaser.Scene {
         // Help text
         this.helpText = this.add.text(game.config.width/2, 200, 
             'Press PLAY to be taken to the main screen,\nwhere you can navigate the different menus of the game.', normalTextConfig).setOrigin(0.5);
+        this.helpText2 = this.add.text(game.config.width/2, 300, 
+            'In the fuel crafting menu,you can select three different\nfuel components that will determine different stats of your rocket.', normalTextConfig).setOrigin(0.5);
     }
 }
