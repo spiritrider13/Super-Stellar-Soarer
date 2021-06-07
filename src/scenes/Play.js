@@ -34,6 +34,8 @@ class Play extends Phaser.Scene {
         this.load.audio('coinSFX', './assets/music/coinSFX.wav');
         this.load.audio('explosionSFX', './assets/music/explosion.mp3');
         this.load.audio('thrustSFX', './assets/effects/rocketLoop.mp3');
+        this.load.audio('buttonSFX', './assets/music/buttonSFX.wav');
+        this.load.audio('fuelSFX', './assets/music/fuelSFX.wav');
 
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 48, frameHeight: 48, startFrame: 0, endFrame: 8});
     }
@@ -43,6 +45,8 @@ class Play extends Phaser.Scene {
 
         this.alertSFX = this.sound.add('alert',{ volume: 0.1});
         this.coinSFX = this.sound.add('coinSFX', {volume: 0.1});
+        this.buttonSFX = this.sound.add('buttonSFX',{ volume: 0.8 });
+        this.fuelSFX = this.sound.add('fuelSFX',{ volume: 0.8 });
         //this.explosionSFX = this.sound.add('explosionSFX', {volume: 0.1});
         this.backgroundMusic = this.sound.add('backgroundMusic',{ volume: 0.1, loop: true });
         this.backgroundMusic.play();
@@ -126,6 +130,7 @@ class Play extends Phaser.Scene {
         this.restartButtonText.setVisible(false);
         this.restartButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.buttonSFX.play();
             //this.backgroundMusic.stop();
             this.scene.start('playScene');
         })
@@ -138,6 +143,7 @@ class Play extends Phaser.Scene {
         this.backButtonText.setVisible(false);
         this.backButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.buttonSFX.play();
             //this.backgroundMusic.stop();
             this.scene.start('homeScene');
         })
@@ -292,7 +298,7 @@ class Play extends Phaser.Scene {
     }
 
     fuelpointCollision(){
-        this.coinSFX.play();
+        this.fuelSFX.play();
         this.fuelPoint.kill = true; 
         this.rocket.fuel += Math.floor((fuelComp1.duration + fuelComp2.duration + fuelComp3.duration) * .25); 
         this.fuelPoint.setActive(false);

@@ -21,9 +21,12 @@ class Upgrade extends Phaser.Scene {
         this.load.image('booserTier3', './assets/shipUpgrades/boosterTier3.png');
         this.load.image('noseBoosters', './assets/shipUpgrades/noseBoosters.png');
         this.load.image('wings', './assets/shipUpgrades/wings.png');
+
+        this.load.audio('buttonSFX', './assets/music/buttonSFX.wav');
     }
 
     create() {
+        this.buttonSFX = this.sound.add('buttonSFX',{ volume: 0.8 });
         // background
         this.background = this.add.tileSprite(0,0,720,1080,'upgradeBackground').setOrigin(0,0);
         this.engineer = this.add.sprite(100, 100, 'engineer').setOrigin(0,0);
@@ -41,6 +44,7 @@ class Upgrade extends Phaser.Scene {
         this.backButtonText = this.add.text(game.config.width/2, game.config.height - 35, 'BACK TO HOME', buttonTextConfig).setOrigin(0.5);
         backButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.buttonSFX.play();
             this.scene.start('homeScene');
         })
 
@@ -54,6 +58,7 @@ class Upgrade extends Phaser.Scene {
         this.upgradeBoostersButtonInnerText = this.add.text(game.config.width/2, 200, 'UPGRADE', buttonTextConfig).setOrigin(0.5);
         upgradeBoostersButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.buttonSFX.play();
             if(boosterTier3){
                 this.warningBoostersText.text = "No more upgrades available: Boosters at maximum tier!";
             }
@@ -113,6 +118,7 @@ class Upgrade extends Phaser.Scene {
         this.noseBoostersButtonInnerText = this.add.text(game.config.width/2, 400, 'UPGRADE', buttonTextConfig).setOrigin(0.5);
         noseBoostersButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.buttonSFX.play();
             if(boosterNose){
                 this.warningNoseText.text = "Nose Boosters already bought!";
             }else{
@@ -143,6 +149,7 @@ class Upgrade extends Phaser.Scene {
         this.wingsButtonInnerText = this.add.text(game.config.width/2, 600, 'UPGRADE', buttonTextConfig).setOrigin(0.5);
         wingsButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.buttonSFX.play();
             if(wings){
                 this.warningWingsText.text = "Wings already bought!";
             }else{
@@ -174,6 +181,7 @@ class Upgrade extends Phaser.Scene {
         this.fuelButtonInnerText = this.add.text(game.config.width/2, 800, 'UPGRADE', buttonTextConfig).setOrigin(0.5);
         fuelButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.buttonSFX.play();
             if(fuelLevel >= 12){
                 this.warningWingsText.text = "All fuel has been bought!";
             }else{

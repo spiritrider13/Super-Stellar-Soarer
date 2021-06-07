@@ -25,9 +25,11 @@ class FuelCrafting extends Phaser.Scene {
         this.load.image('icyhot', './assets/fuelComponents/Icyhot.png');
         this.load.image('boxed', './assets/fuelComponents/Boxed.png');
         this.load.image('Qmark', './assets/Qmark1.png');
+        this.load.audio('buttonSFX', './assets/music/buttonSFX.wav');
     }
 
     create() {
+        this.buttonSFX = this.sound.add('buttonSFX',{ volume: 0.8 });
         // background
         this.backgroundImage = this.add.image(0,0,'backgroundFuel').setOrigin(0);
 
@@ -40,6 +42,7 @@ class FuelCrafting extends Phaser.Scene {
         this.backButtonText = this.add.text(150, game.config.height - 35, 'BACK TO HOME', buttonTextConfig).setOrigin(0.5);
         backButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.buttonSFX.play();
             this.scene.start('homeScene');
         })
 
@@ -49,6 +52,7 @@ class FuelCrafting extends Phaser.Scene {
         this.backButtonText = this.add.text(game.config.width - 150, game.config.height - 35, 'CLEAR SELECTION', buttonTextConfig).setOrigin(0.5);
         clearButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.buttonSFX.play();
             fuelComp1 = null;
             fuelComp2 = null;
             fuelComp3 = null;

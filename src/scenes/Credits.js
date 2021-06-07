@@ -11,9 +11,11 @@ class Credits extends Phaser.Scene {
 
     preload() {
         this.load.image('creditBackground', './assets/backgrounds/spaceSky1.png');
+        this.load.audio('buttonSFX', './assets/music/buttonSFX.wav');
     }
 
     create() {
+        this.buttonSFX = this.sound.add('buttonSFX',{ volume: 0.8 });
         // background image
         this.background = this.add.tileSprite(0,0,720,1080,'creditBackground').setOrigin(0,0);
 
@@ -43,6 +45,7 @@ class Credits extends Phaser.Scene {
         this.backButtonText = this.add.text(game.config.width/2, game.config.height - 35, 'BACK TO MENU', buttonTextConfig).setOrigin(0.5);
         backButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.buttonSFX.play();
             this.scene.start('menuScene');
         })
     }

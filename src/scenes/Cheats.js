@@ -11,9 +11,11 @@ class Cheats extends Phaser.Scene {
 
     preload() {
         this.load.image('cheatsBackground', './assets/backgrounds/cheatsBackground.png');
+        this.load.audio('buttonSFX', './assets/music/buttonSFX.wav');
     }
 
     create() {
+        this.buttonSFX = this.sound.add('buttonSFX',{ volume: 0.8 });
         // background
         this.background = this.add.tileSprite(0,0,game.config.width,game.config.height,'cheatsBackground').setOrigin(0,0);
 
@@ -26,6 +28,7 @@ class Cheats extends Phaser.Scene {
         this.backButtonText = this.add.text(game.config.width/2, game.config.height - 40, 'BACK TO MENU', buttonTextConfig).setOrigin(0.5);
         backButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.buttonSFX.play();
             this.scene.start('menuScene');
         })
 
@@ -40,6 +43,7 @@ class Cheats extends Phaser.Scene {
         this.freeUpgradesButtonText = this.add.text(game.config.width/2, 300, 'FREE UPGRADES: ' + freeUpgradesStatus, normalTextConfig).setOrigin(0.5);
         freeUpgradesButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.buttonSFX.play();
             if(freeUpgrades){
                 freeUpgrades = false;
                 freeUpgradesStatus = "OFF";
@@ -57,6 +61,7 @@ class Cheats extends Phaser.Scene {
         this.freeFuelButtonText = this.add.text(game.config.width/2, 400, 'UNLOCK ALL FUEL: ' + freeFuelStatus, normalTextConfig).setOrigin(0.5);
         freeFuelButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.buttonSFX.play();
             if(unlockAllFuel){
                 unlockAllFuel = false;
                 freeFuelStatus = "OFF";
@@ -74,6 +79,7 @@ class Cheats extends Phaser.Scene {
         this.unlimitedFuelButtonText = this.add.text(game.config.width/2, 500, 'INFINITE FUEL: ' + unlimitedFuelStatus, normalTextConfig).setOrigin(0.5);
         unlimitedFuelButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.buttonSFX.play();
             if(unlimitedFuel){
                 unlimitedFuel = false;
                 unlimitedFuelStatus = "OFF";

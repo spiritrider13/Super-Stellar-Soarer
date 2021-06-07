@@ -12,13 +12,15 @@ class Help extends Phaser.Scene {
 
     preload() {
         this.load.image('controller', './assets/controller.png');
+        this.load.audio('buttonSFX', './assets/music/buttonSFX.wav');
 
     }
 
     create() {
+        this.buttonSFX = this.sound.add('buttonSFX',{ volume: 0.8 });
         // background
         this.add.rectangle(0,0,game.config.width,game.config.height,0xe5d3b3).setOrigin(0,0);
-        this.gameControl = this.add.sprite(130, 300, 'controller').setOrigin(0,0);
+        this.gameControl = this.add.sprite(130, 500, 'controller').setOrigin(0,0);
 
         //add some text labels
         this.sceneText = this.add.text(game.config.width/2, 20, 'HOW TO PLAY', titleTextConfig).setOrigin(0.5);
@@ -29,6 +31,7 @@ class Help extends Phaser.Scene {
         this.backButtonText = this.add.text(game.config.width/2, game.config.height - 35, 'BACK TO MENU', subtitleTextConfig).setOrigin(0.5);
         backButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.buttonSFX.play();
             this.scene.start('menuScene');
         })
 
@@ -43,7 +46,7 @@ class Help extends Phaser.Scene {
             'In the fuel crafting menu,you can select three fuel components \nthat will determine different stats for your rocket.\nPower: affects your thrust speed.\nDuration: your total fuel storage in flight.\nStability: shakiness of rocket during thrust.', 
             normalTextConfig).setOrigin(0.5);
         this.helpText4 = this.add.text(game.config.width/2, 400, 
-            '', 
+            'During the flight, you need be cautious of falling obstacles\nand losing fuel.', 
             normalTextConfig).setOrigin(0.5);
     }
 }
