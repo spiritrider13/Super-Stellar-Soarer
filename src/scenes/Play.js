@@ -208,10 +208,6 @@ class Play extends Phaser.Scene {
             }
         }
 
-        if (this.rocket.fuel < 50){
-            this.alertSFX.play();
-        }
-
         if (Math.floor(this.rocket.distance) > 3000 ){
             this.currentObstacle.y += 1;
         }
