@@ -19,7 +19,7 @@ class Help extends Phaser.Scene {
     create() {
         this.buttonSFX = this.sound.add('buttonSFX',{ volume: 0.8 });
         // background
-        this.add.rectangle(0,0,game.config.width,game.config.height,0xe5d3b3).setOrigin(0,0);
+        this.add.rectangle(0,0,game.config.width,game.config.height,0x052436).setOrigin(0,0);
         this.gameControl = this.add.sprite(130, 500, 'controller').setOrigin(0,0);
 
         //add some text labels
