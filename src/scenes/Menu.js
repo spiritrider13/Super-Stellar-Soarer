@@ -23,7 +23,7 @@ class Menu extends Phaser.Scene {
         this.moon = this.add.tileSprite(0,0,game.config.width,game.config.height,'moon').setOrigin(0,0);
 
         //add some text labels
-        this.sceneText = this.add.text(game.config.width/2, 20, 'MENU', titleTextConfig).setOrigin(0.5);
+        //this.sceneText = this.add.text(game.config.width/2, 20, 'MENU', titleTextConfig).setOrigin(0.5);
 
         this.title1 = this.add.image(game.config.width/2, 200, 'superStellar').setOrigin(0.5);
         this.title2 = this.add.image(game.config.width/2, 305, 'soarer').setOrigin(0.5);

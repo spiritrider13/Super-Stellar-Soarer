@@ -32,6 +32,8 @@ class Upgrade extends Phaser.Scene {
         this.engineer = this.add.sprite(100, 100, 'engineer').setOrigin(0,0);
         this.engineer1 = this.add.sprite(100, 300, 'engineer').setOrigin(0,0);
         this.engineer2 = this.add.sprite(100, 500, 'engineer').setOrigin(0,0);
+        this.engineer3 = this.add.sprite(100, 700, 'engineer').setOrigin(0,0);
+
         //add some text labels
         this.sceneText = this.add.text(game.config.width/2, 20, 'UPGRADE SHOP', titleTextConfig).setOrigin(0.5);
         this.pointsText = this.add.text(game.config.width/2, 60, 'POINTS AVAILABLE: ' + points, subtitleTextConfig).setOrigin(0.5);
@@ -209,11 +211,13 @@ class Upgrade extends Phaser.Scene {
             this.engineer.y += 1
             this.engineer1.y += 1
             this.engineer2.y += 1
+            this.engineer3.y +=1
         }, null, this);
         this.clock = this.time.delayedCall(1500, () => {
             this.engineer.y -= 1
             this.engineer1.y -= 1
             this.engineer2.y -= 1
+            this.engineer3.y -= 1
         }, null, this);
     }
 }
