@@ -38,7 +38,7 @@ class Home extends Phaser.Scene {
         // PLAY BUTTON ***********************************************************************
         const playButton = new Button(this, game.config.width/2, game.config.height - 35);
         this.add.existing(playButton);
-        this.playButtonText = this.add.text(game.config.width/2, game.config.height - 35, 'PLAY', buttonTextConfig).setOrigin(0.5);
+        this.playButtonText = this.add.text(game.config.width/2, game.config.height - 35, 'LAUNCH', buttonTextConfig).setOrigin(0.5);
         playButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             if(fuelComp3 == null){
