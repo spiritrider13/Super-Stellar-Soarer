@@ -4,7 +4,7 @@ class Obstacle extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this);
         scene.physics.add.existing(this);
         this.type = type;
-        this.setMaxVelocity(300);
+        this.setMaxVelocity(500);
     }
 
     update() {
@@ -25,8 +25,8 @@ class Obstacle extends Phaser.Physics.Arcade.Sprite {
     }
 
     end(){
-        this.x = 999;
-        this.y = 999;
+        this.x = -999;
+        this.y = -999;
         //console.log("Obstacle " + this.type + " movement ceased");
     }
 }

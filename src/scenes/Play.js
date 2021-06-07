@@ -206,7 +206,7 @@ class Play extends Phaser.Scene {
             this.currentObstacle.update();
 
             //if an obstacle falls off screen, spawn new one
-            if(this.currentObstacle.y >= 1080 + this.currentObstacle.height){
+            if(this.currentObstacle.y >= 950 + this.currentObstacle.height){
                 this.currentObstacle.end();
                 this.beginRandom();
             }
@@ -249,6 +249,7 @@ class Play extends Phaser.Scene {
     }
 
     endGame(){
+        this.gameOver = true;
         this.currentObstacle.end();
         this.sound.play('explosionSFX', { volume: 0.2 });
         this.rocketSound.stop();
