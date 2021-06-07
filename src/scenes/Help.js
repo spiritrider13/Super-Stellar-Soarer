@@ -12,10 +12,12 @@ class Help extends Phaser.Scene {
 
     preload() {
         this.load.image('controller', './assets/controller.png');
+        this.load.audio('buttonSFX', './assets/music/buttonSFX.wav');
 
     }
 
     create() {
+        this.buttonSFX = this.sound.add('buttonSFX',{ volume: 0.8 });
         // background
         this.add.rectangle(0,0,game.config.width,game.config.height,0xe5d3b3).setOrigin(0,0);
         this.gameControl = this.add.sprite(130, 500, 'controller').setOrigin(0,0);
@@ -29,6 +31,7 @@ class Help extends Phaser.Scene {
         this.backButtonText = this.add.text(game.config.width/2, game.config.height - 35, 'BACK TO MENU', subtitleTextConfig).setOrigin(0.5);
         backButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.buttonSFX.play();
             this.scene.start('menuScene');
         })
 

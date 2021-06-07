@@ -11,9 +11,11 @@ class Menu extends Phaser.Scene {
         this.load.image('buttonDown', './assets/buttonDown.png');
         this.load.image('spaceSky', './assets/spaceSky.png');
         this.load.image('moon', './assets/moon.png');
+        this.load.audio('buttonSFX', './assets/music/buttonSFX.wav');
     }
 
     create() {
+        this.buttonSFX = this.sound.add('buttonSFX',{ volume: 0.8 });
         // background
         this.spaceSky = this.add.tileSprite(0,0,game.config.width,game.config.height,'spaceSky').setOrigin(0,0);
         this.moon = this.add.tileSprite(0,0,game.config.width,game.config.height,'moon').setOrigin(0,0);
@@ -28,6 +30,7 @@ class Menu extends Phaser.Scene {
         this.playButtonText = this.add.text(110, 500, 'PLAY', buttonTextConfig).setOrigin(0.5);
         playButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.buttonSFX.play();
             this.scene.start('homeScene');
         })
         // CREDITS BUTTON ********************************************************************
@@ -36,6 +39,7 @@ class Menu extends Phaser.Scene {
         this.creditsButtonText = this.add.text(110, 600, 'CREDITS', buttonTextConfig).setOrigin(0.5);
         creditsButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.buttonSFX.play();
             this.scene.start('creditsScene');
         })
         // HELP BUTTON ***********************************************************************
@@ -44,6 +48,7 @@ class Menu extends Phaser.Scene {
         this.helpButtonText = this.add.text(110, 700, 'HELP', buttonTextConfig).setOrigin(0.5);
         helpButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.buttonSFX.play();
             this.scene.start('helpScene');
         })
         // CHEATS BUTTON ***********************************************************************
@@ -52,6 +57,7 @@ class Menu extends Phaser.Scene {
         this.cheatsButtonText = this.add.text(110, 800, 'CHEATS MENU', buttonTextConfig).setOrigin(0.5);
         cheatsButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.buttonSFX.play();
             this.scene.start('cheatsScene');
         })
     }

@@ -23,9 +23,12 @@ class Home extends Phaser.Scene {
         this.load.image('ship', './assets/shipUpgrades/rocket.png');
         this.load.image('homeBackground', './assets/spaceSky.png');
         this.load.image('astronaut', './assets/astronaut.png');
+
+        this.load.audio('buttonSFX', './assets/music/buttonSFX.wav');
     }
 
     create() {
+        this.buttonSFX = this.sound.add('buttonSFX',{ volume: 0.8 });
         // background
         this.background = this.add.tileSprite(0,0,game.config.width,game.config.height,'homeBackground').setOrigin(0,0);
         
@@ -42,6 +45,7 @@ class Home extends Phaser.Scene {
         this.playButtonText = this.add.text(game.config.width/2, game.config.height - 35, 'LAUNCH', buttonTextConfig).setOrigin(0.5);
         playButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.buttonSFX.play();
             if(fuelComp3 == null){
                 this.warningText.text = 'You must select three fuel components first!';
             }else{
@@ -54,6 +58,7 @@ class Home extends Phaser.Scene {
         this.quitButtonText = this.add.text(110, 35, 'QUIT TO MENU', buttonTextConfig).setOrigin(0.5);
         quitButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.buttonSFX.play();
             this.scene.start('menuScene');
         })
         // UPGRADE SHOP BUTTON ***************************************************************
@@ -62,6 +67,7 @@ class Home extends Phaser.Scene {
         this.shipButtonText = this.add.text(610, game.config.height - 35, 'UPGRADE SHOP', buttonTextConfig).setOrigin(0.5);
         shipButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.buttonSFX.play();
             this.scene.start('upgradeScene');
         })
         // FUEL CRAFTING BUTTON ***************************************************************
@@ -70,6 +76,7 @@ class Home extends Phaser.Scene {
         this.fuelButtonText = this.add.text(110, game.config.height - 35, 'FUEL CRAFTING', buttonTextConfig).setOrigin(0.5);
         fuelButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.buttonSFX.play();
             this.scene.start('fuelCraftingScene');
         })
 
