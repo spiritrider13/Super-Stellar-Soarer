@@ -4,6 +4,7 @@ The Help scene is the home directory of the tutorials page. From here, the playe
 how to play the game, controls, hints, etc.
 
 */
+
 class Help extends Phaser.Scene {
     constructor() {
         super("helpScene");
@@ -34,13 +35,5 @@ class Help extends Phaser.Scene {
         // Help text
         this.helpText = this.add.text(game.config.width/2, 200, 
             'Press PLAY to be taken to the main screen,\nwhere you can navigate the different menus of the game.', normalTextConfig).setOrigin(0.5);
-
-    }
-
-    update() {
-        
-
-
-        
     }
 }

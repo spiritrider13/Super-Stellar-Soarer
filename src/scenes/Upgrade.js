@@ -1,8 +1,10 @@
 /*
 
-
+The Upgrade scene is where the player can spend upgrade points to
+buy better upgrades for their ship in order to impove its stats.
 
 */
+
 class Upgrade extends Phaser.Scene {
     constructor() {
         super("upgradeScene");

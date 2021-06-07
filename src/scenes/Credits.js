@@ -3,6 +3,7 @@
 The Credits scene is where the credits for the project is displayed to the player.
 
 */
+
 class Credits extends Phaser.Scene {
     constructor() {
         super("creditsScene");
@@ -49,8 +50,5 @@ class Credits extends Phaser.Scene {
     update() {
         //background scrolling
         //this.background.tilePositionX += 3;
-
-
-        
     }
 }

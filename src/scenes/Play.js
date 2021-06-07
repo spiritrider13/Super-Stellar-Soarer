@@ -1,6 +1,6 @@
 /*
 
-Player controls the rocket in this scene
+Player controls the rocket in this scene. 
 
 */
 
