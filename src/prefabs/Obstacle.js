@@ -4,7 +4,7 @@ class Obstacle extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this);
         scene.physics.add.existing(this);
         this.type = type;
-        
+        this.setMaxVelocity(300);
     }
 
     update() {
@@ -15,12 +15,13 @@ class Obstacle extends Phaser.Physics.Arcade.Sprite {
     // spawn the obstacle and set active
     begin() {
         //add a random offset to the spawn x value
-        var random = Math.floor(Math.random() * 700); //creates either 0, 1, or 3
+        var random = Math.floor(Math.random() * 600);
 
-        this.x = random;
-        this.y = 0;
+        this.x = 50 + random;
+        this.y = -30;
         this.active = true;
         //console.log("Obstacle " + this.type + " movement begun");
+        this.setAcceleration(0);
     }
 
     end(){

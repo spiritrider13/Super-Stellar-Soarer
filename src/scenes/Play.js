@@ -39,7 +39,7 @@ class Play extends Phaser.Scene {
 
         this.alertSFX = this.sound.add('alert',{ volume: 0.1});
         this.coinSFX = this.sound.add('coinSFX', {volume: 0.1});
-        this.explosionSFX = this.sound.add('explosionSFX', {volume: 0.1});
+        //this.explosionSFX = this.sound.add('explosionSFX', {volume: 0.1});
         this.backgroundMusic = this.sound.add('backgroundMusic',{ volume: 0.1, loop: true });
         this.backgroundMusic.play();
         
@@ -56,10 +56,12 @@ class Play extends Phaser.Scene {
 
         this.fuelText = this.add.text(600, 20, 'FUEL: ' + this.rocket.fuel, buttonTextConfig).setOrigin(0.5);
         this.distanceDisplay = this.add.text(game.config.width/2, 20, '0 m',  buttonTextConfig).setOrigin(0.5);
-        this.upgDisplay = this.add.text(10, 0, "UGP: 0", buttonTextConfig);
+        this.upgDisplay = this.add.text(20, 0, "UGP: 0", buttonTextConfig);
 
-        this.point = new UGP(this, 200, 200, 'coin', 128, 80).setOrigin(0,0);
-        this.fuelPoint = new UGP(this, 300,300, 'fuelPoint', 128, 80).setOrigin(0,0);
+
+
+        this.point = new UGP(this, 50 + Math.floor(Math.random() * 600), 50 + Math.floor(Math.random() * 700), 'coin', 128, 80).setOrigin(0,0);
+        this.fuelPoint = new UGP(this, 50 + Math.floor(Math.random() * 600) , 50 + Math.floor(Math.random() * 700), 'fuelPoint', 128, 80).setOrigin(0,0);
         this.physics.add.existing(this.point, false);
         this.physics.add.existing(this.fuelPoint, false);
 
@@ -70,7 +72,7 @@ class Play extends Phaser.Scene {
         this.fuelPoint.kill = false;
         this.fuelPoint.body.immovable = true;
         this.fuelPoint.body.moves = false;
-        this.fuelPoint.setVisible(false);
+        this.fuelPoint.setVisible(true);
 
         // obstacle
         this.obstacle1 = new Obstacle(0, this, 999, 0, 'meteor').setOrigin(0);
@@ -89,7 +91,7 @@ class Play extends Phaser.Scene {
         this.maxScore = this.currentScore;
 
         this.pointsTimer = this.time.addEvent({
-            delay: 1000,
+            delay: 1,
             callback: this.addPoint(),
             callbackScope: this,
             loop: true
@@ -159,26 +161,24 @@ class Play extends Phaser.Scene {
             this.physics.world.collide(this.point, this.rocket, this.pointCollision, null, this);
             if(this.point.kill){
                 this.upgDisplay.text = "UGP: " + this.point.number;
-                this.clock = this.time.delayedCall(15000, () => {
-                    var random = Math.floor(Math.random() * 600);
+                this.clock = this.time.delayedCall(10000, () => {
                     this.point.setActive(true);
                     this.point.setVisible(true);
-                    this.point.x = random;
-                    this.point.y = random;
+                    this.point.x = 50 + Math.floor(Math.random() * 600);
+                    this.point.y = 50 + Math.floor(Math.random() * 700);
                     this.pointReset();
                 }, null, this);
             }
         }
 
         if (!this.fuelPoint.kill){
-            this.physics.world.collide(this.point, this.rocket, this.fuelpointCollision, null, this);
+            this.physics.world.collide(this.fuelPoint, this.rocket, this.fuelpointCollision, null, this);
             if(this.fuelPoint.kill){
                 this.clock = this.time.delayedCall(20000, () => {
-                    var random = Math.floor(Math.random() * 600);
                     this.fuelPoint.setActive(true);
                     this.fuelPoint.setVisible(true);
-                    this.fuelPoint.x = random;
-                    this.fuelPoint.y = random;
+                    this.fuelPoint.x = 50 + Math.floor(Math.random() * 600);
+                    this.fuelPoint.y = 50 + Math.floor(Math.random() * 700);
                     this.fuelpointReset();
                 }, null, this);
             }
@@ -212,12 +212,7 @@ class Play extends Phaser.Scene {
             this.currentObstacle.y += 10;
         }
 
-        //check collisions
-        /*if(this.currentObstacle != null && this.checkCollision(this.rocket, this.currentObstacle)) {
-            this.gameOver = true;
-            this.explosionSFX.play();
-            this.rocketExplode(this.rocket);
-        }*/
+        //check collision between rocket and obstacles
         this.physics.world.collide(this.rocket, this.obstacleGroup, this.endGame, null, this);
 
         if(this.rocket.fuel == 0 ){
@@ -272,7 +267,7 @@ class Play extends Phaser.Scene {
     fuelpointCollision(){
         this.coinSFX.play();
         this.fuelPoint.kill = true; 
-        this.rocket.fuel += 20; 
+        this.rocket.fuel += Math.floor((fuelComp1.duration + fuelComp2.duration + fuelComp3.duration) * .25); 
         this.fuelPoint.setActive(false);
         this.fuelPoint.setVisible(false);  
     }

@@ -29,6 +29,7 @@ class Upgrade extends Phaser.Scene {
         this.engineer2 = this.add.sprite(100, 500, 'engineer').setOrigin(0,0);
         //add some text labels
         this.sceneText = this.add.text(game.config.width/2, 20, 'UPGRADE SHOP', titleTextConfig).setOrigin(0.5);
+        this.pointsText = this.add.text(game.config.width/2, 800, 'POINTS AVAILABLE: ' + points, subtitleTextConfig).setOrigin(0.5);
 
         // BACK BUTTON ***********************************************************************
         const backButton = new Button(this, game.config.width/2, game.config.height - 35);
@@ -82,6 +83,7 @@ class Upgrade extends Phaser.Scene {
             }
 
             this.upgradeBoostersButtonText.text = 'CURRENT TIER: ' + currentBoosterTier + "\nUPGRADE COST: " + upgradeBoostersCost;
+            this.pointsText.text = 'POINTS AVAILABLE: ' + points;
         })
 
         // BUY NOSE BOOSTERS BUTTON ***********************************************************************
@@ -107,6 +109,7 @@ class Upgrade extends Phaser.Scene {
             }
 
             this.noseBoostersButtonText.text = 'NOSE BOOSTERS\n' + this.noseBoostersCostText;
+            this.pointsText.text = 'POINTS AVAILABLE: ' + points;
         })
 
         // BUY WINGS BUTTON ***********************************************************************
@@ -132,6 +135,7 @@ class Upgrade extends Phaser.Scene {
             }
 
             this.wingsButtonText.text = 'WINGS\n' + this.wingsCostText;
+            this.pointsText.text = 'POINTS AVAILABLE: ' + points;
         })
     }
 
