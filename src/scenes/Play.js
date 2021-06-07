@@ -261,7 +261,7 @@ class Play extends Phaser.Scene {
             this.endBlock.setVisible(true);
             this.endText.setVisible(true);
             this.displayUpg = this.add.text(game.config.width/2, 350, "POINTS EARNED: " + this.number + "\nDISTANCE TRAVELED: " 
-            + Math.floor(this.rocket.distance) + " u\n\n\n\n"
+            + Math.floor(this.rocket.distance) + " u\n\n\n" + "HINT:\n"
             + this.hints[Math.floor(Math.random() * this.hints.length)], subtitleTextConfig).setOrigin(0.5);
             if(highScore < this.rocket.distance){
                 highScore = Math.floor(this.rocket.distance);
