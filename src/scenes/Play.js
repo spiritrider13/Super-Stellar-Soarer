@@ -338,7 +338,7 @@ class Play extends Phaser.Scene {
         this.rocket.hideUpgrades();
 
         
-        let boom = this.add.sprite(this.rocket.x, this.rocket.y, 'explosion').setOrigin(0, 0); 
+        let boom = this.add.sprite(this.rocket.x, this.rocket.y, 'explosion').setOrigin(0.5); 
         boom.setScale(4);
         boom.anims.play('explode');             
         boom.on('animationcomplete', () => {                                     
