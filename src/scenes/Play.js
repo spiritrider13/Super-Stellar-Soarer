@@ -158,21 +158,6 @@ class Play extends Phaser.Scene {
             volume: 0.08,
             loop: true
         });
-
-        // Particle effect
-        // create line on right side of screen for particles source
-        let line = new Phaser.Geom.Line(w, 0, w, h);  
-        // create particle manager  
-        this.particleManager = this.add.particles('exhaust');
-        // add emitter and setup properties
-        this.lineEmitter = this.particleManager.createEmitter({
-            gravityX: -200,
-            lifespan: 5000,
-            alpha: { start: 0.5, end: 0.1 },
-            tint: [ 0xffff00, 0xff0000, 0x00ff00, 0x00ffff, 0x0000ff ],
-            emitZone: { type: 'random', source: line, quantity: 150 },
-            blendMode: 'ADD'
-        });
     }
 
     update(time, delta) {
@@ -343,6 +328,8 @@ class Play extends Phaser.Scene {
 
     rocketExplode(){
         this.rocket.alpha = 0;
+
+        this.rocket.exhaustEmitter.on = false;
 
         
         let boom = this.add.sprite(this.rocket.x, this.rocket.y, 'explosion').setOrigin(0, 0); 

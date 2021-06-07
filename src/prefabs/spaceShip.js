@@ -38,6 +38,8 @@ class spaceShip extends Phaser.Physics.Arcade.Sprite {
         //this.layers = scene.make.group({key: 'boosterTier3'});
         //Phaser.Actions.SetXY(this.layers.getChildren(), )
 
+
+
         if(boosterTier3){
             /*this.bt3 = scene.add.sprite(x, y, 'boosterTier3');
             //this.layers.add(scene.add.image(x, y, 'boosterTier3'));
@@ -78,6 +80,55 @@ class spaceShip extends Phaser.Physics.Arcade.Sprite {
         }
 
         this.playing = false;
+        //this.customAngle = 0;
+
+        // Particle effect
+        // create line on right side of screen for particles source
+        //this.zone = Phaser.Geom.Rectangle(this.x, this.y, this.width, this.height);  
+        // create particle manager  
+        scene.particleManager = scene.add.particles('exhaust');
+        // add emitter and setup properties
+        this.exhaustEmitter = scene.particleManager.createEmitter({
+            x: this.x,
+            y: this.y,
+            gravityY: 250,
+            angle: { min: -30, max: 30 },
+            //angle: Math.round((Math.random()) * 2 - 1) * Math.PI,
+            lifespan: { min: 200, max: 1000 },
+            alpha: { start: 0.5, end: 0.1 },
+            tint: [ 0xffff00, 0xff0000, 0x00ff00, 0x00ffff, 0x0000ff ],
+            //emitZone: { type: 'random', source: this.zone, quantity: 150 },
+            blendMode: 'ADD',
+        });
+        /*this.particles = scene.add.particles('exhaust');
+        this.exhaustEmitter = this.particles.createEmitter({
+            frame: 'exhaust',
+            speed: {
+                onEmit: function (particle, key, t, value)
+                {
+                    return this.body.speed;
+                }
+            },
+            lifespan: {
+                onEmit: function (particle, key, t, value)
+                {
+                    return Phaser.Math.Percent(this.body.speed, 0, 300) * 20000;
+                }
+            },
+            alpha: {
+                onEmit: function (particle, key, t, value)
+                {
+                    return Phaser.Math.Percent(this.body.speed, 0, 300) * 1000;
+                }
+            },
+            scale: { start: 1.0, end: 0 },
+            blendMode: 'ADD'
+        });*/
+
+        //this.point = scene.add.rectangle(x, y, x + 1, y + 1).setOrigin(0.5, 1);
+
+        this.exhaustEmitter.startFollow(this);
+        this.exhaustEmitter.on = false;
     }
 
     update(time, delta){
@@ -103,10 +154,13 @@ class spaceShip extends Phaser.Physics.Arcade.Sprite {
                 this.scene.rocketSound.play();
                 this.playing = true;
             }
+
+            this.exhaustEmitter.on = true;
         }
         else if(!cursors.up.isDown && this.playing){
             this.scene.rocketSound.stop();
             this.playing = false;
+            this.exhaustEmitter.on = false;
         }
         else if(this.fuel <= 0){
             this.fuel = 0;
@@ -152,7 +206,6 @@ class spaceShip extends Phaser.Physics.Arcade.Sprite {
             this.w.y = this.y;
             this.w.angle = this.angle;
         }
-        //this.physics.world.wrap(this, this.width);
     }
 
     initializeFuel(){
