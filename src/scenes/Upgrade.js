@@ -204,20 +204,30 @@ class Upgrade extends Phaser.Scene {
             this.fuelButtonText.text = '+1 FUEL OPTION\nCURRENT TIER: ' + fuelLevel + '\n' + this.fuelCostText;
             this.pointsText.text = 'POINTS AVAILABLE: ' + points;
         })
+        this.flag = 0;
     }
 
-    update() {
-        this.clock = this.time.delayedCall(1000, () => {
-            this.engineer.y += 1
-            this.engineer1.y += 1
-            this.engineer2.y += 1
-            this.engineer3.y +=1
-        }, null, this);
-        this.clock = this.time.delayedCall(1500, () => {
-            this.engineer.y -= 1
-            this.engineer1.y -= 1
-            this.engineer2.y -= 1
-            this.engineer3.y -= 1
-        }, null, this);
+    update(time) {
+
+        if(Math.floor(time) % 2 == 1 && time % 2 != 0 && this.flag == 0){
+            this.engineer.y += 1;
+            this.engineer1.y += 1;
+            this.engineer2.y += 1;
+            this.engineer3.y += 1;
+            this.clock = this.time.delayedCall(200, () => {
+                this.flag = 1;
+            }, null, this);
+        }
+        else if(Math.floor(time) % 2 == 0 && this.flag == 1){
+            this.engineer.y -= 1;
+            this.engineer1.y -= 1;
+            this.engineer2.y -= 1;
+            this.engineer3.y -= 1;
+            this.clock = this.time.delayedCall(200, () => {
+                this.flag = 0;
+            }, null, this);
+        }
+        
+        
     }
 }
