@@ -133,13 +133,13 @@ class spaceShip extends Phaser.Physics.Arcade.Sprite {
 
     update(time, delta){
 
+        this.distance += delta/10;
         // Inspiration from Phaser3 'Asteroids' example
         // Inside the velocityFromRotation method, the 1st parameter is starting direction (pi/2), second is thrust power
         if(cursors.up.isDown && this.fuel > 0) {
             this.scene.physics.velocityFromRotation(this.rotation-Math.PI/2, this.power + powerBuff, this.body.acceleration);
             if(!unlimitedFuel)
                 this.fuel -= delta/100;
-            this.distance += delta/100;
             
             var force = Math.floor(Math.random() * (999 - (this.stability + stabilityBuff)));
             if(force < 0)
@@ -212,5 +212,25 @@ class spaceShip extends Phaser.Physics.Arcade.Sprite {
         this.fuel = fuelComp1.duration + fuelComp2.duration + fuelComp3.duration;
         this.power = fuelComp1.power + fuelComp2.power + fuelComp3.power;
         this.stability = fuelComp1.stability + fuelComp2.stability + fuelComp3.stability;
+    }
+
+    hideUpgrades(){
+        if(boosterTier3){
+            this.bt3.setVisible(false);
+        }
+        else if(boosterTier2){
+            this.bt2.setVisible(false);
+        }
+        else if(boosterTier1){
+            this.bt1.setVisible(false);
+        }
+
+        if(boosterNose){
+            this.bN.setVisible(false);
+        }
+
+        if(wings){
+            this.w.setVisible(false);
+        }
     }
 }

@@ -125,3 +125,6 @@ let fuelLevel = 1;
 
 //Upgrade Points
 let points = 0;
+
+//distance high score
+let highScore = 0;
