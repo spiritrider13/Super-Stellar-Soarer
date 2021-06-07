@@ -10,7 +10,7 @@ class FuelCrafting extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('fuelCraftingBackground', './assets/fuelCraftingBackground.jpg');
+        this.load.image('backgroundFuel', './assets/backgrounds/fuelCraftingBackground.jpg');
         this.load.image('ignus', './assets/fuelComponents/Ignus.png');
         this.load.image('cola', './assets/fuelComponents/coke.png');
         this.load.image('cookies', './assets/fuelComponents/cookie.png');
@@ -26,7 +26,7 @@ class FuelCrafting extends Phaser.Scene {
 
     create() {
         // background
-        this.backgroundImage = this.add.image(0,0,'fuelCraftingbackground').setOrigin(0);
+        this.backgroundImage = this.add.image(0,0,'backgroundFuel').setOrigin(0);
 
         //add some text labels
         this.sceneText = this.add.text(game.config.width/2, 20, 'FUEL CRAFTING', buttonTextConfig).setOrigin(0.5);
