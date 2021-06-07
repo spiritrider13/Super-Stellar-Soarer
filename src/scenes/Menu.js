@@ -25,6 +25,8 @@ class Menu extends Phaser.Scene {
         this.title1 = this.add.image(game.config.width/2, 200, 'superStellar').setOrigin(0.5);
         this.title2 = this.add.image(game.config.width/2, 305, 'soarer').setOrigin(0.5);
 
+        this.f11Text = this.add.text(game.config.width/2, 20, 'Press F11 for Fullscreeen (Recommended)', subtitleTextConfig).setOrigin(0.5);
+
         // PLAY BUTTON ***********************************************************************
         const playButton = new Button(this, 110, 500);
         this.add.existing(playButton);
