@@ -59,7 +59,8 @@ class Play extends Phaser.Scene {
         this.physics.add.existing(this.rocket, false);
 
         this.fuelText = this.add.text(600, 20, 'FUEL: ' + this.rocket.fuel, buttonTextConfig).setOrigin(0.5);
-        this.distanceDisplay = this.add.text(game.config.width/2, 20, '0 m',  buttonTextConfig).setOrigin(0.5);
+        this.highScoreDisplay = this.add.text(game.config.width/2, 20, 'FURTHEST DISTANCE: ' + highScore + " u",  buttonTextConfig).setOrigin(0.5);
+        this.distanceDisplay = this.add.text(game.config.width/2, 40, '0 u',  buttonTextConfig).setOrigin(0.5);
         this.upgDisplay = this.add.text(20, 0, "UGP: 0", buttonTextConfig);
 
 
@@ -170,7 +171,7 @@ class Play extends Phaser.Scene {
         }
 
         this.fuelText.text = 'Fuel: ' + Math.floor(this.rocket.fuel);
-        this.distanceDisplay.text = Math.floor(this.rocket.distance) + ' m';
+        this.distanceDisplay.text = Math.floor(this.rocket.distance) + ' u';
         this.upgDisplay.text = "UGP: " + this.number;
         if(this.rocket.alpha != 0){
             this.rocket.update(time, delta);
@@ -266,8 +267,12 @@ class Play extends Phaser.Scene {
         this.time.delayedCall(1000, () => { 
             this.endBlock.setVisible(true);
             this.endText.setVisible(true);
-            this.displayUpg = this.add.text(game.config.width/2, 350, "POINTS EARNED: " + this.number + "\n\n\n\n\n"
+            this.displayUpg = this.add.text(game.config.width/2, 350, "POINTS EARNED: " + this.number + "\nDISTANCE TRAVELED: " 
+            + Math.floor(this.rocket.distance) + " u\n\n\n\n"
             + this.hints[Math.floor(Math.random() * this.hints.length)], subtitleTextConfig).setOrigin(0.5);
+            if(highScore < this.rocket.distance){
+                highScore = Math.floor(this.rocket.distance);
+            }
             points += this.number;
             
             this.restartButtonText.setVisible(true);
@@ -330,6 +335,7 @@ class Play extends Phaser.Scene {
         this.rocket.alpha = 0;
 
         this.rocket.exhaustEmitter.on = false;
+        this.rocket.hideUpgrades();
 
         
         let boom = this.add.sprite(this.rocket.x, this.rocket.y, 'explosion').setOrigin(0, 0); 
