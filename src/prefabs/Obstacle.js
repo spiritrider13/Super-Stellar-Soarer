@@ -4,7 +4,8 @@ class Obstacle extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this);
         scene.physics.add.existing(this);
         this.type = type;
-        this.setMaxVelocity(500);
+        this.setMaxVelocity(400);
+        this.setScale(2);
     }
 
     // spawn the obstacle and set active

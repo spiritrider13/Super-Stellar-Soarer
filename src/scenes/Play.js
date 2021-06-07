@@ -80,9 +80,9 @@ class Play extends Phaser.Scene {
         this.fuelPoint.setVisible(true);
 
         // obstacle
-        this.obstacle1 = new Obstacle(0, this, 999, 0, 'meteor').setOrigin(0);
-        this.obstacle2 = new Obstacle(1, this, 999, 0, 'comet').setOrigin(0);
-        this.obstacle3 = new Obstacle(2, this, 999, 0, 'satellite').setOrigin(0);
+        this.obstacle1 = new Obstacle(0, this, 999, -100, 'meteor').setOrigin(0);
+        this.obstacle2 = new Obstacle(1, this, 999, -100, 'comet').setOrigin(0);
+        this.obstacle3 = new Obstacle(2, this, 999, -100, 'satellite').setOrigin(0);
         this.currentObstacle = null;
 
         this.obstacleGroup = this.add.group({
@@ -220,16 +220,16 @@ class Play extends Phaser.Scene {
             this.alertSFX.play();
         }
 
-        if (Math.floor(this.rocket.distance) == 300){
-            this.currentObstacle.y += 8;
+        if (Math.floor(this.rocket.distance) > 3000 ){
+            this.currentObstacle.y += 1;
         }
 
-        if (Math.floor(this.rocket.distance) == 1000){
-            this.currentObstacle.y += 9;
+        if (Math.floor(this.rocket.distance) > 10000){
+            this.currentObstacle.y += 1;
         }
 
-        if (Math.floor(this.rocket.distance) > 1000){
-            this.currentObstacle.y += 10;
+        if (Math.floor(this.rocket.distance) > 100000){
+            this.currentObstacle.y += 1;
         }
 
         //check collision between rocket and obstacles
@@ -339,6 +339,7 @@ class Play extends Phaser.Scene {
 
         
         let boom = this.add.sprite(this.rocket.x, this.rocket.y, 'explosion').setOrigin(0, 0); 
+        boom.setScale(4);
         boom.anims.play('explode');             
         boom.on('animationcomplete', () => {                                     
             boom.destroy();                   
