@@ -28,7 +28,7 @@ class Home extends Phaser.Scene {
     create() {
         // background
         this.background = this.add.tileSprite(0,0,game.config.width,game.config.height,'homeBackground').setOrigin(0,0);
-        this.astronaut = this.add.sprite(game.config.width / 2 + 50, game.config.height / 2, 'astronaut')
+        //this.astronaut = this.add.sprite(game.config.width / 2 + 50, game.config.height / 2, 'astronaut')
 
         // add some text labels
         this.sceneText = this.add.text(game.config.width/2, 20, 'HOME', titleTextConfig).setOrigin(0.5);
