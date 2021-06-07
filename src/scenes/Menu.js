@@ -12,6 +12,8 @@ class Menu extends Phaser.Scene {
         this.load.image('spaceSky', './assets/spaceSky.png');
         this.load.image('moon', './assets/moon.png');
         this.load.audio('buttonSFX', './assets/music/buttonSFX.wav');
+        this.load.image('soarer', './assets/soarer.png');
+        this.load.image('superStellar', './assets/superStellar.png');
     }
 
     create() {
@@ -22,7 +24,9 @@ class Menu extends Phaser.Scene {
 
         //add some text labels
         this.sceneText = this.add.text(game.config.width/2, 20, 'MENU', titleTextConfig).setOrigin(0.5);
-        this.titleText = this.add.text(game.config.width/2, 300, 'SUPER STELLAR SOARER', titleTextConfig).setOrigin(0.5);
+
+        this.title1 = this.add.image(game.config.width/2, 200, 'superStellar').setOrigin(0.5);
+        this.title2 = this.add.image(game.config.width/2, 305, 'soarer').setOrigin(0.5);
 
         // PLAY BUTTON ***********************************************************************
         const playButton = new Button(this, 110, 500);

@@ -241,8 +241,9 @@ class Play extends Phaser.Scene {
         //check collision between rocket and obstacles
         this.physics.world.collide(this.rocket, this.obstacleGroup, this.endGame, null, this);
 
-        if(this.rocket.fuel == 0 ){
-            this.gameOver = true; 
+        if(this.rocket.fuel == 0 && this.gameOver != true){
+            this.gameOver = true;
+            this.endGame(); 
         }
 
         if (this.gameOver == true){
