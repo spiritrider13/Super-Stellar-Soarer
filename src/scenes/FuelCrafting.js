@@ -61,7 +61,6 @@ class FuelCrafting extends Phaser.Scene {
         })
 
         // ADDING FUEL COMPONENTS TO SCENE START ===========================================================================
-
         if(fuelLevel > 0 || unlockAllFuel){
             this.ignus = new Ignus(this, 'ignus');
             this.ignus.paint(this, 100, 100);
@@ -110,7 +109,6 @@ class FuelCrafting extends Phaser.Scene {
             this.boxed = new Boxed(this, 'boxed');
             this.boxed.paint(this, 600, 425);
         }
-
         // ADDING FUEL COMPONENTS TO SCENE END =============================================================================
 
         //fuel slot labels
