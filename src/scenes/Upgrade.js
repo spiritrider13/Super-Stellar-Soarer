@@ -31,7 +31,9 @@ class Upgrade extends Phaser.Scene {
         this.engineer2 = this.add.sprite(100, 500, 'engineer').setOrigin(0,0);
         //add some text labels
         this.sceneText = this.add.text(game.config.width/2, 20, 'UPGRADE SHOP', titleTextConfig).setOrigin(0.5);
-        this.pointsText = this.add.text(game.config.width/2, 800, 'POINTS AVAILABLE: ' + points, subtitleTextConfig).setOrigin(0.5);
+        this.pointsText = this.add.text(game.config.width/2, 60, 'POINTS AVAILABLE: ' + points, subtitleTextConfig).setOrigin(0.5);
+        if(freeUpgrades)
+            this.cheatsText = this.add.text(20, 10, 'Free Upgrades\nCheat Enabled!', normalTextConfig).setOrigin(0);
 
         // BACK BUTTON ***********************************************************************
         const backButton = new Button(this, game.config.width/2, game.config.height - 35);
@@ -48,7 +50,7 @@ class Upgrade extends Phaser.Scene {
         const upgradeBoostersButton = new Button(this, game.config.width/2, 200);
         this.add.existing(upgradeBoostersButton);
         this.upgradeBoostersButtonText = this.add.text(game.config.width/2, 120, 
-            'CURRENT TIER: ' + currentBoosterTier + "\nUPGRADE COST: " + upgradeBoostersCost, subtitleTextConfig).setOrigin(0.5);
+            'UPGRADED BOOSTERS\nCURRENT TIER: ' + currentBoosterTier + "\nUPGRADE COST: " + upgradeBoostersCost, subtitleTextConfig).setOrigin(0.5);
         this.upgradeBoostersButtonInnerText = this.add.text(game.config.width/2, 200, 'UPGRADE', buttonTextConfig).setOrigin(0.5);
         upgradeBoostersButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
@@ -57,6 +59,9 @@ class Upgrade extends Phaser.Scene {
             }
             else if(boosterTier2){
                 if(points >= upgradeBoostersCost || freeUpgrades){
+                    if(!freeUpgrades){
+                        points -= 15;
+                    }
                     boosterTier3 = true;
                     currentBoosterTier = 3 + " (MAX)";
                     upgradeBoostersCost = "NA";
@@ -68,6 +73,9 @@ class Upgrade extends Phaser.Scene {
             }
             else if(boosterTier1){
                 if(points >= upgradeBoostersCost || freeUpgrades){
+                    if(!freeUpgrades){
+                        points -= 10;
+                    }
                     boosterTier2 = true;
                     currentBoosterTier = 2;
                     upgradeBoostersCost = 15;
@@ -78,6 +86,9 @@ class Upgrade extends Phaser.Scene {
             }
             else{
                 if(points >= upgradeBoostersCost || freeUpgrades){
+                    if(!freeUpgrades){
+                        points -= 5;
+                    }
                     boosterTier1 = true;
                     currentBoosterTier = 1;
                     upgradeBoostersCost = 10;
@@ -87,7 +98,7 @@ class Upgrade extends Phaser.Scene {
                 }
             }
 
-            this.upgradeBoostersButtonText.text = 'CURRENT TIER: ' + currentBoosterTier + "\nUPGRADE COST: " + upgradeBoostersCost;
+            this.upgradeBoostersButtonText.text = 'UPGRADED BOOSTERS\nCURRENT TIER: ' + currentBoosterTier + "\nUPGRADE COST: " + upgradeBoostersCost;
             this.pointsText.text = 'POINTS AVAILABLE: ' + points;
         })
 
@@ -106,6 +117,9 @@ class Upgrade extends Phaser.Scene {
                 this.warningNoseText.text = "Nose Boosters already bought!";
             }else{
                 if(points >= 12 || freeUpgrades){
+                    if(!freeUpgrades){
+                        points -= 12
+                    }
                     boosterNose = true;
                     this.noseBoostersCostText = "EQUIPPED";
                     turningBuff = 100;
@@ -133,6 +147,9 @@ class Upgrade extends Phaser.Scene {
                 this.warningWingsText.text = "Wings already bought!";
             }else{
                 if(points >= 8 || freeUpgrades){
+                    if(!freeUpgrades){
+                        points -= 8;
+                    }
                     wings = true;
                     this.wingsCostText = "EQUIPPED";
                     stabilityBuff = 100;
@@ -142,6 +159,39 @@ class Upgrade extends Phaser.Scene {
             }
 
             this.wingsButtonText.text = 'WINGS\n' + this.wingsCostText;
+            this.pointsText.text = 'POINTS AVAILABLE: ' + points;
+        })
+
+        // BUY FUEL BUTTON ***********************************************************************
+        this.fuelCostText = "UPGRADE COST: 1";
+        this.fuelCost = 1;
+        this.warningFuelText = this.add.text(game.config.width/2, 760, '', normalTextConfig).setOrigin(0.5);
+
+        const fuelButton = new Button(this, game.config.width/2, 800);
+        this.add.existing(fuelButton);
+        this.fuelButtonText = this.add.text(game.config.width/2, 720, 
+            '+1 FUEL OPTION\nCURRENT TIER: ' + fuelLevel + '\n' + this.fuelCostText, subtitleTextConfig).setOrigin(0.5);
+        this.fuelButtonInnerText = this.add.text(game.config.width/2, 800, 'UPGRADE', buttonTextConfig).setOrigin(0.5);
+        fuelButton.setInteractive()
+        .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            if(fuelLevel >= 12){
+                this.warningWingsText.text = "All fuel has been bought!";
+            }else{
+                if(points >= this.fuelCost || freeUpgrades){
+                    if(!freeUpgrades){
+                        points -= this.fuelCost;
+                    }
+                    fuelLevel++;
+                    if(fuelLevel == 6){
+                        this.fuelCost = 2;
+                        this.fuelCostText = "UPGRADE COST: 2";
+                    }
+                }else{
+                    this.warningFuelText.text = "Not enough points to purchase fuel!";
+                }
+            }
+
+            this.fuelButtonText.text = '+1 FUEL OPTION\nCURRENT TIER: ' + fuelLevel + '\n' + this.fuelCostText;
             this.pointsText.text = 'POINTS AVAILABLE: ' + points;
         })
     }

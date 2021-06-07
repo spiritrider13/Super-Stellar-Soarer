@@ -86,7 +86,8 @@ class spaceShip extends Phaser.Physics.Arcade.Sprite {
         // Inside the velocityFromRotation method, the 1st parameter is starting direction (pi/2), second is thrust power
         if(cursors.up.isDown && this.fuel > 0) {
             this.scene.physics.velocityFromRotation(this.rotation-Math.PI/2, this.power + powerBuff, this.body.acceleration);
-            this.fuel -= delta/100;
+            if(!unlimitedFuel)
+                this.fuel -= delta/100;
             this.distance += delta/100;
             
             var force = Math.floor(Math.random() * (999 - (this.stability + stabilityBuff)));

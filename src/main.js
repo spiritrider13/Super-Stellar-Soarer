@@ -98,6 +98,9 @@ let cursors;
 let freeUpgrades = false;
 let freeUpgradesStatus = "OFF";
 let unlimitedFuel = false;
+let unlimitedFuelStatus = "OFF";
+let unlockAllFuel = false;
+let freeFuelStatus = "OFF";
 
 //Fuel Related
 let currentSelection = 1;
@@ -116,6 +119,9 @@ let wings = false;
 let powerBuff = 0;
 let stabilityBuff = 0;
 let turningBuff = 0;
+
+//Fuel upgrades
+let fuelLevel = 1;
 
 //Upgrade Points
 let points = 0;

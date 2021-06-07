@@ -22,7 +22,7 @@ class Cheats extends Phaser.Scene {
         // BACK BUTTON ***********************************************************************
         const backButton = new Button(this, game.config.width/2, game.config.height - 40);
         this.add.existing(backButton);
-        this.backButtonText = this.add.text(game.config.width/2, game.config.height - 80, 'BACK TO MENU', titleTextConfig).setOrigin(0.5);
+        this.backButtonText = this.add.text(game.config.width/2, game.config.height - 40, 'BACK TO MENU', buttonTextConfig).setOrigin(0.5);
         backButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('menuScene');
@@ -30,14 +30,13 @@ class Cheats extends Phaser.Scene {
 
         // Help text
         this.helpText = this.add.text(game.config.width/2, 200, 
-            'Press PLAY to be taken to the main screen,\nwhere you can navigate the different menus of the game.', normalTextConfig).setOrigin(0.5);
+            'Here you can enable cheats to quickly\naccess game features', normalTextConfig).setOrigin(0.5);
 
         
         // UNLIMITED POINTS BUTTON ***********************************************************************
-
-        const freeUpgradesButton = new Button(this, game.config.width/2, 340);
+        const freeUpgradesButton = new Button(this, game.config.width/2, 300);
         this.add.existing(freeUpgradesButton);
-        this.freeUpgradesButtonText = this.add.text(game.config.width/2, 300, 'FREE UPGRADES: ' + freeUpgradesStatus, subtitleTextConfig).setOrigin(0.5);
+        this.freeUpgradesButtonText = this.add.text(game.config.width/2, 300, 'FREE UPGRADES: ' + freeUpgradesStatus, normalTextConfig).setOrigin(0.5);
         freeUpgradesButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             if(freeUpgrades){
@@ -49,18 +48,41 @@ class Cheats extends Phaser.Scene {
                 freeUpgradesStatus = "ON";
             }
             this.freeUpgradesButtonText.text = 'FREE UPGRADES: ' + freeUpgradesStatus;
-            //this.update();
         })
 
-        // BACK BUTTON ***********************************************************************
-        /*const backButton = new Button(this, game.config.width/2, game.config.height - 40);
-        this.add.existing(backButton);
-        this.backButtonText = this.add.text(game.config.width/2, game.config.height - 80, 'BACK TO MENU', subtitleTextConfig).setOrigin(0.5);
-        backButton.setInteractive()
+        // FREE FUEL BUTTON ***********************************************************************
+        const freeFuelButton = new Button(this, game.config.width/2, 400);
+        this.add.existing(freeFuelButton);
+        this.freeFuelButtonText = this.add.text(game.config.width/2, 400, 'UNLOCK ALL FUEL: ' + freeFuelStatus, normalTextConfig).setOrigin(0.5);
+        freeFuelButton.setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-            this.scene.start('menuScene');
-        })*/
+            if(unlockAllFuel){
+                unlockAllFuel = false;
+                freeFuelStatus = "OFF";
+            }
+            else{
+                unlockAllFuel = true;
+                freeFuelStatus = "ON";
+            }
+            this.freeFuelButtonText.text = 'UNLOCK ALL FUEL: ' + freeFuelStatus;
+        })
 
+        // UNLIMITED FUEL BUTTON ***********************************************************************
+        const unlimitedFuelButton = new Button(this, game.config.width/2, 500);
+        this.add.existing(unlimitedFuelButton);
+        this.unlimitedFuelButtonText = this.add.text(game.config.width/2, 500, 'INFINITE FUEL: ' + unlimitedFuelStatus, normalTextConfig).setOrigin(0.5);
+        unlimitedFuelButton.setInteractive()
+        .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            if(unlimitedFuel){
+                unlimitedFuel = false;
+                unlimitedFuelStatus = "OFF";
+            }
+            else{
+                unlimitedFuel = true;
+                unlimitedFuelStatus = "ON";
+            }
+            this.unlimitedFuelButtonText.text = 'INFINITE FUEL: ' + unlimitedFuelStatus;
+        })
     }
 
     update() {

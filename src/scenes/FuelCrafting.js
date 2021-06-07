@@ -58,53 +58,54 @@ class FuelCrafting extends Phaser.Scene {
 
         // ADDING FUEL COMPONENTS TO SCENE START ===========================================================================
 
-        //add ignus to scene
-        this.ignus = new Ignus(this, 'ignus');
-        this.ignus.paint(this, 100, 100);
-
-        //add  to scene
-        this.cola = new Cola(this, 'cola');
-        this.cola.paint(this, 275, 100);
-
-        //add  to scene
-        this.cookies = new Cookies(this, 'cookies');
-        this.cookies.paint(this, 425, 100);
-
-        //add  to scene
-        this.gasoline = new Gasoline(this, 'gasoline');
-        this.gasoline.paint(this, 600, 100);
-
-        //add  to scene
-        this.honey = new Honey(this, 'honey');
-        this.honey.paint(this, 100, 275);
-
-        //add  to scene
-        this.hotsauce = new HotSauce(this, 'hotsauce');
-        this.hotsauce.paint(this, 275, 275);
-
-        //add  to scene
-        this.hydrogen = new Hydrogen(this, 'hydrogen');
-        this.hydrogen.paint(this, 425, 275);
-
-        //add  to scene
-        this.icecream = new Icecream(this, 'icecream');
-        this.icecream.paint(this, 600, 275);
-
-        //add  to scene
-        this.mayo = new Mayo(this, 'mayonnaise');
-        this.mayo.paint(this, 100, 425);
-
-        //add  to scene
-        this.mentos = new Mentos(this, 'mentos');
-        this.mentos.paint(this, 275, 425);
-
-        //add  to scene
-        this.icyhot = new Icyhot(this, 'icyhot');
-        this.icyhot.paint(this, 425, 425);
-
-        //add  to scene
-        this.boxed = new Boxed(this, 'boxed');
-        this.boxed.paint(this, 600, 425);
+        if(fuelLevel > 0 || unlockAllFuel){
+            this.ignus = new Ignus(this, 'ignus');
+            this.ignus.paint(this, 100, 100);
+        }
+        if(fuelLevel > 1 || unlockAllFuel){
+            this.cola = new Cola(this, 'cola');
+            this.cola.paint(this, 275, 100);
+        }
+        if(fuelLevel > 2 || unlockAllFuel){
+            this.cookies = new Cookies(this, 'cookies');
+            this.cookies.paint(this, 425, 100);
+        }
+        if(fuelLevel > 3 || unlockAllFuel){
+            this.gasoline = new Gasoline(this, 'gasoline');
+            this.gasoline.paint(this, 600, 100);
+        }
+        if(fuelLevel > 4 || unlockAllFuel){
+            this.honey = new Honey(this, 'honey');
+            this.honey.paint(this, 100, 275);
+        }
+        if(fuelLevel > 5 || unlockAllFuel){
+            this.hotsauce = new HotSauce(this, 'hotsauce');
+            this.hotsauce.paint(this, 275, 275);
+        }
+        if(fuelLevel > 6 || unlockAllFuel){
+            this.hydrogen = new Hydrogen(this, 'hydrogen');
+            this.hydrogen.paint(this, 425, 275);
+        }
+        if(fuelLevel > 7 || unlockAllFuel){
+            this.icecream = new Icecream(this, 'icecream');
+            this.icecream.paint(this, 600, 275);
+        }
+        if(fuelLevel > 8 || unlockAllFuel){
+            this.mayo = new Mayo(this, 'mayonnaise');
+            this.mayo.paint(this, 100, 425);
+        }
+        if(fuelLevel > 9 || unlockAllFuel){
+            this.mentos = new Mentos(this, 'mentos');
+            this.mentos.paint(this, 275, 425);
+        }
+        if(fuelLevel > 10 || unlockAllFuel){
+            this.icyhot = new Icyhot(this, 'icyhot');
+            this.icyhot.paint(this, 425, 425);
+        }
+        if(fuelLevel > 11 || unlockAllFuel){
+            this.boxed = new Boxed(this, 'boxed');
+            this.boxed.paint(this, 600, 425);
+        }
 
         // ADDING FUEL COMPONENTS TO SCENE END =============================================================================
 
