@@ -22,7 +22,7 @@ class FuelCrafting extends Phaser.Scene {
         this.load.image('icecream', './assets/fuelComponents/icecream.png');
         this.load.image('mayonnaise', './assets/fuelComponents/maayonaise.png');
         this.load.image('mentos', './assets/fuelComponents/mentos.png');
-        this.load.image('icyhot', './assets/fuelComponents/Icyhot.png');
+        this.load.image('icyhot', './assets/fuelComponents/hotice.png');
         this.load.image('boxed', './assets/fuelComponents/Boxed.png');
         this.load.image('Qmark', './assets/Qmark1.png');
         this.load.audio('buttonSFX', './assets/music/buttonSFX.wav');
