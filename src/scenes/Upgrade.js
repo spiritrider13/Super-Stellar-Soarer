@@ -11,7 +11,7 @@ class Upgrade extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('upgradeBackground', './assets/upgradeBackground.png');
+        this.load.image('upgradeBackground', './assets/backgrounds/upgradeBackground.png');
         this.load.image('engineer', './assets/engineer.png');
 
         // Ship Upgrades
