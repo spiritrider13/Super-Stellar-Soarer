@@ -33,9 +33,17 @@ class Help extends Phaser.Scene {
         })
 
         // Help text
-        this.helpText = this.add.text(game.config.width/2, 200, 
-            'Press PLAY to be taken to the main screen,\nwhere you can navigate the different menus of the game.', normalTextConfig).setOrigin(0.5);
-        this.helpText2 = this.add.text(game.config.width/2, 300, 
-            'In the fuel crafting menu,you can select three different\nfuel components that will determine different stats of your rocket.', normalTextConfig).setOrigin(0.5);
+        this.helpText1 = this.add.text(game.config.width/2, 100, 
+            'Press PLAY to be taken to the main screen,\nwhere you can navigate the different menus of the game.\n',
+            normalTextConfig).setOrigin(0.5);
+        this.helpText2 = this.add.text(game.config.width/2, 200, 
+            'Use the Arrow Keys to rotate and thrust forward.\nCollect the green coins to earn upgrade points.\nUpgrade points may be spent after flight\nin the Upgrade Shop',
+            normalTextConfig).setOrigin(0.5);
+        this.helpText3 = this.add.text(game.config.width/2, 300, 
+            'In the fuel crafting menu,you can select three fuel components \nthat will determine different stats for your rocket.\nPower: affects your thrust speed.\nDuration: your total fuel storage in flight.\nStability: shakiness of rocket during thrust.', 
+            normalTextConfig).setOrigin(0.5);
+        this.helpText4 = this.add.text(game.config.width/2, 400, 
+            '', 
+            normalTextConfig).setOrigin(0.5);
     }
 }
