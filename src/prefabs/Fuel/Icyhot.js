@@ -1,11 +1,11 @@
 // 
-class Ignus extends FuelComponent {
+class Icyhot extends FuelComponent {
     constructor(scene, texture, frame) {
         super(scene, texture, frame);
         scene.add.existing(this);
 
-        super.power = 270;
-        super.duration = 120;
-        super.stability = 260;
+        super.power = 200;
+        super.duration = 200;
+        super.stability = 300;
     }
 }

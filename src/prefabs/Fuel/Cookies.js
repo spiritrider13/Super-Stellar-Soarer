@@ -1,4 +1,3 @@
-// 
 class Cookies extends FuelComponent {
     constructor(scene, texture, frame) {
         super(scene, texture, frame);

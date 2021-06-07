@@ -1,4 +1,3 @@
-// Ignus - Firelike substance - low in duration but powerful
 class Cola extends FuelComponent {
     constructor(scene, texture, frame) {
         super(scene, texture, frame);

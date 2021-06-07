@@ -22,6 +22,8 @@ class FuelCrafting extends Phaser.Scene {
         this.load.image('icecream', './assets/fuelComponents/icecream.png');
         this.load.image('mayonnaise', './assets/fuelComponents/maayonaise.png');
         this.load.image('mentos', './assets/fuelComponents/mentos.png');
+        this.load.image('icyhot', './assets/fuelComponents/Icyhot.png');
+        this.load.image('boxed', './assets/fuelComponents/Boxed.png');
         this.load.image('Qmark', './assets/Qmark1.png');
     }
 
@@ -95,6 +97,14 @@ class FuelCrafting extends Phaser.Scene {
         //add  to scene
         this.mentos = new Mentos(this, 'mentos');
         this.mentos.paint(this, 275, 425);
+
+        //add  to scene
+        this.icyhot = new Icyhot(this, 'icyhot');
+        this.icyhot.paint(this, 425, 425);
+
+        //add  to scene
+        this.boxed = new Boxed(this, 'boxed');
+        this.boxed.paint(this, 600, 425);
 
         // ADDING FUEL COMPONENTS TO SCENE END =============================================================================
 
